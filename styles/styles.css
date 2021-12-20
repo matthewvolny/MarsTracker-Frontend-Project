@@ -1,0 +1,34 @@
+:root {
+  font-size: 1rem;
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.5rem;
+}
+
+* + * {
+  margin: 1.5em;
+  padding: 1.5em;
+}
+
+* {
+  border: burlywood solid 1px;
+}
+
+.title-rovey {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+}
+.header-container {
+  display: flex;
+}
+header li {
+  list-style: none;
+  color: black;
+}
+.solar-system {
+  width: 300px;
+}
+
+.mars-image {
+  width: 100%;
+}
