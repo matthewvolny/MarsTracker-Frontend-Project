@@ -1,53 +1,28 @@
-//gives me exact coordinates of the top left corner of an element, in addition to its dimensions
-function myFunction() {
-  let testElement = document.querySelector(".testElement");
-  let testElementRectangle = testElement.getBoundingClientRect();
-  topSide = testElementRectangle.top;
-  rightSide = testElementRectangle.right;
-  bottomSide = testElementRectangle.bottom;
-  leftSide = testElementRectangle.left;
-  width = testElementRectangle.width;
-  height = testElementRectangle.height;
-  console.log(
-    `top${topSide}; right${rightSide}; bottom${bottomSide}; left${leftSide}; height${height}; width${width}`
-  );
-  //alert(`${window.innerHeight}; ${document.documentElement.clientHeight}`);
-  if (bottomSide <= document.documentElement.clientHeight) {
-    testElement.style.color = "green";
-  }
-}
 //document.documentElement.clientHeight - element height (when entire element is visible (rect.top = this value))
 //rectangle appears at rect.top<window.innerheight
 //rectangle disappears at rect.bottom<0
 
-const body = document.querySelector("body");
-window.addEventListener("scroll", myFunction);
+//adds "in-viewport" class to timeline elements upon entering the viewport
+const timelineElements = document.querySelectorAll(".timeline li");
+function addInViewToElements() {
+  for (i = 0; i < timelineElements.length; i++) {
+    console.log("hello");
+    //topSide = timelineElements[i].getBoundingClientRect().top;
+    //rightSide = timelineElements[i].getBoundingClientRect().right;
+    bottomSide = timelineElements[i].getBoundingClientRect().bottom;
+    //leftSide = timelineElements[i].getBoundingClientRect().left;
+    //height = timelineElements[i].getBoundingClientRect().height;
+    //width = timelineElements[i].getBoundingClientRect().width;
+    let viewportHeight = document.documentElement.clientHeight;
+    if (bottomSide <= viewportHeight) {
+      timelineElements[i].classList.add("in-viewport");
+      timelineElements[i].style.color = "green";
+    }
+  }
+}
 
-// function isElementInViewport(el) {
-//   var rect = el.getBoundingClientRect();
-//   return (
-//     rect.top >= 0 &&
-//     rect.left >= 0 &&
-//     rect.bottom <=
-//       (window.innerHeight || document.documentElement.clientHeight) &&
-//     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-//   );
-// }
+window.addEventListener("scroll", addInViewToElements);
 
-// var items = document.querySelectorAll(".timeline li");
-
-// // code for the isElementInViewport function
-
-// function callbackFunc() {
-//   for (var i = 0; i < items.length; i++) {
-//     if (isElementInViewport(items[i])) {
-//       items[i].classList.add("in-view");
-//     }
-//   }
-// }
-
-// window.addEventListener("load", callbackFunc);
-// window.addEventListener("scroll", callbackFunc);
 /*
 async function getCharacterInfo() {
   const response = await fetch();
