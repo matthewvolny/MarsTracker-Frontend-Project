@@ -3,10 +3,9 @@
 //rectangle disappears at rect.bottom<0
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
-const timelineElements = document.querySelectorAll(".timeline li");
+const timelineElements = document.querySelectorAll(".timeline > div");
 function addInViewToElements() {
   for (i = 0; i < timelineElements.length; i++) {
-    console.log("hello");
     //topSide = timelineElements[i].getBoundingClientRect().top;
     //rightSide = timelineElements[i].getBoundingClientRect().right;
     bottomSide = timelineElements[i].getBoundingClientRect().bottom;
@@ -15,8 +14,8 @@ function addInViewToElements() {
     //width = timelineElements[i].getBoundingClientRect().width;
     let viewportHeight = document.documentElement.clientHeight;
     if (bottomSide <= viewportHeight) {
-      timelineElements[i].classList.add("in-viewport");
-      timelineElements[i].style.color = "green";
+      timelineElements[i].setAttribute("id", "in-viewport");
+      //timelineElements[i].classList.remove("in-viewport");
     }
   }
 }
