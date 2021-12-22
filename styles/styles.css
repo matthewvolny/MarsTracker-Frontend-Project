@@ -23,6 +23,15 @@ body * + * {
 .main-container {
 }
 
+.roveys-intro {
+  display: flex;
+}
+
+.intro-text {
+  font-size: 2rem;
+  width: 40%;
+}
+
 /* planet image rover map flex container */
 .planet-map {
   display: flex;
