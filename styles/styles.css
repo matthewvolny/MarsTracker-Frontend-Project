@@ -1,34 +1,211 @@
 :root {
+  line-height: 1.2;
   font-size: 1rem;
+  box-sizing: border-box;
   font-family: "Courier New", Courier, monospace;
-  line-height: 1.5rem;
 }
 
-* + * {
-  margin: 1.5em;
-  padding: 1.5em;
+*,
+::before,
+::after {
+  box-sizing: inherit;
 }
 
-* {
-  border: burlywood solid 1px;
+body * + * {
+  /*selects all elements on the page that are not the first child of their parent*/
+  margin-top: 1em;
 }
 
-.title-rovey {
-  height: 200px;
-  width: 200px;
-  object-fit: contain;
+/* * {
+  border: blueviolet dotted 1px;
+} */
+
+.main-container {
 }
-.header-container {
+
+/* planet image rover map flex container */
+.planet-map {
   display: flex;
-}
-header li {
-  list-style: none;
-  color: black;
-}
-.solar-system {
-  width: 300px;
+  height: 800px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border: brown 1px dotted;
 }
 
-.mars-image {
-  width: 100%;
+/* planet image flex item (the planet image) */
+.planet-map > div {
+  display: flex;
+  height: 600px;
+  width: 600px;
+  background: coral;
+  border-radius: 50%;
+  border: brown 1px dotted;
+}
+
+/* possible change to a timeline flexbox */
+/* .timeline-container {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* remove default ul list padding */
+ul {
+  padding: 0;
+}
+
+/* the timeline itself (made of li elements)*/
+.timeline {
+  list-style: none;
+  position: relative;
+  width: 6px;
+  height: 300px; /*spacing between each dot on timeline*/
+  margin: 0 auto;
+  /* padding-top: 1.5em; */
+  background: #ebebeb;
+}
+
+/* the dots on the timeline */
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: inherit;
+  background-color: #fe8d56;
+  z-index: 1;
+}
+
+/* hides every other dot on the timeline */
+.timeline:nth-child(even)::after {
+  visibility: hidden;
+}
+
+/* triggered when timeline elements enter the viewport */
+#in-viewport {
+  visibility: visible;
+  opacity: 1;
+  /* color: blue; */
+  transform: scale(1.1);
+}
+
+/* triangle pointer created  for timeline elements */
+.timeline > div::before {
+  content: "";
+  position: absolute;
+  bottom: 133px; /* y positioning of arrows */
+  height: 0;
+}
+
+/* triangle pointer styling(right side) */
+.timeline-container ul li:nth-child(4n + 1) > div::before {
+  left: -63px;
+  border-width: 15px 30px 15px 30px;
+  border-color: transparent #fe8d56 transparent transparent;
+  border-style: solid;
+}
+
+/* triangle pointer styling(left side) */
+.timeline-container ul li:nth-child(4n + 2) > div::before {
+  content: "..";
+  font-size: 100px;
+  color: #fe8d56;
+  left: 292px;
+  bottom: 236px;
+}
+
+/* triangle pointer styling(left side) */
+.timeline-container ul li:nth-child(4n + 3) > div::before {
+  left: 292px;
+  border-width: 15px 30px 15px 30px;
+  border-color: transparent transparent transparent #e96063;
+  border-style: solid;
+}
+
+/* triangle pointer styling(left side) */
+.timeline-container ul li:nth-child(4n + 4) > div::before {
+  content: "..";
+  font-size: 100px;
+  color: #fe8d56;
+  left: -50px;
+  bottom: 236px;
+}
+
+/* odd timeline elements */
+ul li:nth-child(odd) > div {
+  visibility: hidden; /*will be set to hidden when elements show up on scrolling*/
+  opacity: 0;
+  position: relative; /*used to offset timeline elements */
+  /* bottom: 0; */
+  height: 300px;
+  width: 300px; /* would like this measurement to reflect width of other elements on pg */
+  top: 140px;
+  padding: 1.5em;
+  color: #fe8d56;
+  border: #fe8d56 6px solid;
+  border-radius: 15em;
+  transition: all 1500ms ease-in-out;
+}
+
+/* odd timeline elements */
+ul li:nth-child(even) > div {
+  visibility: hidden; /*will be set to hidden when elements show up on scrolling*/
+  opacity: 0.3;
+  position: relative; /* used to offset timeline elements */
+  /* bottom: 0; */
+  height: 300px;
+  width: 300px; /* would like this measurement to reflect width of other elements on pg */
+  bottom: 160px;
+  padding: 1.5em;
+  color: rebeccapurple;
+  background: lightgrey;
+
+  border-radius: 0.5em;
+  transition: all 1500ms ease-in-out;
+}
+
+/* offsets odd timeline elements */
+.timeline-container ul li:nth-child(4n + 1) > div {
+  left: 125px;
+  color: red;
+  visibility: visible;
+  height: 300px;
+  width: 300px;
+
+  /* top: 150px; */
+}
+
+/* offsets even timeline elements */
+.timeline-container ul li:nth-child(4n + 2) > div {
+  color: white;
+  visibility: visible;
+  height: 300px;
+  width: 300px;
+  left: -480px;
+}
+
+/* offsets odd timeline elements */
+.timeline-container ul li:nth-child(4n + 3) > div {
+  color: #fe8d56;
+  visibility: visible;
+  border: #e96063 solid 6px;
+  height: 300px;
+  width: 300px;
+  left: -419px;
+
+  /* top: 150px; */
+}
+
+/* offsets even timeline elements */
+.timeline-container ul li:nth-child(4n + 4) > div {
+  color: aqua;
+  visibility: visible;
+  height: 300px;
+  width: 300px;
+  left: 125px;
+  /* top: 150px; */
 }
