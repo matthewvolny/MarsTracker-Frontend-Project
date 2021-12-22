@@ -85,6 +85,10 @@ ul {
   visibility: hidden;
 }
 
+.timeline:nth-child(4n + 3)::after {
+  background-color: #e96063;
+}
+
 /* triggered when timeline elements enter the viewport */
 #in-viewport {
   visibility: visible;
