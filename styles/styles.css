@@ -43,15 +43,32 @@ body * + * {
 }
 
 /* planet image flex item (the planet image) */
-.planet-map > div {
-  display: flex;
+
+.mars-diagram {
   height: 600px;
   width: 600px;
-  background: coral;
+  position: relative;
+  right: 200px;
+  background-color: bisque;
   border-radius: 50%;
+}
+
+.rover-route {
+  height: 325px;
+  width: 325px;
+  position: relative;
+  left: 450px;
+  bottom: 50px;
+  background: coral;
+  border-radius: 0.2em;
   border: brown 1px dotted;
 }
 
+.waypoint-dom-element {
+  height: 50px;
+  width: 50px;
+  border: solid rebeccapurple 2px;
+}
 /* possible change to a timeline flexbox */
 /* .timeline-container {
   display: flex;
@@ -104,6 +121,7 @@ ul {
   opacity: 1;
   /* color: blue; */
   transform: scale(1.1);
+  /* transform: translate(100px); must set for just square elements*/
 }
 
 /* triangle pointer/dots created for timeline elements */
@@ -163,7 +181,8 @@ ul li:nth-child(odd) > div {
   top: 140px;
   padding: 1.5em;
   border-radius: 15em;
-  transition: all 1500ms ease-in-out;
+  transition: transform 1500ms ease-in-out, opacity 1500ms ease-in-out,
+    visibility 1500ms ease-in-out;
 }
 
 /* square timeline elements (initially hidden) */
