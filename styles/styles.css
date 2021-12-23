@@ -68,6 +68,8 @@ body * + * {
   height: 50px;
   width: 50px;
   border: solid rebeccapurple 2px;
+  background-color: seagreen;
+  z-index: 10;
 }
 /* possible change to a timeline flexbox */
 /* .timeline-container {
