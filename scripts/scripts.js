@@ -4,9 +4,16 @@ let curiosityWaypointElevations = [];
 let curiostyWaypointMilesTraveled = [];
 let curiosityWaypointSol = [];
 
+const roverRouteMap = document.querySelector(".rover-route");
+const marsDiagram = document.querySelector(".mars-diagram");
+
+const AddMapExpanderButton = () => {
+  const mapExpanderButton = document.createElement(".div");
+};
+
 //draw select nodes on curiosity map (look into which should be included)
 const drawWaypointDomElements = (waypoints) => {
-  const roverRouteMap = document.querySelector(".rover-route");
+  //const roverRouteMap = document.querySelector(".rover-route");
   waypoints.forEach((waypoint) => {
     if (
       waypoint.properties.sol === 20 ||
@@ -31,100 +38,93 @@ body.addEventListener("click", (event) => {
   }
 });
 
-async function getCuriosityLocationData() {
+/////////////////////////////////////////////////
+//fetches rover waypoint (position) data
+async function getPerseveranceLocationData() {
   const response = await fetch("./assets/Waypoints-Perseverance.geojson");
   const locationData = await response.json();
   const waypoints = locationData.features;
-  console.log(locationData.features);
-  // waypoints.forEach((waypoint) => {
-  //   curiosityWaypointLatitudes.push(waypoint.geometry.coordinates);
-  // });
-
-  const drawCuriosityRoute = (waypoints) => {
-    const canvas = document.querySelector(".rover-route");
-    const ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.moveTo(175, 175); // moves the pen to the
-    //////   //////
-    let longitudeArray = [];
-    let latitudeArray = [];
-    ///////    ///////
-    waypoints.forEach((waypoint) => {
-      //calculation to change waypoint.properties.lon and lat to x and y under 500px
-      console.log("hello");
-      ///////////  //////
-      longitudeArray.push(waypoint.properties.lon);
-      latitudeArray.push(waypoint.properties.lat);
-      /////////    //////
-      // console.log(longitudeArray);
-      // console.log(latitudeArray);
-      // let longitude = (waypoint.properties.lon - 77.4) * 5000 - 180;
-      // let latitude = -((waypoint.properties.lat - 18.4) * 5000 - 180);
-      //let longitude = (waypoint.properties.lon - 77.4) * 5000;
-      //let latitude = (waypoint.properties.lat - 18.4) * 5000;
-
-      // let x = (325 * (180 + latitude)) / 360;
-      // let y = (325 * (90 - longitude)) / 180;
-
-      // let newX = (x - 179) * 1000;
-      // let newY = (y - 22.6) * 1000;
-      // ctx.lineTo(longitude, latitude);
-      // ctx.lineTo(x, y);
-      //ctx.lineTo(longitude, latitude);
-      //console.log(`${longitude}, ${latitude}, ${waypoint.properties.sol}`);
-      // console.log(`${x}, ${y}`);
-      // console.log(`${newX}, ${newY}`);
-      // ctx.lineTo(longitude, latitude);
-      // console.log(`${longitude}, ${latitude}, ${waypoint.properties.sol}`);
-    });
-
-    ///////   ////////
-    let lowestLatitudeValue = Math.min.apply(null, latitudeArray);
-    console.log(lowestLatitudeValue);
-    //let longitudeIndex = longitudeArray.indexOf(lowestLongitudeValue);
-    // console.log(longitudeIndex); //index of lowest value in array
-    let newLatitudeArray = latitudeArray.map((latitudeValue) => {
-      let latitudeDifference = latitudeValue - lowestLatitudeValue;
-      console.log(latitudeDifference);
-      return lowestLatitudeValue - latitudeDifference; //i believe this is "minus"
-    });
-
-    // let newLongitudeArray = longitudeArray.map((longitudeValue) => {
-    // return (longitudeValue - lowestLongitudeValue) * 15000 + 150;
-    // // });
-    console.log(newLatitudeArray); //each value in the longitude array minus the lowest value
-
-    ////////   ///////
-    // console.log(latitudeArray[longitudeIndex]); // lowest value in latitude array
-    // let newLatitudeArray = latitudeArray.map((latitudeValue) => {
-    //   return -(latitudeValue - latitudeArray[longitudeIndex]) * 15000 + 150;
-    // });
-    //console.log(newLatitudeArray);
-    console.log(longitudeArray);
-    ////  ////
-    ctx.beginPath();
-    ctx.moveTo(175, 175);
-    for (i = 0; i < newLatitudeArray.length; i++) {
-      longitudeArray[i] = (longitudeArray[i] - 77.4) * 5000;
-      newLatitudeArray[i] = (newLatitudeArray[i] - 18.4) * 5000;
-      // console.log(newLongitudeArray);
-      // console.log(latitudeArray);
-      ctx.lineTo(longitudeArray[i], newLatitudeArray[i]);
-    }
-    ////    /////
-
-    ctx.stroke();
-    ///////  ///
-    ctx.beginPath();
-    ctx.fillStyle = "green";
-    ctx.fillRect(100, 300, 10, 10);
-
-    /////   ////
-  };
-  drawCuriosityRoute(waypoints);
-  drawWaypointDomElements(waypoints);
+  console.log(locationData.features); //logs all waypoint data
+  return storeWaypointData(waypoints);
 }
-getCuriosityLocationData();
+getPerseveranceLocationData();
+
+//stores fetched waypoint x and y data in arrays
+const storeWaypointData = (waypoints) => {
+  let longitudeArray = [];
+  let latitudeArray = [];
+  waypoints.forEach((waypoint) => {
+    longitudeArray.push(waypoint.properties.lon);
+    latitudeArray.push(waypoint.properties.lat);
+  });
+  return magnifyRoverLocationData(longitudeArray, latitudeArray);
+};
+//adjusts latitude (y) data to reflect accurately on canvas (not inverted)
+const invertLatitudeValues = (latitudeArray) => {
+  let lowestLatitudeValue = Math.min.apply(null, latitudeArray);
+  let newLatitudeArray = latitudeArray.map((latitudeValue) => {
+    let latitudeDifference = latitudeValue - lowestLatitudeValue;
+    return lowestLatitudeValue - latitudeDifference;
+  });
+  return newLatitudeArray;
+};
+
+//magnify rover location (x, y) data in the canvas element
+const magnifyRoverLocationData = (longitudeArray, latitudeArray) => {
+  let magnifiedPositionsX = longitudeArray.map((value) => {
+    return (value - 77.4) * 16000;
+  });
+  let magnifiedPositionsY = invertLatitudeValues(latitudeArray).map((value) => {
+    return (value - 18.4) * 16000;
+  });
+  centerRoverLocationData(magnifiedPositionsX, magnifiedPositionsY);
+};
+
+//center rover location data in the canvas element
+const centerRoverLocationData = (magnifiedPositionsX, magnifiedPositionsY) => {
+  const canvasCenterX = roverRouteMap.getAttribute("width") / 2;
+  const canvasCenterY = roverRouteMap.getAttribute("height") / 2;
+  let lowestXPosition = Math.min.apply(null, magnifiedPositionsX);
+  let highestXPosition = Math.max.apply(null, magnifiedPositionsX);
+  let centerRoverPathX =
+    (highestXPosition - lowestXPosition) / 2 + lowestXPosition;
+  let lowestYPosition = Math.min.apply(null, magnifiedPositionsY);
+  let highestYPosition = Math.max.apply(null, magnifiedPositionsY);
+  let centerRoverPathY =
+    (highestYPosition - lowestYPosition) / 2 + lowestYPosition;
+  let transformXRatio = canvasCenterX - centerRoverPathX;
+  let transformYRatio = canvasCenterY - centerRoverPathY;
+  const centeredRoverPositionsX = magnifiedPositionsX.map((value) => {
+    return value + transformXRatio;
+  });
+  const centeredRoverPositionsY = magnifiedPositionsY.map((value) => {
+    return value + transformYRatio;
+  });
+  drawRoverPosition(centeredRoverPositionsX, centeredRoverPositionsY);
+};
+
+//draw rover position using updated x and y data arrays
+const drawRoverPosition = (
+  centeredRoverPositionsX,
+  centeredRoverPositionsY
+) => {
+  const ctx = roverRouteMap.getContext("2d");
+  ctx.beginPath();
+  //ctx.moveTo(175, 175);
+  for (i = 0; i < centeredRoverPositionsX.length; i++) {
+    ctx.lineTo(centeredRoverPositionsX[i], centeredRoverPositionsY[i]);
+  }
+  ctx.stroke();
+
+  ///////  ///
+  ctx.beginPath();
+  ctx.fillStyle = "green";
+  ctx.fillRect(100, 300, 10, 10);
+};
+
+//drawWaypointDomElements(waypoints);
+
+//}
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
 const timelineElements = document.querySelectorAll(
