@@ -6,6 +6,17 @@ let curiosityWaypointSol = [];
 
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-diagram");
+const teardrop = document.querySelector(".teardrop");
+
+roverRouteMap.style.position;
+
+//event listener for rover position teardrop
+teardrop.addEventListener("click", (e) => {
+  marsDiagram.classList.add("minimize-planet");
+  roverRouteMap.classList.add("show-rover-route");
+  teardrop.style.visibility = "hidden";
+  marsDiagram.style.opacity = "0.8";
+});
 
 const AddMapExpanderButton = () => {
   const mapExpanderButton = document.createElement(".div");
@@ -139,9 +150,13 @@ function addInViewToElements() {
     //height = timelineElements[i].getBoundingClientRect().height;
     //width = timelineElements[i].getBoundingClientRect().width;
     let viewportHeight = document.documentElement.clientHeight;
-    if (bottomSide <= viewportHeight) {
-      timelineElements[i].setAttribute("id", "in-viewport");
+    if (bottomSide <= viewportHeight && i % 2 === 0) {
+      timelineElements[i].setAttribute("id", "in-viewport-circles");
       //timelineElements[i].classList.remove("in-viewport");
+    } else if (bottomSide <= viewportHeight && i % 3 === 0) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
+    } else if (bottomSide <= viewportHeight) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     }
   }
 }

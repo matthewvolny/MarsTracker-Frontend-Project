@@ -32,41 +32,101 @@ body * + * {
   width: 40%;
 }
 
-/* planet image rover map flex container */
+/* planet image rover map */
 .planet-map {
-  display: flex;
   height: 800px;
   width: 100%;
-  justify-content: center;
-  align-items: center;
   border: brown 1px dotted;
+  /* display: inline-block; */
 }
 
-/* planet image flex item (the planet image) */
-
+/* planet image */
 .mars-diagram {
   height: 600px;
   width: 600px;
-  position: relative;
+  margin: 0 auto;
+  margin-top: 5em;
+  /* position: relative; */
   /* right: 200px; */
-  background-color: bisque;
+  background-color: coral;
   border-radius: 50%;
 }
 
-.rover-route {
-  height: 325px;
-  width: 325px;
+/* minimizes the planet on button click */
+.minimize-planet {
+  animation: scale-down-bl 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale-down-bl {
+  0% {
+    transform: scale(1) translateX(0);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: scale(0.8) translateX(-150px);
+    transform-origin: 0% 100%;
+  }
+}
+
+/* container keeping the rover map(hidden) next to the teardrop */
+.tear-drop-rover-route-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  left: 450px;
-  bottom: 50px;
+  bottom: 325px;
+}
+
+/* rover landing site button (expands rover route map when clicked) */
+.teardrop {
+  background-color: purple;
+  height: 50px;
+  width: 50px;
+  z-index: 10;
+  transform: rotate(45deg);
+  border-radius: 50% 50% 0% 50%;
+  /* float: left; */
+}
+
+.rover-route {
+  visibility: hidden;
+  opacity: 0;
+  height: 50px;
+  width: 50px;
+  /* float: left; */
+  margin: 0;
+  background: coral;
+  border-radius: 0.1em;
+}
+
+.show-rover-route {
+  visibility: visible;
+  opacity: 1;
+  height: 50px;
+  width: 50px;
+  /* position: relative;
+  left: -300px;
+  bottom: 50px; */
   background: coral;
   border-radius: 0.2em;
-  border: brown 1px dotted;
+  animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale-up-bl {
+  0% {
+    transform: scale(1) translateX(-5px);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: scale(8) translateX(-5px);
+    transform-origin: 0% 100%;
+  }
 }
 
 .rover-route:hover {
   cursor: pointer;
-  background-color: tan;
 }
 
 .waypoint-dom-element {
@@ -123,12 +183,27 @@ ul {
 }
 
 /* triggered when timeline elements enter the viewport */
-#in-viewport {
+#in-viewport-circles {
   visibility: visible;
   opacity: 1;
   /* color: blue; */
   transform: scale(1.1);
-  /* transform: translate(100px); must set for just square elements*/
+}
+
+/* triggered when timeline elements enter the viewport */
+#in-viewport-squares-left {
+  visibility: visible;
+  opacity: 1;
+  /* color: blue; */
+  transform: translate(50px);
+}
+
+/* triggered when timeline elements enter the viewport */
+#in-viewport-squares-right {
+  visibility: visible;
+  opacity: 1;
+  /* color: blue; */
+  transform: translate(-50px);
 }
 
 /* triangle pointer/dots created for timeline elements */
@@ -188,8 +263,7 @@ ul li:nth-child(odd) > div {
   top: 140px;
   padding: 1.5em;
   border-radius: 15em;
-  transition: transform 1500ms ease-in-out, opacity 1500ms ease-in-out,
-    visibility 1500ms ease-in-out;
+  transition: all 1500ms ease-in-out;
 }
 
 /* square timeline elements (initially hidden) */
