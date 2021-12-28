@@ -20,38 +20,254 @@ body * + * {
   border: blueviolet dotted 1px;
 } */
 
+.color-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: royalblue solid 1px;
+}
+
+.green {
+  background-color: green;
+  width: 50px;
+  height: 50px;
+  margin-top: 0;
+  opacity: 0.5;
+  position: relative;
+  left: -50px;
+}
+
+.dot {
+  background: skyblue;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  position: absolute;
+  /* position: relative; */
+  left: 47px;
+  top: 47px;
+  margin: 0;
+}
+
+.red {
+  background-color: red;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
 .main-container {
 }
 
 .roveys-intro {
   display: flex;
+  margin: 2em;
+}
+
+.text-box-and-button-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
 }
 
 .intro-text {
   font-size: 2rem;
-  width: 40%;
+  text-align: center;
+  padding: 1.5em;
+  margin-bottom: 20%;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  border: 8px solid #666;
+  border-radius: 4em;
+  box-shadow: 2px 2px 4px #888;
 }
 
-/* planet image rover map flex container */
+.intro-text::after {
+  content: "";
+  border-bottom: 3px dotted #666;
+  border-right: 3px dotted #666;
+  display: block;
+  height: 50px;
+  width: 100px;
+  z-index: 15;
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 30px;
+  top: 100px;
+  border: 25px solid;
+  border-color: #666 #666 transparent transparent;
+}
+
+.select-rover-button {
+  color: grey;
+  background-color: burlywood;
+}
+
+.rovey {
+  object-fit: contain;
+  width: 40%;
+  align-items: flex-end;
+  margin-top: 20%;
+  transform: scaleX(-1);
+}
+
+/* planet image rover map */
 .planet-map {
-  display: flex;
   height: 800px;
   width: 100%;
-  justify-content: center;
-  align-items: center;
   border: brown 1px dotted;
+  /* display: inline-block; */
 }
 
-/* planet image flex item (the planet image) */
-.planet-map > div {
-  display: flex;
+/* planet image */
+.mars-diagram {
   height: 600px;
   width: 600px;
-  background: coral;
+  margin: 0 auto;
+  margin-top: 5em;
+  /* position: relative; */
+  /* right: 200px; */
+  background-color: coral;
   border-radius: 50%;
-  border: brown 1px dotted;
 }
 
+/* minimizes the planet on button click */
+.minimize-planet {
+  animation: scale-down-bl 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale-down-bl {
+  0% {
+    transform: scale(1) translateX(0);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: scale(0.8) translateX(-150px);
+    transform-origin: 0% 100%;
+  }
+}
+
+/* container keeping the rover map(hidden) next to the teardrop */
+.tear-drop-rover-route-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 325px;
+}
+
+/* rover landing site button (expands rover route map when clicked) */
+.teardrop {
+  background-color: purple;
+  height: 50px;
+  width: 50px;
+  z-index: 10;
+  transform: rotate(45deg);
+  border-radius: 50% 50% 0% 50%;
+  /* float: left; */
+}
+
+/* container for plotting dom elements over rover route map */
+.canvas-container {
+  position: relative;
+  /* background-color: springgreen; */
+  /* border: springgreen solid 1px; */
+  width: 50px;
+  height: 50px;
+  left: -50px;
+  padding: 0;
+  margin: 0;
+}
+
+.show-canvas-container {
+  position: relative;
+  /* background-color: springgreen; */
+  /* border: springgreen solid 1px; */
+  width: 50px;
+  height: 50px;
+  left: -50px;
+  animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+  border-radius: 0.1em;
+  padding: 0;
+  margin: 0;
+}
+
+.waypoint {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0.5;
+  width: 2px;
+  height: 2px;
+  margin: 0;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: skyblue;
+  padding: 0;
+  margin: 0;
+}
+
+.show-waypoint {
+  visibility: visible;
+  opacity: 1;
+}
+
+.rover-route {
+  visibility: hidden;
+  opacity: 1;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  margin: 0;
+  /* float: left; */
+  background: grey;
+}
+
+.show-rover-route {
+  visibility: visible;
+  opacity: 1;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  margin: 0;
+  /* position: relative;
+  left: -300px;
+  bottom: 50px; */
+  background: grey;
+  border-radius: 0.1em;
+  animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale-up-bl {
+  0% {
+    transform: scale(1) translateX(-5px);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: scale(8) translateX(-5px);
+    transform-origin: 0% 100%;
+  }
+}
+
+.rover-route:hover {
+  cursor: pointer;
+}
+
+.rover-dot {
+  height: 50px;
+  width: 50px;
+  border: solid rebeccapurple 2px;
+  background-color: seagreen;
+  z-index: 20;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
 /* possible change to a timeline flexbox */
 /* .timeline-container {
   display: flex;
@@ -99,11 +315,27 @@ ul {
 }
 
 /* triggered when timeline elements enter the viewport */
-#in-viewport {
+#in-viewport-circles {
   visibility: visible;
   opacity: 1;
   /* color: blue; */
   transform: scale(1.1);
+}
+
+/* triggered when timeline elements enter the viewport */
+#in-viewport-squares-left {
+  visibility: visible;
+  opacity: 1;
+  /* color: blue; */
+  transform: translate(50px);
+}
+
+/* triggered when timeline elements enter the viewport */
+#in-viewport-squares-right {
+  visibility: visible;
+  opacity: 1;
+  /* color: blue; */
+  transform: translate(-50px);
 }
 
 /* triangle pointer/dots created for timeline elements */
