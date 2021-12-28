@@ -193,12 +193,53 @@ function addInViewToElements() {
     if (bottomSide <= viewportHeight && i % 2 === 0) {
       timelineElements[i].setAttribute("id", "in-viewport-circles");
       //timelineElements[i].classList.remove("in-viewport");
-    } else if (bottomSide <= viewportHeight && i % 3 === 0) {
+    } else if (bottomSide <= viewportHeight && i === 1) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-left");
-    } else if (bottomSide <= viewportHeight) {
+    } else if (bottomSide <= viewportHeight && i === 3) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+    } else if (bottomSide <= viewportHeight && i === 5) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
+    } else if (bottomSide <= viewportHeight && i === 7) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+    } else if (bottomSide <= viewportHeight && i === 9) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
+    } else if (bottomSide <= viewportHeight && i === 11) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+    } else if (bottomSide <= viewportHeight && i === 13) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
+    } else if (bottomSide <= viewportHeight && i === 15) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     }
   }
 }
 
+//   const squareElements = [];
+//   squareElements.push(timelineElements[i]);
+//   console.log(squareElements);
+//   for (i = 0; i < squareElements.length; i++) {
+//     if (i % 2 === 0) {
+//
+//
+
+/*
+function addInViewToElements() {
+  for (i = 0; i < timelineElements.length; i++) {
+    //topSide = timelineElements[i].getBoundingClientRect().top;
+    //rightSide = timelineElements[i].getBoundingClientRect().right;
+    bottomSide = timelineElements[i].getBoundingClientRect().bottom;
+    //leftSide = timelineElements[i].getBoundingClientRect().left;
+    //height = timelineElements[i].getBoundingClientRect().height;
+    //width = timelineElements[i].getBoundingClientRect().width;
+    let viewportHeight = document.documentElement.clientHeight;
+    if (bottomSide <= viewportHeight && i % 2 === 0) {
+      timelineElements[i].setAttribute("id", "in-viewport-circles");
+      //timelineElements[i].classList.remove("in-viewport");
+    } else if (bottomSide <= viewportHeight && i % 3 === 0) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
+    } else if (bottomSide <= viewportHeight && i % 4 === 0) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+    }
+  }
+}
+*/
 window.addEventListener("scroll", addInViewToElements);
