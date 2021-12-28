@@ -7,55 +7,101 @@ let curiosityWaypointSol = [];
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-diagram");
 const teardrop = document.querySelector(".teardrop");
-
-roverRouteMap.style.position;
+const tearDropRoverRouteContainer = document.querySelector(
+  ".tear-drop-rover-route-container"
+);
+const canvasContainer = document.querySelector(".canvas-container");
 
 //event listener for rover position teardrop
 teardrop.addEventListener("click", (e) => {
   marsDiagram.classList.add("minimize-planet");
   roverRouteMap.classList.add("show-rover-route");
+  canvasContainer.classList.add("show-canvas-container");
+  const waypoint = document.querySelectorAll(".waypoint");
+  for (i = 0; i < waypoint.length; i++) {
+    waypoint[i].classList.add("show-waypoint");
+  }
   teardrop.style.visibility = "hidden";
   marsDiagram.style.opacity = "0.8";
 });
 
-const AddMapExpanderButton = () => {
-  const mapExpanderButton = document.createElement(".div");
+//plots select waypoints on the rover map (class name includes the sol)
+const addRoverWaypoints = (
+  adjustedCenterRoverPositionsX,
+  adjustedCenterRoverPositionsY,
+  i,
+  solValue
+) => {
+  let waypoint = document.createElement("div");
+  waypoint.classList.add(`sol-${solValue}`, "waypoint");
+  waypoint.style.top = `${adjustedCenterRoverPositionsY[i]}px`;
+  waypoint.style.left = `${adjustedCenterRoverPositionsX[i]}px`;
+  canvasContainer.appendChild(waypoint);
 };
 
-//draw select nodes on curiosity map (look into which should be included)
-const drawWaypointDomElements = (waypoints) => {
-  //const roverRouteMap = document.querySelector(".rover-route");
-  waypoints.forEach((waypoint) => {
-    if (
-      waypoint.properties.sol === 20 ||
-      waypoint.properties.sol === 129 ||
-      waypoint.properties.sol === 180 ||
-      waypoint.properties.sol === 283
-    ) {
-      let waypointDomElement = document.createElement("div");
-      waypointDomElement.classList.add("waypoint-dom-element");
-      // waypointDomElement.style.left = waypoint.properties.lat;
-      // waypointDomElement.style.top = waypoint.properties.long;
-      roverRouteMap.appendChild(waypointDomElement);
+//scale rover waypoint x and y values for 50px/50px canvas, and call addRoverWaypoints (rover plotting function) for select dates
+roverRouteSolArray = [];
+const addRoverWaypointDomElements = (
+  centeredRoverPositionsX,
+  centeredRoverPositionsY
+) => {
+  const adjustedCenterRoverPositionsX = centeredRoverPositionsX.map(
+    (valueX) => {
+      return (valueX * 50) / 800 - 1; //1 takes into account the size of the dots on the rover map (it can be more or less)
     }
-  });
+  );
+  const adjustedCenterRoverPositionsY = centeredRoverPositionsY.map(
+    (valueY) => {
+      return (valueY * 50) / 800 - 1; //1 takes into account the size of the dots on the rover map (it can be more or less)
+    }
+  );
+  for (i = 0; i < roverRouteSolArray.length; i++) {
+    if (roverRouteSolArray[i] === 20) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArray[i] === 129) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArray[i] === 173) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArray[i] === 238) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArray[i] === 283) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    }
+  }
 };
 
-//put interactive nodes on the the map
-const body = document.querySelector("body");
-body.addEventListener("click", (event) => {
-  if (event.target.classList.contains("RoverDot")) {
-    //pop up info for the day and info about the mars geography
-  }
-});
-
-/////////////////////////////////////////////////
 //fetches rover waypoint (position) data
 async function getPerseveranceLocationData() {
   const response = await fetch("./assets/Waypoints-Perseverance.geojson");
   const locationData = await response.json();
   const waypoints = locationData.features;
   console.log(locationData.features); //logs all waypoint data
+  // drawWaypointDomElements(waypoints);
   return storeWaypointData(waypoints);
 }
 getPerseveranceLocationData();
@@ -67,6 +113,7 @@ const storeWaypointData = (waypoints) => {
   waypoints.forEach((waypoint) => {
     longitudeArray.push(waypoint.properties.lon);
     latitudeArray.push(waypoint.properties.lat);
+    roverRouteSolArray.push(waypoint.properties.sol);
   });
   return magnifyRoverLocationData(longitudeArray, latitudeArray);
 };
@@ -83,10 +130,10 @@ const invertLatitudeValues = (latitudeArray) => {
 //magnify rover location (x, y) data in the canvas element
 const magnifyRoverLocationData = (longitudeArray, latitudeArray) => {
   let magnifiedPositionsX = longitudeArray.map((value) => {
-    return (value - 77.4) * 16000;
+    return (value - 77.4) * 40000;
   });
   let magnifiedPositionsY = invertLatitudeValues(latitudeArray).map((value) => {
-    return (value - 18.4) * 16000;
+    return (value - 18.4) * 40000;
   });
   centerRoverLocationData(magnifiedPositionsX, magnifiedPositionsY);
 };
@@ -112,6 +159,7 @@ const centerRoverLocationData = (magnifiedPositionsX, magnifiedPositionsY) => {
     return value + transformYRatio;
   });
   drawRoverPosition(centeredRoverPositionsX, centeredRoverPositionsY);
+  addRoverWaypointDomElements(centeredRoverPositionsX, centeredRoverPositionsY);
 };
 
 //draw rover position using updated x and y data arrays
@@ -120,22 +168,14 @@ const drawRoverPosition = (
   centeredRoverPositionsY
 ) => {
   const ctx = roverRouteMap.getContext("2d");
+  ctx.lineWidth = 7;
   ctx.beginPath();
   //ctx.moveTo(175, 175);
   for (i = 0; i < centeredRoverPositionsX.length; i++) {
     ctx.lineTo(centeredRoverPositionsX[i], centeredRoverPositionsY[i]);
   }
   ctx.stroke();
-
-  ///////  ///
-  ctx.beginPath();
-  ctx.fillStyle = "green";
-  ctx.fillRect(100, 300, 10, 10);
 };
-
-//drawWaypointDomElements(waypoints);
-
-//}
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
 const timelineElements = document.querySelectorAll(

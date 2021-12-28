@@ -10,17 +10,22 @@
   <body>
     <div class="main-container"></section>
       <section class="roveys-intro">
+        
+        <div class="text-box-and-button-container">
         <div class="intro-text">
           Hello there! Did you ever wonder what it might be like to visit another planet? Well then you came to the right place. I am the mars rover 'Curiosity', though you can call me 'rovey' for short. Learn about my adventures on our neighbor planet, Mars by clicking the links below.
         </div>
-        <div><img src="" alt="rovey image"></div>
+        <button class="select-rover-button">Select Rover</button>
+        </div>
+        <img class = "rovey" src="./assets/rovey image colored-pink.jpg" alt="rovey image">
       </section>
       <section class="planet-map">
         <div class="mars-diagram"></div>
         <div class="tear-drop-rover-route-container">
           <div class="teardrop"></div>
-          <canvas class="rover-route" height="325" width="325"></canvas> 
-      </div>
+          <canvas class="rover-route" height="800" width="800"></canvas>
+          <div class="canvas-container"></div>     
+        </div>
       </section>
       <div class="timeline-container">
         <ul>
@@ -235,7 +240,12 @@
           </li>
         </ul>
       </div>
-
+      <div class="color-container">
+      <div class="red">red box</div>
+    <div class="green">green box
+      <div class="dot"></div>
+    </div>
+    </div>
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>

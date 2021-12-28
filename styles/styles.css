@@ -20,16 +20,98 @@ body * + * {
   border: blueviolet dotted 1px;
 } */
 
+.color-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: royalblue solid 1px;
+}
+
+.green {
+  background-color: green;
+  width: 50px;
+  height: 50px;
+  margin-top: 0;
+  opacity: 0.5;
+  position: relative;
+  left: -50px;
+}
+
+.dot {
+  background: skyblue;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  position: absolute;
+  /* position: relative; */
+  left: 47px;
+  top: 47px;
+  margin: 0;
+}
+
+.red {
+  background-color: red;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
 .main-container {
 }
 
 .roveys-intro {
   display: flex;
+  margin: 2em;
+}
+
+.text-box-and-button-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
 }
 
 .intro-text {
   font-size: 2rem;
+  text-align: center;
+  padding: 1.5em;
+  margin-bottom: 20%;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  border: 8px solid #666;
+  border-radius: 4em;
+  box-shadow: 2px 2px 4px #888;
+}
+
+.intro-text::after {
+  content: "";
+  border-bottom: 3px dotted #666;
+  border-right: 3px dotted #666;
+  display: block;
+  height: 50px;
+  width: 100px;
+  z-index: 15;
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 30px;
+  top: 100px;
+  border: 25px solid;
+  border-color: #666 #666 transparent transparent;
+}
+
+.select-rover-button {
+  color: grey;
+  background-color: burlywood;
+}
+
+.rovey {
+  object-fit: contain;
   width: 40%;
+  align-items: flex-end;
+  margin-top: 20%;
+  transform: scaleX(-1);
 }
 
 /* planet image rover map */
@@ -89,15 +171,60 @@ body * + * {
   /* float: left; */
 }
 
+/* container for plotting dom elements over rover route map */
+.canvas-container {
+  position: relative;
+  /* background-color: springgreen; */
+  /* border: springgreen solid 1px; */
+  width: 50px;
+  height: 50px;
+  left: -50px;
+  padding: 0;
+  margin: 0;
+}
+
+.show-canvas-container {
+  position: relative;
+  /* background-color: springgreen; */
+  /* border: springgreen solid 1px; */
+  width: 50px;
+  height: 50px;
+  left: -50px;
+  animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+  border-radius: 0.1em;
+  padding: 0;
+  margin: 0;
+}
+
+.waypoint {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0.5;
+  width: 2px;
+  height: 2px;
+  margin: 0;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: skyblue;
+  padding: 0;
+  margin: 0;
+}
+
+.show-waypoint {
+  visibility: visible;
+  opacity: 1;
+}
+
 .rover-route {
   visibility: hidden;
-  opacity: 0;
+  opacity: 1;
   height: 50px;
   width: 50px;
-  /* float: left; */
+  padding: 0;
   margin: 0;
-  background: coral;
-  border-radius: 0.1em;
+  /* float: left; */
+  background: grey;
 }
 
 .show-rover-route {
@@ -105,11 +232,13 @@ body * + * {
   opacity: 1;
   height: 50px;
   width: 50px;
+  padding: 0;
+  margin: 0;
   /* position: relative;
   left: -300px;
   bottom: 50px; */
-  background: coral;
-  border-radius: 0.2em;
+  background: grey;
+  border-radius: 0.1em;
   animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
   animation-fill-mode: forwards;
 }
@@ -129,12 +258,15 @@ body * + * {
   cursor: pointer;
 }
 
-.waypoint-dom-element {
+.rover-dot {
   height: 50px;
   width: 50px;
   border: solid rebeccapurple 2px;
   background-color: seagreen;
-  z-index: 10;
+  z-index: 20;
+  position: absolute;
+  left: 50px;
+  top: 50px;
 }
 /* possible change to a timeline flexbox */
 /* .timeline-container {
