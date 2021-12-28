@@ -11,6 +11,7 @@ const tearDropRoverRouteContainer = document.querySelector(
   ".tear-drop-rover-route-container"
 );
 const canvasContainer = document.querySelector(".canvas-container");
+const selectRoverButton = document.querySelector(".select-rover-button");
 
 //event listener for rover position teardrop
 teardrop.addEventListener("click", (e) => {
@@ -41,7 +42,7 @@ const addRoverWaypoints = (
 
 //scale rover waypoint x and y values for 50px/50px canvas, and call addRoverWaypoints (rover plotting function) for select dates
 roverRouteSolArray = [];
-const addRoverWaypointDomElements = (
+const scaleRoverPositionsForSmallerCanvas = (
   centeredRoverPositionsX,
   centeredRoverPositionsY
 ) => {
@@ -55,6 +56,70 @@ const addRoverWaypointDomElements = (
       return (valueY * 50) / 800 - 1; //1 takes into account the size of the dots on the rover map (it can be more or less)
     }
   );
+  if (roverRouteSolArray.length == 886) {
+    addCuriosityWaypointsForSelectDomElements(
+      adjustedCenterRoverPositionsX,
+      adjustedCenterRoverPositionsY
+    );
+  } else {
+    addPerseveranceWaypointsForSelectDomElements(
+      adjustedCenterRoverPositionsX,
+      adjustedCenterRoverPositionsY
+    );
+  }
+};
+
+const addCuriosityWaypointsForSelectDomElements = (
+  adjustedCenterRoverPositionsX,
+  adjustedCenterRoverPositionsY
+) => {
+  const roverRouteSolArrayNumbers = roverRouteSolArray.map((value) => {
+    return parseInt(value);
+  });
+  for (i = 0; i < roverRouteSolArrayNumbers.length; i++) {
+    if (roverRouteSolArrayNumbers[i] === 56) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArrayNumbers[i] === 331) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArrayNumbers[i] === 672) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArrayNumbers[i] === 1387) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    } else if (roverRouteSolArrayNumbers[i] === 2563) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i]
+      );
+    }
+  }
+};
+
+const addPerseveranceWaypointsForSelectDomElements = (
+  adjustedCenterRoverPositionsX,
+  adjustedCenterRoverPositionsY
+) => {
   for (i = 0; i < roverRouteSolArray.length; i++) {
     if (roverRouteSolArray[i] === 20) {
       addRoverWaypoints(
@@ -94,20 +159,60 @@ const addRoverWaypointDomElements = (
     }
   }
 };
+//////Curiosity-specific API calls/data storage/magnification//////////
+///////////////////////////////////////////////////////////
+//fetches Curiosity rover waypoint (position) data
+async function getCuriosityLocationData() {
+  const response = await fetch("./assets/Waypoints-Curiosity.geojson");
+  const locationData = await response.json();
+  const waypoints = locationData.features;
+  console.log(locationData.features); //logs all waypoint data
+  // drawWaypointDomElements(waypoints);
+  return storeCuriosityWaypointData(waypoints);
+}
+getCuriosityLocationData();
 
-//fetches rover waypoint (position) data
+//stores fetched Curiosity waypoint x and y data in arrays
+const storeCuriosityWaypointData = (waypoints) => {
+  let longitudeArray = [];
+  let latitudeArray = [];
+  roverRouteSolArray = [];
+  waypoints.forEach((waypoint) => {
+    longitudeArray.push(waypoint.geometry.coordinates[0]);
+    latitudeArray.push(waypoint.geometry.coordinates[1]);
+    roverRouteSolArray.push(waypoint.properties.sol);
+  });
+  return magnifyCuriosityRoverLocationData(longitudeArray, latitudeArray);
+};
+
+//magnify Curiosityrover location (x, y) data in the canvas element
+const magnifyCuriosityRoverLocationData = (longitudeArray, latitudeArray) => {
+  let magnifiedPositionsX = longitudeArray.map((value) => {
+    return (value + 5 - 142) * 4500;
+    //return (value - 77.4) * 40000;
+  });
+  let magnifiedPositionsY = invertLatitudeValues(latitudeArray).map((value) => {
+    return (value + 5) * 4500;
+    // return (value - 18.4) * 40000;
+  });
+  centerRoverLocationData(magnifiedPositionsX, magnifiedPositionsY);
+};
+
+//////persaverance-specific API calls and data storage//////////
+///////////////////////////////////////////////////////////
+//fetches Persaverance rover waypoint (position) data
 async function getPerseveranceLocationData() {
   const response = await fetch("./assets/Waypoints-Perseverance.geojson");
   const locationData = await response.json();
   const waypoints = locationData.features;
   console.log(locationData.features); //logs all waypoint data
   // drawWaypointDomElements(waypoints);
-  return storeWaypointData(waypoints);
+  return storePerseveranceWaypointData(waypoints);
 }
-getPerseveranceLocationData();
+// getPerseveranceLocationData();
 
-//stores fetched waypoint x and y data in arrays
-const storeWaypointData = (waypoints) => {
+//stores fetched Perseverance waypoint x and y data in arrays
+const storePerseveranceWaypointData = (waypoints) => {
   let longitudeArray = [];
   let latitudeArray = [];
   waypoints.forEach((waypoint) => {
@@ -116,15 +221,6 @@ const storeWaypointData = (waypoints) => {
     roverRouteSolArray.push(waypoint.properties.sol);
   });
   return magnifyRoverLocationData(longitudeArray, latitudeArray);
-};
-//adjusts latitude (y) data to reflect accurately on canvas (not inverted)
-const invertLatitudeValues = (latitudeArray) => {
-  let lowestLatitudeValue = Math.min.apply(null, latitudeArray);
-  let newLatitudeArray = latitudeArray.map((latitudeValue) => {
-    let latitudeDifference = latitudeValue - lowestLatitudeValue;
-    return lowestLatitudeValue - latitudeDifference;
-  });
-  return newLatitudeArray;
 };
 
 //magnify rover location (x, y) data in the canvas element
@@ -137,9 +233,24 @@ const magnifyRoverLocationData = (longitudeArray, latitudeArray) => {
   });
   centerRoverLocationData(magnifiedPositionsX, magnifiedPositionsY);
 };
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+//adjusts latitude (y) data to reflect accurately on canvas (not inverted)
+const invertLatitudeValues = (latitudeArray) => {
+  let lowestLatitudeValue = Math.min.apply(null, latitudeArray);
+  let newLatitudeArray = latitudeArray.map((latitudeValue) => {
+    let latitudeDifference = latitudeValue - lowestLatitudeValue;
+    return lowestLatitudeValue - latitudeDifference;
+  });
+  return newLatitudeArray;
+};
 
 //center rover location data in the canvas element
 const centerRoverLocationData = (magnifiedPositionsX, magnifiedPositionsY) => {
+  console.log(magnifiedPositionsX); //look superficially good
+  console.log(magnifiedPositionsY); //look superficially good
+
   const canvasCenterX = roverRouteMap.getAttribute("width") / 2;
   const canvasCenterY = roverRouteMap.getAttribute("height") / 2;
   let lowestXPosition = Math.min.apply(null, magnifiedPositionsX);
@@ -159,7 +270,10 @@ const centerRoverLocationData = (magnifiedPositionsX, magnifiedPositionsY) => {
     return value + transformYRatio;
   });
   drawRoverPosition(centeredRoverPositionsX, centeredRoverPositionsY);
-  addRoverWaypointDomElements(centeredRoverPositionsX, centeredRoverPositionsY);
+  scaleRoverPositionsForSmallerCanvas(
+    centeredRoverPositionsX,
+    centeredRoverPositionsY
+  );
 };
 
 //draw rover position using updated x and y data arrays
