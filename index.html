@@ -6,18 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./styles/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="main-container"></section>
-      <section class="roveys-intro">
-        
-        <div class="text-box-and-button-container">
-        <div class="intro-text">
-          Hello there! Did you ever wonder what it might be like to visit another planet? Well then you came to the right place. I am the mars rover 'Curiosity', though you can call me 'rovey' for short. Learn about my adventures on our neighbor planet, Mars by clicking the links below.
-        </div>
-        <button class="select-rover-button">Select Rover</button>
-        </div>
-        <img class = "rovey" src="./assets/rovey image colored-pink.jpg" alt="rovey image">
+      <section class="intro-section-grid">
+          <div class="intro-text">
+            <div>Hello there!</div> 
+            <div>Did you ever wonder what it might be like to visit another planet? Well then you came to the right place. I am the mars rover 'Curiosity', though you can call me 'rovey' for short. Learn about my adventures on our neighbor planet, Mars by clicking the links below.</div>
+          </div>
+          <div class="dropdown-container">
+            <div class="select-rover-button">Select Rover</div>
+            <div class="dropdown-menu">
+              <ul>
+                <li><a href="#curiosity">Curiosity</a></li>
+                <li><a href="#perseverance">Perseverance</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="star">
+            <img src="./assets/star vector image.png" alt="">
+          </div>
+            
+      
+          <div class="rovey-container">
+            <img class = "rovey" src="./assets/rovey.svg" alt="rovey image">
+          </div>
+          <div class="moon">
+            <img src="./assets/moon.png" alt="">
+          </div>
+          <div class="planet">
+            <img src="./assets/planet copy.png" alt="">
+          </div>
       </section>
       <section class="planet-map">
         <div class="mars-diagram"></div>
@@ -83,7 +105,7 @@
             </div>
           </li>
           <li class="timeline">
-            <div>
+            <div class="element-after-rovey">
               <div>2013</div>
               <div>location</div>
               <div>
@@ -239,6 +261,9 @@
             </div>
           </li>
         </ul>
+      </div>
+      <div>
+        <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class="">
       </div>
       <div class="color-container">
       <div class="red">red box</div>

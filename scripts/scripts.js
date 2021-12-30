@@ -12,6 +12,13 @@ const tearDropRoverRouteContainer = document.querySelector(
 );
 const canvasContainer = document.querySelector(".canvas-container");
 const selectRoverButton = document.querySelector(".select-rover-button");
+const roveyTimeLineImages = document.querySelectorAll(".rovey-timeline-image");
+const dropdownMenu = document.querySelector(".dropdown-menu");
+
+selectRoverButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  dropdownMenu.classList.toggle("show");
+});
 
 //event listener for rover position teardrop
 teardrop.addEventListener("click", (e) => {
@@ -327,33 +334,21 @@ function addInViewToElements() {
   }
 }
 
-//   const squareElements = [];
-//   squareElements.push(timelineElements[i]);
-//   console.log(squareElements);
-//   for (i = 0; i < squareElements.length; i++) {
-//     if (i % 2 === 0) {
-//
-//
+window.addEventListener("scroll", addInViewToElements);
 
-/*
-function addInViewToElements() {
-  for (i = 0; i < timelineElements.length; i++) {
+function addInViewToRovey() {
+  for (i = 0; i < roveyTimeLineImages.length; i++) {
     //topSide = timelineElements[i].getBoundingClientRect().top;
     //rightSide = timelineElements[i].getBoundingClientRect().right;
-    bottomSide = timelineElements[i].getBoundingClientRect().bottom;
+    bottomSide = roveyTimeLineImages[i].getBoundingClientRect().bottom;
     //leftSide = timelineElements[i].getBoundingClientRect().left;
     //height = timelineElements[i].getBoundingClientRect().height;
     //width = timelineElements[i].getBoundingClientRect().width;
     let viewportHeight = document.documentElement.clientHeight;
-    if (bottomSide <= viewportHeight && i % 2 === 0) {
-      timelineElements[i].setAttribute("id", "in-viewport-circles");
+    if (bottomSide <= viewportHeight) {
+      roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
       //timelineElements[i].classList.remove("in-viewport");
-    } else if (bottomSide <= viewportHeight && i % 3 === 0) {
-      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
-    } else if (bottomSide <= viewportHeight && i % 4 === 0) {
-      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     }
   }
 }
-*/
-window.addEventListener("scroll", addInViewToElements);
+window.addEventListener("scroll", addInViewToRovey);
