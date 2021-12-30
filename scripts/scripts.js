@@ -14,6 +14,20 @@ const canvasContainer = document.querySelector(".canvas-container");
 const selectRoverButton = document.querySelector(".select-rover-button");
 const roveyTimeLineImages = document.querySelectorAll(".rovey-timeline-image");
 const dropdownMenu = document.querySelector(".dropdown-menu");
+const retrieveCuriosityData = document.querySelector(
+  ".retrieve-perseverance-data"
+);
+const retrievePerseveranceData = document.querySelector(
+  ".retrieve-curiosity-data"
+);
+
+retrieveCuriosityData.addEventListener("click", (e) => {
+  e.preventDefault();
+});
+
+retrievePerseveranceData.addEventListener("click", (e) => {
+  e.preventDefault();
+});
 
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -177,7 +191,7 @@ async function getCuriosityLocationData() {
   // drawWaypointDomElements(waypoints);
   return storeCuriosityWaypointData(waypoints);
 }
-getCuriosityLocationData();
+// getCuriosityLocationData();
 
 //stores fetched Curiosity waypoint x and y data in arrays
 const storeCuriosityWaypointData = (waypoints) => {
@@ -297,6 +311,16 @@ const drawRoverPosition = (
   }
   ctx.stroke();
 };
+
+retrieveCuriosityData.addEventListener("click", (e) => {
+  e.preventDefault();
+  getCuriosityLocationData();
+});
+
+retrievePerseveranceData.addEventListener("click", (e) => {
+  e.preventDefault();
+  getPerseveranceLocationData();
+});
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
 const timelineElements = document.querySelectorAll(
