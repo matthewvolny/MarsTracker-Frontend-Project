@@ -5,29 +5,21 @@ let curiostyWaypointMilesTraveled = [];
 let curiosityWaypointSol = [];
 
 const roverRouteMap = document.querySelector(".rover-route");
-const marsDiagram = document.querySelector(".mars-diagram");
-const teardrop = document.querySelector(".teardrop");
+const marsDiagram = document.querySelector(".mars-image");
+const teardrop = document.querySelector(".curiosity-teardrop");
 const tearDropRoverRouteContainer = document.querySelector(
-  ".tear-drop-rover-route-container"
+  ".rover-route-container"
 );
 const canvasContainer = document.querySelector(".canvas-container");
 const selectRoverButton = document.querySelector(".select-rover-button");
 const roveyTimeLineImages = document.querySelectorAll(".rovey-timeline-image");
 const dropdownMenu = document.querySelector(".dropdown-menu");
 const retrieveCuriosityData = document.querySelector(
-  ".retrieve-perseverance-data"
-);
-const retrievePerseveranceData = document.querySelector(
   ".retrieve-curiosity-data"
 );
-
-retrieveCuriosityData.addEventListener("click", (e) => {
-  e.preventDefault();
-});
-
-retrievePerseveranceData.addEventListener("click", (e) => {
-  e.preventDefault();
-});
+const retrievePerseveranceData = document.querySelector(
+  ".retrieve-perseverance-data"
+);
 
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
