@@ -19,3 +19,16 @@ const timelineElements = document.querySelectorAll(
   }
   
   window.addEventListener("scroll", addInViewToElements);
+
+  async function getRoverInfo() {
+    const characterResponse = await fetch(
+        `https://www.swapi.tech/api/people/?name=${urlEncodedSearchString}`
+      );
+      const rawCharacterData = await characterResponse.json();
+      const characterData = rawCharacterData.result;
+      charactersArray = [];
+      characterData.forEach((character) => {
+        charactersArray.push(character.properties.name);
+        getCharacterHomeWorld(character.properties.homeworld);
+      });
+  }
