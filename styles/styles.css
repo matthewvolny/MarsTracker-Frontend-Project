@@ -729,6 +729,8 @@ body * + * {
     position: absolute;
     /* background: grey; */
     z-index: 5;
+    background-image: url("/assets/perseverance-mars-surface-imagepsd.jpg");
+    background-size: 50px;
   }
 
   .show-rover-route {
@@ -848,21 +850,38 @@ body * + * {
     top: 440px;
   }
 
+  .rovey-timeline-container {
+    display: flex;
+    position: absolute;
+    margin-top: 1250px;
+    margin-left: 95px;
+    width: 950px;
+    height: 300px;
+    border: green 1px solid;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   .rovey-timeline-image {
     visibility: hidden;
     opacity: 0.2;
     width: 300px;
     height: 300px;
     object-fit: contain;
-    position: relative;
-    bottom: 3900px;
-    margin-bottom: -300px; /* removes space at bottom of page*/
+
+    border: #fafefd solid 6px;
     transition: all 1500ms ease-in-out;
   }
 
   #in-viewport-rovey {
     visibility: visible;
     opacity: 1;
+  }
+
+  .rovey-fact {
+    width: 300px;
+    height: 300px;
+    border: khaki 2px solid;
   }
 
   /* the dots on the timeline */
