@@ -367,6 +367,19 @@ function addInViewToElements() {
   }
 }
 
+const getRoveyFact = () => {
+  const marsPrimaryFactArray = [
+    {fact: "Mars is named after the Roman god of war", subfact: },
+    "Mars is red because of a mineral called iron oxide that’s very common on its surface",
+    "The Martian gravity is only a third that of the Earth’s",
+    "Mars has the largest dust storms in the solar system",
+    "Mars has seasons just like on Earth but they’re much longer because Mars is further away from the Sun",
+    "A Martian year lasts 687 days – getting on for double that on Earth",
+    "Mars has two moons called Phobos and Deimos",
+  ];
+
+};
+
 window.addEventListener("scroll", addInViewToElements);
 
 function addInViewToRovey() {
@@ -380,6 +393,10 @@ function addInViewToRovey() {
     let viewportHeight = document.documentElement.clientHeight;
     if (bottomSide <= viewportHeight) {
       roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
+      const roveyFact = document.querySelector(".rovey-fact");
+      roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
+      roveyFact.innerHTML = getRoveyFact();
+
       //timelineElements[i].classList.remove("in-viewport");
     }
   }
