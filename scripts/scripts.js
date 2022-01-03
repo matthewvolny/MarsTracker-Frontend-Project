@@ -201,7 +201,7 @@ async function getCuriosityPhoto() {
     return photoData;
  }
  getCuriosityPhoto().then(photoData => console.log(photoData));
- 
+
 //fetches Curiosity rover waypoint (position) data
 async function getCuriosityLocationData() {
   const response = await fetch("./assets/Waypoints-Curiosity.geojson");
