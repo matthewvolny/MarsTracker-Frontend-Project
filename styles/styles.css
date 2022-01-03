@@ -295,7 +295,6 @@ body * + * {
     transform: rotateZ(-70deg) rotateX(60deg);
     margin-top: -19px;
   }
-
   .longitude-circle2 {
     position: absolute;
     width: 650px;
@@ -307,7 +306,6 @@ body * + * {
     transform: rotateZ(-70deg) rotateX(76deg);
     margin-top: -19px;
   }
-
   .latitude-circle1 {
     position: absolute;
     width: 650px;
@@ -317,7 +315,6 @@ body * + * {
     margin-top: -19px;
     z-index: 20;
   }
-
   .latitude-circle2 {
     position: absolute;
     width: 650px;
@@ -329,7 +326,6 @@ body * + * {
     margin-top: -19px;
     transform: rotateX(73deg);
   }
-
   .latitude-circle3 {
     position: absolute;
     width: 650px;
@@ -341,7 +337,6 @@ body * + * {
     transform: rotateX(65deg);
     z-index: 20;
   }
-
   .latitude-circle4 {
     position: absolute;
     width: 650px;
@@ -353,7 +348,6 @@ body * + * {
     transform: rotateX(85deg);
     z-index: 20;
   }
-
   .latitude-circle5 {
     position: absolute;
     width: 650px;
@@ -365,7 +359,6 @@ body * + * {
     z-index: 20;
     transform: rotateX(-45deg);
   }
-
   .latitude-circle6 {
     position: absolute;
     width: 650px;
@@ -377,7 +370,6 @@ body * + * {
     margin-top: -19px;
     transform: rotateX(-70deg);
   }
-
   .latitude-circle7 {
     position: absolute;
     width: 650px;
@@ -389,7 +381,6 @@ body * + * {
     transform: rotateX(-65deg);
     z-index: 20;
   }
-
   .latitude-circle8 {
     position: absolute;
     width: 650px;
@@ -403,7 +394,6 @@ body * + * {
   } */
 
   /* .mars-image {
-    display: block;
     background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
     );
   } */
@@ -453,6 +443,18 @@ body * + * {
       transform: scale(0.8) translateX(-150px);
       transform-origin: 0% 100%;
     }
+  }
+
+  /* expands rover route map and overlay */
+  .rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    height: 50px;
+    border: powderblue 1px solid;
+    margin-left: -200px;
+    margin-bottom: -50px;
+    z-index: 1;
   }
 
   /* container for  */
@@ -645,8 +647,7 @@ body * + * {
   }
 
   /* rover landing site button (expands rover route map when clicked) */
-  .curiosity-teardrop,
-  .perseverance-teardrop {
+  .teardrop {
     background-color: plum;
     height: 50px;
     width: 50px;
@@ -658,8 +659,7 @@ body * + * {
     position: absolute;
   }
 
-  .curiosity-teardrop:before,
-  .perseverance-teardrop:before {
+  .teardrop:before {
     content: "";
     position: absolute;
     z-index: -5;

@@ -35,11 +35,13 @@ for (i = 0; i < teardrops.length; i++) {
     roverRouteMap.classList.add("show-rover-route");
     canvasContainer.classList.add("show-canvas-container");
     const waypoint = document.querySelectorAll(".waypoint");
+    for (i = 0; i < teardrops.length; i++) {
+      teardrops[i].style.visibility = "hidden";
+    }
     for (i = 0; i < waypoint.length; i++) {
       waypoint[i].classList.add("show-waypoint");
     }
-    teardrops[i].style.visibility = "hidden";
-    marsDiagram.style.opacity = "0.8";
+    // marsDiagram.style.opacity = "0.8";
   });
 }
 //plots select waypoints on the rover map (class name includes the sol)
