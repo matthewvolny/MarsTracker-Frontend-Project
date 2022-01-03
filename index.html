@@ -6,28 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./styles/styles.css" />
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+//jquery script to scroll down slowly to mars image upon button click
+   $(document).ready(() => {
+   const $curiosityButton = $('.retrieve-curiosity-data');
+   const $perseveranceButton = $('.retrieve-perseverance-data');
+
+   $curiosityButton.on('click', (e) => {
+     e.preventDefault();
+     $('html, body').animate({
+    scrollTop: $("#planet-map-container").offset().top
+}, 1200);
+})
+
+   $perseveranceButton.on('click', (e) => {
+     e.preventDefault();
+     $('html, body').animate({
+    scrollTop: $("#planet-map-container").offset().top
+}, 1200);
+   })
+ })
+
+</script>
+</head>
   <body>
     <div class="main-container"></section>
-      <section class="roveys-intro">
-        
-        <div class="text-box-and-button-container">
-        <div class="intro-text">
-          Hello there! Did you ever wonder what it might be like to visit another planet? Well then you came to the right place. I am the mars rover 'Curiosity', though you can call me 'rovey' for short. Learn about my adventures on our neighbor planet, Mars by clicking the links below.
-        </div>
-        <button class="select-rover-button">Select Rover</button>
-        </div>
-        <img class = "rovey" src="./assets/rovey image colored-pink.jpg" alt="rovey image">
+      <section class="intro-section-grid">
+          <div class="intro-text">
+            <div>Hello there!</div> 
+            <div>Did you ever wonder what it might be like to visit another planet? Well then you came to the right place. I am the mars rover 'Curiosity', though you can call me 'rovey' for short. Learn about my adventures on our neighbor planet, Mars by clicking the links below.</div>
+          </div>
+          <div class="dropdown-container">
+            <div class="select-rover-button">Select Rover</div>
+            <div class="dropdown-menu">
+              <ul>
+                <li><a href="" class="retrieve-curiosity-data">Curiosity</a></li>
+                <li><a href="" class="retrieve-perseverance-data">Perseverance</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="star">
+            <img src="./assets/star vector image.png" alt="">
+          </div>   
+          <div class="rovey-container">
+            <img class = "rovey" src="./assets/rovey.svg" alt="rovey image">
+          </div>
+          <div class="moon">
+            <img src="./assets/moon.png" alt="">
+          </div>
+          <div class="planet">
+            <img src="./assets/planet copy.png" alt="">
+          </div>
       </section>
-      <section class="planet-map">
-        <div class="mars-diagram"></div>
-        <div class="tear-drop-rover-route-container">
-          <div class="teardrop"></div>
-          <canvas class="rover-route" height="800" width="800"></canvas>
-          <div class="canvas-container"></div>     
+      <section id="planet-map-container" class="planet-map-container">
+        <div class="mars-image">
+          <div class="circle1"></div>
+          <div class="background-circle"></div>
+          <div class="latitude-circle1"></div>
+          <div class="latitude-circle2"></div>
+          <div class="latitude-circle3"></div>
+          <div class="latitude-circle4"></div>
+          <div class="latitude-circle5"></div>
+          <div class="latitude-circle6"></div>
+          <div class="latitude-circle7"></div>
+          <div class="latitude-circle8"></div>
+          <div class="longitude-circle1"></div>
+          <div class="longitude-circle2"></div>
+           <div class="circle2"></div>
         </div>
+        <div class="curiosity-rover-route-container">
+          <div class="curiosity-teardrop teardrop"></div>
+        </div>
+        <div class="perseverance-rover-route-container">
+          <div class="perseverance-teardrop teardrop"></div>
+        </div>
+        <div class="rover-route-container">
+          <div class="canvas-container"></div> 
+          <canvas class="rover-route" height="800" width="800"></canvas>
+        </div>
+        <div class="rover-waypoint-info-container">
+          <div class="date">sol 15</div>
+          <div class="headline">The salt flats of...</div>
+          <img src="" alt="image of mars landscape feature">
+        </div>
+        <div class="star-cluster">
+            <img src="./assets/stars copy.png" alt="">
+          </div>  
       </section>
       <div class="timeline-container">
+        <div class="planet2">
+            <img src="./assets/planet copy.png" alt="">
+        </div>
         <ul>
           <li class="timeline">
             <div>
@@ -83,7 +156,7 @@
             </div>
           </li>
           <li class="timeline">
-            <div>
+            <div class="element-after-rovey">
               <div>2013</div>
               <div>location</div>
               <div>
@@ -240,6 +313,9 @@
           </li>
         </ul>
       </div>
+      <div>
+        <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class="">
+      </div>
       <div class="color-container">
       <div class="red">red box</div>
     <div class="green">green box
@@ -249,3 +325,4 @@
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>
+
