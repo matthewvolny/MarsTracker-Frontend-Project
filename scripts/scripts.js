@@ -1,9 +1,3 @@
-// let curiosityWaypointLatitudes = [];
-// let curiosityWaypointLongitudes = [];
-// let curiosityWaypointElevations = [];
-// let curiostyWaypointMilesTraveled = [];
-// let curiosityWaypointSol = [];
-
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-image");
 const teardrops = document.querySelectorAll(".teardrop");
@@ -377,29 +371,63 @@ function addInViewToElements() {
   }
 }
 
-const getRoveyFact = () => {
-  const marsPrimaryFactArray = [
+window.addEventListener("scroll", addInViewToElements);
+
+//displays random mars fact in timeline
+const displayRoveyFact = () => {
+  const roveyFact = document.querySelector(".rovey-fact");
+  const marsFactArray = [
     { headline: "Mars is named after the Roman god of war", text: "....." },
     {
       headline:
         "Mars is red because of a mineral called iron oxide that’s very common on its surface",
-    },
-    { headline: "The Martian gravity is only a third that of the Earth’s" },
-    { headline: "Mars has the largest dust storms in the solar system" },
-    {
-      headline:
-        "Mars has seasons just like on Earth but they’re much longer because Mars is further away from the Sun",
+      text: "......",
     },
     {
-      headline:
-        "A Martian year lasts 687 days – getting on for double that on Earth",
+      headline: "Mar’s atmosphere is very thin.",
+      text: "It’s composed primarily of carbon dioxide.",
     },
-    { headline: "Mars has two moons called Phobos and Deimos" },
+    {
+      headline: "The Martian gravity is only a third that of the Earth’s",
+      text: "This means you could leap nearly three times higher on Mars.",
+    },
+    {
+      headline: "Mars has the largest dust storms in the solar system.",
+      text: "They can last for months and cover the entire planet.",
+    },
+    {
+      headline:
+        "Mars has seasons just like on Earth but they’re much longer because Mars is further away from the Sun.",
+      text: "The seasons are more extreme too because Mars’s orbit is in an elliptical shape. That means when it gets cold it gets really cold – even the hottest summer’s day would be not much above freezing.",
+    },
+    {
+      headline: "A Martian year lasts 687 days – almost double that of Earth.",
+      text: "Each day themselves are about the same as on Earth – 24 hours and then an extra 9 minutes.",
+    },
+    {
+      headline: "Mars has two moons called Phobos and Deimos.",
+      text: "Sometime is the next 2 to 4 million years Phobos is expected to be torn apart by gravity – leaving a ring of dust and debris around the planet.",
+    },
   ];
+  let randomFact =
+    marsFactArray[Math.floor(Math.random() * marsFactArray.length)];
+
+  roveyFact.innerHTML = `<div class="headline"></div><span>Hey! </span>
+           ${randomFact.headline}</div>
+             <div class="additional-info">${randomFact.text}</div>`;
 };
 
-window.addEventListener("scroll", addInViewToElements);
+//checks to see if rovey is visible on page, then calls function to display a random Mars fact
+let roveyVisible = 0;
+const isRoveyVisible = () => {
+  if (!roveyVisible) {
+    displayRoveyFact();
+    console.log("hello");
+    roveyVisible = 1;
+  }
+};
 
+//adds 'in-viewport' to timeline rovey character, and checks to see if a random quote will be displayed
 function addInViewToRovey() {
   for (i = 0; i < roveyTimeLineImages.length; i++) {
     //topSide = timelineElements[i].getBoundingClientRect().top;
@@ -411,14 +439,14 @@ function addInViewToRovey() {
     let viewportHeight = document.documentElement.clientHeight;
     if (bottomSide <= viewportHeight) {
       roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
-      const roveyFact = document.querySelector(".rovey-fact");
-      roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
-      roveyFact.innerHTML = getRoveyFact();
-
       //timelineElements[i].classList.remove("in-viewport");
+      isRoveyVisible();
+      roveyFact = document.querySelector(".rovey-fact");
+      roveyFact.setAttribute("id", "in-viewport-fact");
     }
   }
 }
+
 window.addEventListener("scroll", addInViewToRovey);
 
 //add inView to mars planet image
