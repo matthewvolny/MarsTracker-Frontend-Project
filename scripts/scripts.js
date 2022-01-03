@@ -58,6 +58,19 @@ const addRoverWaypoints = (
   canvasContainer.appendChild(waypoint);
 };
 
+//event listeners for rover waypoints
+const body = document.querySelector("body");
+body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("waypoint")) {
+    console.log(e.target.classList[0]);
+    const waypointInfoCard = document.querySelector(
+      ".rover-waypoint-info-container"
+    );
+    waypointInfoCard.classList.add("reveal-waypoint-info");
+    //fetch request on the date(i.e. "e.target.classList[0]"), then display data in card
+  }
+});
+
 //scale rover waypoint x and y values for 50px/50px canvas, and call addRoverWaypoints (rover plotting function) for select dates
 roverRouteSolArray = [];
 const scaleRoverPositionsForSmallerCanvas = (

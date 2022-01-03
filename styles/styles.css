@@ -709,11 +709,13 @@ body * + * {
     background-color: skyblue;
     padding: 0;
     margin: 0;
+    z-index: 55;
   }
 
   .show-waypoint {
     visibility: visible;
     opacity: 1;
+    z-index: 55;
   }
 
   .rover-route {
@@ -726,7 +728,7 @@ body * + * {
     /* border: green solid 1px; */
     position: absolute;
     /* background: grey; */
-    z-index: 10;
+    z-index: 5;
   }
 
   .show-rover-route {
@@ -745,11 +747,11 @@ body * + * {
   @keyframes scale-up-bl {
     0% {
       transform: scale(1);
-      transform-origin: 0% 100%;
+      transform-origin: 0% 75%;
     }
     100% {
-      transform: scale(8);
-      transform-origin: 0% 100%;
+      transform: scale(10.5);
+      transform-origin: 0% 75%;
     }
   }
 
@@ -770,6 +772,23 @@ body * + * {
   /* .timeline-container {
     margin-top: 5em;
   } */
+
+  .rover-waypoint-info-container {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    border: white 2px solid;
+    height: 225px;
+    width: 150px;
+    margin-left: 450px;
+    margin-bottom: 125px;
+  }
+
+  .reveal-waypoint-info {
+    visibility: visible;
+    opacity: 1;
+    z-index: 101;
+  }
 
   /* remove default ul list padding */
   ul {
