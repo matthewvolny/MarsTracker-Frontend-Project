@@ -11,6 +11,11 @@
   box-sizing: inherit;
 }
 
+body {
+  background-color: #fcef68;
+  margin: 1em;
+}
+
 body * + * {
   /*selects all elements on the page that are not the first child of their parent*/
   margin-top: 1em;
@@ -20,433 +25,1003 @@ body * + * {
   border: blueviolet dotted 1px;
 } */
 
-.color-container {
+/* .color-container {
   display: flex;
   justify-content: center;
   align-items: center;
   border: royalblue solid 1px;
-}
-
-.green {
-  background-color: green;
-  width: 50px;
-  height: 50px;
-  margin-top: 0;
-  opacity: 0.5;
-  position: relative;
-  left: -50px;
-}
-
-.dot {
-  background: skyblue;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  position: absolute;
-  /* position: relative; */
-  left: 47px;
-  top: 47px;
-  margin: 0;
-}
-
-.red {
-  background-color: red;
-  position: relative;
-  width: 50px;
-  height: 50px;
-}
-
-.main-container {
-}
-
-.roveys-intro {
-  display: flex;
-  margin: 2em;
-}
-
-.text-box-and-button-container {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-}
-
-.intro-text {
-  font-size: 2rem;
-  text-align: center;
-  padding: 1.5em;
-  margin-bottom: 20%;
-  position: relative;
-  width: 100%;
-  text-align: center;
-  background-color: #fff;
-  border: 8px solid #666;
-  border-radius: 4em;
-  box-shadow: 2px 2px 4px #888;
-}
-
-.intro-text::after {
-  content: "";
-  border-bottom: 3px dotted #666;
-  border-right: 3px dotted #666;
-  display: block;
-  height: 50px;
-  width: 100px;
-  z-index: 15;
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 30px;
-  top: 100px;
-  border: 25px solid;
-  border-color: #666 #666 transparent transparent;
-}
-
-.select-rover-button {
-  color: grey;
-  background-color: burlywood;
-}
-
-.rovey {
-  object-fit: contain;
-  width: 40%;
-  align-items: flex-end;
-  margin-top: 20%;
-  transform: scaleX(-1);
-}
-
-/* planet image rover map */
-.planet-map {
-  height: 800px;
-  width: 100%;
-  border: brown 1px dotted;
-  /* display: inline-block; */
-}
-
-/* planet image */
-.mars-diagram {
-  height: 600px;
-  width: 600px;
-  margin: 0 auto;
-  margin-top: 5em;
-  /* position: relative; */
-  /* right: 200px; */
-  background-color: coral;
-  border-radius: 50%;
-}
-
-/* minimizes the planet on button click */
-.minimize-planet {
-  animation: scale-down-bl 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  animation-fill-mode: forwards;
-}
-
-@keyframes scale-down-bl {
-  0% {
-    transform: scale(1) translateX(0);
-    transform-origin: 0% 100%;
-  }
-  100% {
-    transform: scale(0.8) translateX(-150px);
-    transform-origin: 0% 100%;
-  }
-}
-
-/* container keeping the rover map(hidden) next to the teardrop */
-.tear-drop-rover-route-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  bottom: 325px;
-}
-
-/* rover landing site button (expands rover route map when clicked) */
-.teardrop {
-  background-color: purple;
-  height: 50px;
-  width: 50px;
-  z-index: 10;
-  transform: rotate(45deg);
-  border-radius: 50% 50% 0% 50%;
-  /* float: left; */
-}
-
-/* container for plotting dom elements over rover route map */
-.canvas-container {
-  position: relative;
-  /* background-color: springgreen; */
-  /* border: springgreen solid 1px; */
-  width: 50px;
-  height: 50px;
-  left: -50px;
-  padding: 0;
-  margin: 0;
-}
-
-.show-canvas-container {
-  position: relative;
-  /* background-color: springgreen; */
-  /* border: springgreen solid 1px; */
-  width: 50px;
-  height: 50px;
-  left: -50px;
-  animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
-  animation-fill-mode: forwards;
-  border-radius: 0.1em;
-  padding: 0;
-  margin: 0;
-}
-
-.waypoint {
-  position: absolute;
-  visibility: hidden;
-  opacity: 0.5;
-  width: 2px;
-  height: 2px;
-  margin: 0;
-  border-radius: 50%;
-  opacity: 0.8;
-  background-color: skyblue;
-  padding: 0;
-  margin: 0;
-}
-
-.show-waypoint {
-  visibility: visible;
-  opacity: 1;
-}
-
-.rover-route {
-  visibility: hidden;
-  opacity: 1;
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  margin: 0;
-  /* float: left; */
-  background: grey;
-}
-
-.show-rover-route {
-  visibility: visible;
-  opacity: 1;
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  margin: 0;
-  /* position: relative;
-  left: -300px;
-  bottom: 50px; */
-  background: grey;
-  border-radius: 0.1em;
-  animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
-  animation-fill-mode: forwards;
-}
-
-@keyframes scale-up-bl {
-  0% {
-    transform: scale(1) translateX(-5px);
-    transform-origin: 0% 100%;
-  }
-  100% {
-    transform: scale(8) translateX(-5px);
-    transform-origin: 0% 100%;
-  }
-}
-
-.rover-route:hover {
-  cursor: pointer;
-}
-
-.rover-dot {
-  height: 50px;
-  width: 50px;
-  border: solid rebeccapurple 2px;
-  background-color: seagreen;
-  z-index: 20;
-  position: absolute;
-  left: 50px;
-  top: 50px;
-}
-/* possible change to a timeline flexbox */
-/* .timeline-container {
-  display: flex;
-  flex-direction: column;
 } */
+@media only screen and (min-width: 1024px) {
+  /* CSS grid for intro section */
+  .intro-section-grid {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    grid-template: repeat(12, 1fr) / repeat(12, 1fr);
+    grid-gap: 20px;
+    max-width: 1300px;
+    min-height: 830px;
+    margin: 0 auto;
+  }
 
-/* remove default ul list padding */
-ul {
-  padding: 0;
-}
+  /* Rovey's introduction text box */
+  .intro-text {
+    grid-area: 1 / 1 / span 8 / span 7;
+    font-family: "Permanent Marker", cursive;
+    font-size: 1.9rem;
+    letter-spacing: 0.1em;
+    text-align: center; /*might try removing this */
+    padding: 1.5em;
+    color: white;
+    background-color: #6cc8bb;
+    /* min-height: 500px; */
+  }
 
-/* the timeline itself (made of li elements)*/
-.timeline {
-  list-style: none;
-  position: relative;
-  width: 6px;
-  height: 300px; /*spacing between each dot on timeline*/
-  margin: 0 auto;
-  /* padding-top: 1.5em; */
-  background: #ebebeb;
-}
+  /* Select rover dropdown container */
+  .dropdown-container {
+    grid-area: 9 / 1 / span 3 / span 7;
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+    /* display: inline-block; */
+    position: relative;
+    margin-top: -20px; /* accounts for grid-gap above */
+  }
 
-/* the dots on the timeline */
-.timeline::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: inherit;
-  background-color: #fe8d56;
-  z-index: 1;
-}
+  /* Select rover dropdown button */
+  .select-rover-button {
+    color: #d083af;
+    background-color: white;
+    border: #d083af solid 3px;
+    padding: 0.6em 1.2em;
+    font-size: 1.8em;
+    /* border-radius: 1.1em; */
+  }
 
-/* hides every other dot on the timeline */
-.timeline:nth-child(even)::after {
-  visibility: hidden;
-}
+  /* rover button hover styling */
+  .select-rover-button:hover {
+    background-color: #d083af;
+    color: white;
+  }
 
-.timeline:nth-child(4n + 3)::after {
-  background-color: #e96063;
-}
+  /* div holding ul list of dropdown items */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+  }
 
-/* triggered when timeline elements enter the viewport */
-#in-viewport-circles {
-  visibility: visible;
-  opacity: 1;
-  /* color: blue; */
-  transform: scale(1.1);
-}
+  /* ul within dropdown list */
+  .dropdown-menu > ul {
+    list-style: none;
+    border: #d083af solid 3px;
+    background-color: white;
+    margin: 0;
+  }
 
-/* triggered when timeline elements enter the viewport */
-#in-viewport-squares-left {
-  visibility: visible;
-  opacity: 1;
-  /* color: blue; */
-  transform: translate(50px);
-}
+  /* li elements within dropdown list */
+  .dropdown-menu > ul li {
+    margin-top: 0;
+  }
 
-/* triggered when timeline elements enter the viewport */
-#in-viewport-squares-right {
-  visibility: visible;
-  opacity: 1;
-  /* color: blue; */
-  transform: translate(-50px);
-}
+  /* dropdown menu items */
+  .dropdown-menu > ul li a {
+    color: #d083af;
+    border: #d083af solid 3px;
+    background-color: white;
+    /* padding: 0.6em 1em; */
+    font-size: 1.8em;
+    /* border-radius: 1.2em; */
+    cursor: pointer;
+    padding: 0.6em 1.2em;
+    margin-top: 0;
+    display: block;
+    text-decoration: none;
+  }
 
-/* triangle pointer/dots created for timeline elements */
-.timeline > div::before {
-  content: "";
-  position: absolute;
-  bottom: 133px; /* y positioning of arrows */
-  /* height: 0; */
-}
+  /* dropdown menu coloring upon hover */
+  .dropdown-menu > ul li a:hover {
+    background-color: #d083af;
+    color: white;
+  }
 
-/* triangle pointer styling(right side) */
-.timeline-container ul li:nth-child(4n + 1) > div::before {
-  left: -63px;
-  border-width: 15px 30px 15px 30px;
-  border-color: transparent #fe8d56 transparent transparent;
-  border-style: solid;
-}
+  /* shows dropdown list on button click */
+  .show {
+    display: block;
+    /* display: flex;
+    flex-direction: column; */
+  }
 
-/* dot styling(left side) */
-.timeline-container ul li:nth-child(4n + 2) > div::before {
-  content: "..";
-  font-size: 50px;
-  letter-spacing: 30px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  color: #fe8d56;
-  left: 330px;
-  bottom: 282px;
-}
+  .star {
+    grid-area: 1/ 11 / span 3 / span 3;
+    margin-top: 0;
+  }
 
-/* triangle pointer styling(left side) */
-.timeline-container ul li:nth-child(4n + 3) > div::before {
-  left: 292px;
-  border-width: 15px 30px 15px 30px;
-  border-color: transparent transparent transparent #e96063;
-  border-style: solid;
-}
+  .star img {
+    height: 100%;
+    display: block;
+    object-position: cover;
+  }
 
-/* dot styling(right side) */
-.timeline-container ul li:nth-child(4n + 4) > div::before {
-  content: "..";
-  font-size: 50px;
-  letter-spacing: 30px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  color: #e96063;
-  left: -80px;
-  bottom: 282px;
-}
+  /* rovey container element */
+  .rovey-container {
+    grid-area: 4 / 8 / span 4 / span 4;
+    margin-top: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    border: #fafefd solid 6px;
+    height: 300px;
+    width: 300px;
+  }
 
-/* circle timeline elements (initially hidden) */
-ul li:nth-child(odd) > div {
-  visibility: hidden;
-  opacity: 0;
-  position: relative; /*used to offset timeline elements */
-  /* bottom: 0; */
-  height: 300px;
-  width: 300px; /* would like this measurement to reflect width of other elements on pg */
-  top: 140px;
-  padding: 1.5em;
-  border-radius: 15em;
-  transition: all 1500ms ease-in-out;
-}
+  .rovey-container > img {
+    transform: scaleX(-1);
+    object-position: cover;
+    position: relative;
+    height: 150%;
+    right: 95px;
+    top: 38px;
+  }
 
-/* square timeline elements (initially hidden) */
-ul li:nth-child(even) > div {
-  visibility: hidden; /*will be set to hidden when elements show up on scrolling*/
-  opacity: 0;
-  position: relative; /* used to offset timeline elements */
-  /* bottom: 0; */
-  height: 450px;
-  width: 300px; /* would like this measurement to reflect width of other elements on pg */
-  bottom: 160px;
-  padding: 1.5em;
-  border-radius: 0.5em;
-  transition: all 1500ms ease-in-out;
-}
+  .planet {
+    grid-area: 8/ 10 / span 3 / span 3;
+    margin: 0;
+  }
 
-/* right circle timeline elements */
-.timeline-container ul li:nth-child(4n + 1) > div {
-  left: 125px;
-  color: red;
-  visibility: visible;
-  border: #fe8d56 6px solid;
-  height: 300px;
-  width: 300px;
-  /* top: 150px; */
-}
+  .planet img {
+    object-position: contain;
+    height: 100%;
+  }
 
-/* left square timeline elements */
-.timeline-container ul li:nth-child(4n + 2) > div {
-  color: white;
-  background: lightgrey;
-  visibility: visible;
-  left: -450px;
-}
+  .moon {
+    grid-area: 10/ 8 / span 2 / span 2;
+  }
 
-/* left circle timeline elements */
-.timeline-container ul li:nth-child(4n + 3) > div {
-  color: #fe8d56;
-  visibility: visible;
-  border: #e96063 solid 6px;
-  height: 300px;
-  width: 300px;
-  left: -419px;
-  /* top: 150px; */
-}
+  .moon img {
+    height: 100%;
+    object-position: cover;
+  }
 
-/* right square timeline elements */
-.timeline-container ul li:nth-child(4n + 4) > div {
-  color: aqua;
-  background: lightgrey;
-  visibility: visible;
-  left: 156px;
-  /* top: 150px; */
+  /* .intro-text::after {
+    content: "";
+    border-bottom: 3px dotted #666;
+    border-right: 3px dotted #666;
+    display: block;
+    height: 50px;
+    width: 100px;
+    z-index: 15;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 350px;
+    top: 525px;
+    border: 25px solid;
+    border-color: #b7bdf7 #b7bdf7 transparent transparent;
+  } */
+
+  /* planet and rover map flex container */
+  .planet-map-container {
+    height: 100vh;
+    width: 100%;
+    max-width: 1300px;
+    min-height: 830px;
+    margin: 0 auto;
+    /* display: inline-block; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* mars image */
+  .mars-image {
+    height: 650px;
+    width: 650px;
+    margin: 0 auto;
+    position: relative;
+    /* right: 200px; */
+    background-color: coral;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes animate-for-curiosity {
+    0% {
+      transform: rotateY(0deg) rotateX(0deg) /*rotateZ(0deg)*/;
+    }
+
+    100% {
+      transform: rotateY(-60deg);
+
+      /*rotateX(360deg) rotateZ(360deg); */
+    }
+  }
+
+  @keyframes animate-for-perseverance {
+    0% {
+      transform: rotateZ(19deg) rotateY(0deg) rotateX(0deg);
+    }
+
+    100% {
+      transform: rotateZ(19deg) rotateX(-60deg);
+      /* -webkit-transform: rotateY(30deg) rotatex(55deg); */
+
+      /*rotateX(360deg) rotateZ(360deg); */
+    }
+  }
+
+  /* transform: rotateY(75deg) rotatex(71deg); */
+  .circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+  }
+
+  #curiosity-selected-circle1-globe-effect {
+    animation: animate-for-curiosity 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  .circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 51;
+    margin-top: -17px;
+    /* margin-top: -200px;  */
+    /* margin-top: -19px; */
+  }
+
+  #perseverance-selected-circle2-globe-effect {
+    animation: animate-for-perseverance 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  /* .longitude-circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+    transform: rotateZ(-70deg) rotateX(60deg);
+    margin-top: -19px;
+  }
+  .longitude-circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+    transform: rotateZ(-70deg) rotateX(76deg);
+    margin-top: -19px;
+  }
+  .latitude-circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    margin-top: -19px;
+    z-index: 20;
+  }
+  .latitude-circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 20;
+    margin-top: -19px;
+    transform: rotateX(73deg);
+  }
+  .latitude-circle3 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(65deg);
+    z-index: 20;
+  }
+  .latitude-circle4 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(85deg);
+    z-index: 20;
+  }
+  .latitude-circle5 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    z-index: 20;
+    transform: rotateX(-45deg);
+  }
+  .latitude-circle6 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 20;
+    margin-top: -19px;
+    transform: rotateX(-70deg);
+  }
+  .latitude-circle7 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(-65deg);
+    z-index: 20;
+  }
+  .latitude-circle8 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(-85deg);
+    z-index: 20;
+  } */
+
+  /* .mars-image {
+    background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+    );
+  } */
+
+  /* .mars-image:before {
+    content: “”;
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 50% 0px,
+      #ffffff,
+      rgba(255, 255, 255, 0) 58%
+    );
+    filter: blur(5px);
+    z-index: 20;
+  } */
+  /* .mars-image .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0) 50%
+    );
+    transform: rotateX(90deg) translateZ(-150px);
+    z-index: -1;
+  } */
+
+  /* minimizes the planet on button click */
+  .minimize-planet {
+    animation: scale-down-bl 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes scale-down-bl {
+    0% {
+      transform: scale(1) translateX(0);
+      transform-origin: 0% 100%;
+    }
+    100% {
+      transform: scale(0.8) translateX(-150px);
+      transform-origin: 0% 100%;
+    }
+  }
+
+  /* expands rover route map and overlay */
+  .rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    height: 50px;
+    border: powderblue 1px solid;
+    margin-left: -200px;
+    margin-bottom: -50px;
+    z-index: 1;
+  }
+
+  /* container for  */
+  .curiosity-rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    height: 50px;
+    margin-left: 381px;
+    margin-bottom: -99px;
+    z-index: 1;
+  }
+
+  /* container keeping the rover map(hidden) next to the teardrop */
+  .perseverance-rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    margin-left: 6px;
+    margin-bottom: 308px;
+    z-index: 1;
+  }
+
+  #curiosity-selected-in-viewport-curiosity {
+    /* margin-right: 240px;
+    margin-bottom: 35px; */
+    animation: CuriositySelectedShiftCuriosity 3s linear;
+    animation-fill-mode: forwards;
+    /* animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;  */
+  }
+
+  #curiosity-selected-in-viewport-perseverance {
+    /* margin-right: 25px;
+    margin-bottom: 25px; */
+    animation: CuriositySelectedShiftPerseverance 3s linear;
+    animation-fill-mode: forwards;
+    /* animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards; */
+  }
+
+  #perseverance-selected-in-viewport-curiosity {
+    animation: PerseveranceSelectedShiftCuriosity 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  #perseverance-selected-in-viewport-perseverance {
+    animation: PerseveranceSelectedShiftPerseverance 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes CuriositySelectedShiftCuriosity {
+    0% {
+      transform: translateX(0) translateY(0);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-50px) translateY(6px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-100px) translateY(9px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-150px) translateY(10px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    80% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-200px) translateY(8px);
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-250px) translateY(4px);
+    }
+  }
+
+  @keyframes CuriositySelectedShiftPerseverance {
+    0% {
+      transform: translateX(0) translateY(0);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-50px) translateY(3px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-100px) translateY(10px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-150px) translateY(19px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    70% {
+      transform: translateX(-175px) translateY(25px);
+    }
+    80% {
+      transform: translateX(-200px) translateY(33px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    90% {
+      transform: translateX(-225px) translateY(43px);
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-250px) translateY(56px);
+    }
+  }
+
+  @keyframes PerseveranceSelectedShiftCuriosity {
+    0% {
+      transform: translateX(0px) translateY(0px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-17px) translateY(36.6px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-37px) translateY(73.2px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-61px) translateY(109.8px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    70% {
+      transform: translateX(-75px) translateY(128.1px);
+    }
+
+    80% {
+      transform: translateX(-90px) translateY(146.4px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    90% {
+      transform: translateX(-107px) translateY(164.7px);
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-126px) translateY(183px);
+    }
+  }
+
+  @keyframes PerseveranceSelectedShiftPerseverance {
+    0% {
+      transform: translateX(0px) translateY(0px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-15px) translateY(36.6px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-29px) translateY(73.2px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-42px) translateY(109.8px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    80% {
+      transform: translateX(-53px) translateY(146.4px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-63px) translateY(183px);
+    }
+  }
+
+  /* rover landing site button (expands rover route map when clicked) */
+  .teardrop {
+    background-color: plum;
+    height: 50px;
+    width: 50px;
+    z-index: 10;
+    border: papayawhip 1px solid;
+    transform: rotate(45deg);
+    border-radius: 50% 50% 0% 50%;
+    margin: 0;
+    position: absolute;
+  }
+
+  .teardrop:before {
+    content: "";
+    position: absolute;
+    z-index: -5;
+    bottom: 30px;
+    left: 26px;
+    height: 55px;
+    width: 25px;
+    border-radius: 50% 50% 0% 50%;
+    transform: rotate(45deg);
+    /* border-radius: 50%; */
+    box-shadow: 35px 4px 2px 1px rgba(0, 0, 0, 0.75);
+    /* transform: skew(15deg); */
+  }
+
+  /* container for plotting dom elements over rover route map */
+  .canvas-container {
+    /* border: springgreen solid 1px; */
+    visibility: hidden;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 9;
+  }
+
+  .show-canvas-container {
+    /* background-color: springgreen; */
+    width: 50px;
+    height: 50px;
+    animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;
+    border-radius: 0.1em;
+    padding: 0;
+    margin: 0;
+  }
+
+  .waypoint {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0.5;
+    width: 2px;
+    height: 2px;
+    margin: 0;
+    border-radius: 50%;
+    opacity: 0.8;
+    background-color: skyblue;
+    padding: 0;
+    margin: 0;
+    z-index: 55;
+  }
+
+  .show-waypoint {
+    visibility: visible;
+    opacity: 1;
+    z-index: 55;
+  }
+
+  .rover-route {
+    visibility: hidden;
+    opacity: 1;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    /* border: green solid 1px; */
+    position: absolute;
+    /* background: grey; */
+    z-index: 5;
+  }
+
+  .show-rover-route {
+    visibility: visible;
+    opacity: 1;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    border: grey solid 1px;
+    border-radius: 0.1em;
+    animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes scale-up-bl {
+    0% {
+      transform: scale(1);
+      transform-origin: 0% 75%;
+    }
+    100% {
+      transform: scale(10.5);
+      transform-origin: 0% 75%;
+    }
+  }
+
+  .rover-route:hover {
+    cursor: pointer;
+  }
+
+  .rover-dot {
+    height: 50px;
+    width: 50px;
+    border: solid rebeccapurple 2px;
+    background-color: seagreen;
+    z-index: 20;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+  }
+
+  .rover-waypoint-info-container {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    border: white 2px solid;
+    height: 225px;
+    width: 150px;
+    margin-left: 450px;
+    margin-bottom: 125px;
+  }
+
+  .reveal-waypoint-info {
+    visibility: visible;
+    opacity: 1;
+    z-index: 101;
+  }
+
+  .star-cluster {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    margin-left: -827px;
+    margin-bottom: 600px;
+    /* border: hotpink 1px solid; */
+  }
+
+  .star-cluster img {
+    object-position: contain;
+    position: absolute;
+    width: 100%;
+  }
+
+  .timeline-container {
+    position: relative;
+  }
+
+  .planet2 {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    margin-left: 975px;
+    margin-top: -200px;
+  }
+
+  .planet2 img {
+    width: 100%;
+    object-position: contain;
+    position: absolute;
+  }
+
+  /* remove default ul list padding */
+  ul {
+    padding: 0;
+  }
+
+  /* the timeline itself (made of li elements)*/
+  .timeline {
+    list-style: none;
+    position: relative;
+    width: 6px;
+    height: 300px; /*spacing between each dot on timeline*/
+    margin: 0 auto;
+    /* padding-top: 1.5em; */
+    background: #ebebeb;
+  }
+
+  /* creates an open area of the timeline for 'rovey' */
+  .timeline:nth-child(5) {
+    height: 600px;
+  }
+
+  /* circle timeline element after 'rovey' */
+  ul li:nth-child(5) > .element-after-rovey {
+    position: relative; /*used to offset timeline elements */
+    /* bottom: 0; */
+    top: 440px;
+  }
+
+  .rovey-timeline-image {
+    visibility: hidden;
+    opacity: 0.2;
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    position: relative;
+    bottom: 3900px;
+    margin-bottom: -300px; /* removes space at bottom of page*/
+    transition: all 1500ms ease-in-out;
+  }
+
+  #in-viewport-rovey {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* the dots on the timeline */
+  .timeline::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: inherit;
+    background-color: #fe8d56;
+    z-index: 1;
+  }
+
+  /* hides every other dot on the timeline */
+  .timeline:nth-child(even)::after {
+    visibility: hidden;
+  }
+
+  /* colors alternating timeline circles */
+  .timeline:nth-child(4n + 3)::after {
+    background-color: #e96063;
+  }
+
+  /* triggered when timeline elements enter the viewport */
+  #in-viewport-circles {
+    visibility: visible;
+    opacity: 1;
+    /* color: blue; */
+    transform: scale(1.1);
+  }
+
+  /* triggered when timeline elements enter the viewport */
+  #in-viewport-squares-left {
+    visibility: visible;
+    opacity: 1;
+    /* color: blue; */
+    transform: translate(5px);
+  }
+
+  /* triggered when timeline elements enter the viewport */
+  #in-viewport-squares-right {
+    visibility: visible;
+    opacity: 1;
+    /* color: blue; */
+    transform: translate(-5px);
+  }
+
+  /* triangle pointer/dots created for timeline elements */
+  .timeline > div::before {
+    content: "";
+    position: absolute;
+    bottom: 133px; /* y positioning of arrows */
+    /* height: 0; */
+  }
+
+  /* triangle pointer styling(right side) */
+  .timeline-container ul li:nth-child(4n + 1) > div::before {
+    left: -63px;
+    border-width: 15px 30px 15px 30px;
+    border-color: transparent #fe8d56 transparent transparent;
+    border-style: solid;
+  }
+
+  /* dot styling(left side) */
+  .timeline-container ul li:nth-child(4n + 2) > div::before {
+    content: "..";
+    font-size: 50px;
+    letter-spacing: 30px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    color: #fe8d56;
+    left: 330px;
+    bottom: 282px;
+  }
+
+  /* triangle pointer styling(left side) */
+  .timeline-container ul li:nth-child(4n + 3) > div::before {
+    left: 292px;
+    border-width: 15px 30px 15px 30px;
+    border-color: transparent transparent transparent #e96063;
+    border-style: solid;
+  }
+
+  /* dot styling(right side) */
+  .timeline-container ul li:nth-child(4n + 4) > div::before {
+    content: "..";
+    font-size: 50px;
+    letter-spacing: 30px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    color: #e96063;
+    left: -80px;
+    bottom: 282px;
+  }
+
+  /* circle timeline elements (initially hidden) */
+  ul li:nth-child(odd) > div {
+    visibility: hidden;
+    opacity: 0;
+    position: relative; /*used to offset timeline elements */
+    /* bottom: 0; */
+    height: 300px;
+    width: 300px; /* would like this measurement to reflect width of other elements on pg */
+    top: 140px;
+    padding: 1.5em;
+    border-radius: 15em;
+    transition: all 1500ms ease-in-out;
+  }
+
+  /* square timeline elements (initially hidden) */
+  ul li:nth-child(even) > div {
+    visibility: hidden; /*will be set to hidden when elements show up on scrolling*/
+    opacity: 0;
+    position: relative; /* used to offset timeline elements */
+    /* bottom: 0; */
+    height: 450px;
+    width: 300px; /* would like this measurement to reflect width of other elements on pg */
+    bottom: 160px;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    transition: all 1500ms ease-in-out;
+  }
+
+  /* right circle timeline elements */
+  .timeline-container ul li:nth-child(4n + 1) > div {
+    left: 125px;
+    color: red;
+    visibility: visible;
+    border: #fe8d56 6px solid;
+    /* top: 150px; */
+  }
+
+  /* left square timeline elements */
+  .timeline-container ul li:nth-child(4n + 2) > div {
+    color: white;
+    background: lightgrey;
+    visibility: visible;
+    left: -450px;
+  }
+
+  /* left circle timeline elements */
+  .timeline-container ul li:nth-child(4n + 3) > div {
+    color: #fe8d56;
+    visibility: visible;
+    border: #e96063 solid 6px;
+    height: 300px;
+    width: 300px;
+    left: -419px;
+    /* top: 150px; */
+  }
+
+  /* right square timeline elements */
+  .timeline-container ul li:nth-child(4n + 4) > div {
+    color: aqua;
+    background: lightgrey;
+    visibility: visible;
+    left: 156px;
+    /* top: 150px; */
+  }
 }
