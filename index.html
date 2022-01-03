@@ -9,7 +9,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
-  </head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+//jquery script to scroll down slowly to mars image upon button click
+   $(document).ready(() => {
+   const $curiosityButton = $('.retrieve-curiosity-data');
+   const $perseveranceButton = $('.retrieve-perseverance-data');
+
+   $curiosityButton.on('click', (e) => {
+     e.preventDefault();
+     $('html, body').animate({
+    scrollTop: $("#planet-map-container").offset().top
+}, 1200);
+})
+
+   $perseveranceButton.on('click', (e) => {
+     e.preventDefault();
+     $('html, body').animate({
+    scrollTop: $("#planet-map-container").offset().top
+}, 1200);
+   })
+ })
+
+</script>
+</head>
   <body>
     <div class="main-container"></section>
       <section class="intro-section-grid">
@@ -21,8 +44,8 @@
             <div class="select-rover-button">Select Rover</div>
             <div class="dropdown-menu">
               <ul>
-                <li><a href="#planet-map" class="retrieve-curiosity-data">Curiosity</a></li>
-                <li><a href="#planet-map" class="retrieve-perseverance-data">Perseverance</a></li>
+                <li><a href="" class="retrieve-curiosity-data">Curiosity</a></li>
+                <li><a href="" class="retrieve-perseverance-data">Perseverance</a></li>
               </ul>
             </div>
           </div>
@@ -40,9 +63,28 @@
           </div>
       </section>
       <section id="planet-map-container" class="planet-map-container">
-        <div class="mars-image"></div>
-        <div class="rover-route-container">
-          <div class="curiosity-teardrop"></div>
+        <div class="mars-image">
+          <div class="circle1"></div>
+          <div class="background-circle"></div>
+          <div class="latitude-circle1"></div>
+          <div class="latitude-circle2"></div>
+          <div class="latitude-circle3"></div>
+          <div class="latitude-circle4"></div>
+          <div class="latitude-circle5"></div>
+          <div class="latitude-circle6"></div>
+          <div class="latitude-circle7"></div>
+          <div class="latitude-circle8"></div>
+          <div class="longitude-circle1"></div>
+          <div class="longitude-circle2"></div>
+           <div class="circle2"></div>
+        </div>
+        <div class="curiosity-rover-route-container">
+          <div class="curiosity-teardrop teardrop"></div>
+          <div class="canvas-container"></div> 
+          <canvas class="rover-route" height="800" width="800"></canvas>
+        </div>
+        <div class="perseverance-rover-route-container">
+          <div class="perseverance-teardrop teardrop"></div>
           <div class="canvas-container"></div> 
           <canvas class="rover-route" height="800" width="800"></canvas>
         </div>

@@ -1,12 +1,12 @@
-let curiosityWaypointLatitudes = [];
-let curiosityWaypointLongitudes = [];
-let curiosityWaypointElevations = [];
-let curiostyWaypointMilesTraveled = [];
-let curiosityWaypointSol = [];
+// let curiosityWaypointLatitudes = [];
+// let curiosityWaypointLongitudes = [];
+// let curiosityWaypointElevations = [];
+// let curiostyWaypointMilesTraveled = [];
+// let curiosityWaypointSol = [];
 
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-image");
-const teardrop = document.querySelector(".curiosity-teardrop");
+const teardrops = document.querySelectorAll(".teardrop");
 const tearDropRoverRouteContainer = document.querySelector(
   ".rover-route-container"
 );
@@ -20,25 +20,28 @@ const retrieveCuriosityData = document.querySelector(
 const retrievePerseveranceData = document.querySelector(
   ".retrieve-perseverance-data"
 );
+const planetMapContainer = document.getElementById("planet-map-container");
 
+//'select rover' dropdown button
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
   dropdownMenu.classList.toggle("show");
 });
 
 //event listener for rover position teardrop
-teardrop.addEventListener("click", (e) => {
-  marsDiagram.classList.add("minimize-planet");
-  roverRouteMap.classList.add("show-rover-route");
-  canvasContainer.classList.add("show-canvas-container");
-  const waypoint = document.querySelectorAll(".waypoint");
-  for (i = 0; i < waypoint.length; i++) {
-    waypoint[i].classList.add("show-waypoint");
-  }
-  teardrop.style.visibility = "hidden";
-  marsDiagram.style.opacity = "0.8";
-});
-
+for (i = 0; i < teardrops.length; i++) {
+  teardrops[i].addEventListener("click", (e) => {
+    marsDiagram.classList.add("minimize-planet");
+    roverRouteMap.classList.add("show-rover-route");
+    canvasContainer.classList.add("show-canvas-container");
+    const waypoint = document.querySelectorAll(".waypoint");
+    for (i = 0; i < waypoint.length; i++) {
+      waypoint[i].classList.add("show-waypoint");
+    }
+    teardrops[i].style.visibility = "hidden";
+    marsDiagram.style.opacity = "0.8";
+  });
+}
 //plots select waypoints on the rover map (class name includes the sol)
 const addRoverWaypoints = (
   adjustedCenterRoverPositionsX,
@@ -261,9 +264,6 @@ const invertLatitudeValues = (latitudeArray) => {
 
 //center rover location data in the canvas element
 const centerRoverLocationData = (magnifiedPositionsX, magnifiedPositionsY) => {
-  console.log(magnifiedPositionsX); //look superficially good
-  console.log(magnifiedPositionsY); //look superficially good
-
   const canvasCenterX = roverRouteMap.getAttribute("width") / 2;
   const canvasCenterY = roverRouteMap.getAttribute("height") / 2;
   let lowestXPosition = Math.min.apply(null, magnifiedPositionsX);
@@ -304,13 +304,21 @@ const drawRoverPosition = (
   ctx.stroke();
 };
 
+//event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
 retrieveCuriosityData.addEventListener("click", (e) => {
-  e.preventDefault();
+  // planetMapContainer.scrollIntoView({
+  //   behavior: "smooth",
+  // });
+  retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
 });
 
+//event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
-  e.preventDefault();
+  // planetMapContainer.scrollIntoView({
+  //   behavior: "smooth",
+  // });
+  retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
 });
 
@@ -368,3 +376,54 @@ function addInViewToRovey() {
   }
 }
 window.addEventListener("scroll", addInViewToRovey);
+
+//add inView to mars planet image
+function addInViewToMars() {
+  const curiosityRoverPopupContainer = document.querySelector(
+    ".curiosity-rover-route-container"
+  );
+  const perseveranceRoverPopupContainer = document.querySelector(
+    ".perseverance-rover-route-container"
+  );
+  const circle1 = document.querySelector(".circle1");
+  const circle2 = document.querySelector(".circle2");
+
+  //topSide = timelineElements[i].getBoundingClientRect().top;
+  //rightSide = timelineElements[i].getBoundingClientRect().right;
+  bottomSide = marsDiagram.getBoundingClientRect().bottom;
+  //leftSide = timelineElements[i].getBoundingClientRect().left;
+  //height = timelineElements[i].getBoundingClientRect().height;
+  //width = timelineElements[i].getBoundingClientRect().width;
+  let viewportHeight = document.documentElement.clientHeight;
+  if (
+    bottomSide <= viewportHeight &&
+    retrieveCuriosityData.classList.contains("curiosity-button-clicked")
+  ) {
+    curiosityRoverPopupContainer.setAttribute(
+      "id",
+      "curiosity-selected-in-viewport-curiosity"
+    );
+    perseveranceRoverPopupContainer.setAttribute(
+      "id",
+      "curiosity-selected-in-viewport-perseverance"
+    );
+    circle1.setAttribute("id", "curiosity-selected-circle1-globe-effect");
+
+    //timelineElements[i].classList.remove("in-viewport");
+  } else if (
+    bottomSide <= viewportHeight &&
+    retrievePerseveranceData.classList.contains("perseverance-button-clicked")
+  ) {
+    curiosityRoverPopupContainer.setAttribute(
+      "id",
+      "perseverance-selected-in-viewport-curiosity"
+    );
+    perseveranceRoverPopupContainer.setAttribute(
+      "id",
+      "perseverance-selected-in-viewport-perseverance"
+    );
+    circle2.setAttribute("id", "perseverance-selected-circle2-globe-effect");
+  }
+}
+
+window.addEventListener("scroll", addInViewToMars);

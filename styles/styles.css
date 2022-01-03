@@ -21,9 +21,9 @@ body * + * {
   margin-top: 1em;
 }
 
-* {
+/* * {
   border: blueviolet dotted 1px;
-}
+} */
 
 /* .color-container {
   display: flex;
@@ -117,6 +117,7 @@ body * + * {
     padding: 0.6em 1.2em;
     margin-top: 0;
     display: block;
+    text-decoration: none;
   }
 
   /* dropdown menu coloring upon hover */
@@ -214,14 +215,228 @@ body * + * {
 
   /* mars image */
   .mars-image {
-    height: 600px;
-    width: 600px;
+    height: 650px;
+    width: 650px;
     margin: 0 auto;
     position: relative;
     /* right: 200px; */
     background-color: coral;
     border-radius: 50%;
+    transform-style: preserve-3d;
   }
+
+  @keyframes animate-for-curiosity {
+    0% {
+      transform: rotateY(0deg) rotateX(0deg) /*rotateZ(0deg)*/;
+    }
+
+    100% {
+      transform: rotateY(-60deg);
+
+      /*rotateX(360deg) rotateZ(360deg); */
+    }
+  }
+
+  @keyframes animate-for-perseverance {
+    0% {
+      transform: rotateZ(19deg) rotateY(0deg) rotateX(0deg);
+    }
+
+    100% {
+      transform: rotateZ(19deg) rotateX(-60deg);
+      /* -webkit-transform: rotateY(30deg) rotatex(55deg); */
+
+      /*rotateX(360deg) rotateZ(360deg); */
+    }
+  }
+
+  /* transform: rotateY(75deg) rotatex(71deg); */
+  .circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+  }
+
+  #curiosity-selected-circle1-globe-effect {
+    animation: animate-for-curiosity 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  .circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 51;
+    margin-top: -17px;
+    /* margin-top: -200px;  */
+    /* margin-top: -19px; */
+  }
+
+  #perseverance-selected-circle2-globe-effect {
+    animation: animate-for-perseverance 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  /* .longitude-circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+    transform: rotateZ(-70deg) rotateX(60deg);
+    margin-top: -19px;
+  }
+
+  .longitude-circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+    transform: rotateZ(-70deg) rotateX(76deg);
+    margin-top: -19px;
+  }
+
+  .latitude-circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    margin-top: -19px;
+    z-index: 20;
+  }
+
+  .latitude-circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 20;
+    margin-top: -19px;
+    transform: rotateX(73deg);
+  }
+
+  .latitude-circle3 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(65deg);
+    z-index: 20;
+  }
+
+  .latitude-circle4 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(85deg);
+    z-index: 20;
+  }
+
+  .latitude-circle5 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    z-index: 20;
+    transform: rotateX(-45deg);
+  }
+
+  .latitude-circle6 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 20;
+    margin-top: -19px;
+    transform: rotateX(-70deg);
+  }
+
+  .latitude-circle7 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(-65deg);
+    z-index: 20;
+  }
+
+  .latitude-circle8 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(-85deg);
+    z-index: 20;
+  } */
+
+  /* .mars-image {
+    display: block;
+    background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+    );
+  } */
+
+  /* .mars-image:before {
+    content: “”;
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 50% 0px,
+      #ffffff,
+      rgba(255, 255, 255, 0) 58%
+    );
+    filter: blur(5px);
+    z-index: 20;
+  } */
+  /* .mars-image .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0) 50%
+    );
+    transform: rotateX(90deg) translateZ(-150px);
+    z-index: -1;
+  } */
 
   /* minimizes the planet on button click */
   .minimize-planet {
@@ -240,34 +455,235 @@ body * + * {
     }
   }
 
-  /* container keeping the rover map(hidden) next to the teardrop */
-  .rover-route-container {
+  /* container for  */
+  .curiosity-rover-route-container {
     position: absolute;
     margin: 0;
     width: 150px;
     height: 50px;
+    margin-left: 381px;
+    margin-bottom: -99px;
+    z-index: 1;
+  }
+
+  /* container keeping the rover map(hidden) next to the teardrop */
+  .perseverance-rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    margin-left: 6px;
+    margin-bottom: 308px;
+    z-index: 1;
+  }
+
+  #curiosity-selected-in-viewport-curiosity {
+    /* margin-right: 240px;
+    margin-bottom: 35px; */
+    animation: CuriositySelectedShiftCuriosity 3s linear;
+    animation-fill-mode: forwards;
+    /* animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;  */
+  }
+
+  #curiosity-selected-in-viewport-perseverance {
+    /* margin-right: 25px;
+    margin-bottom: 25px; */
+    animation: CuriositySelectedShiftPerseverance 3s linear;
+    animation-fill-mode: forwards;
+    /* animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards; */
+  }
+
+  #perseverance-selected-in-viewport-curiosity {
+    animation: PerseveranceSelectedShiftCuriosity 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  #perseverance-selected-in-viewport-perseverance {
+    animation: PerseveranceSelectedShiftPerseverance 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes CuriositySelectedShiftCuriosity {
+    0% {
+      transform: translateX(0) translateY(0);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-50px) translateY(6px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-100px) translateY(9px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-150px) translateY(10px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    80% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-200px) translateY(8px);
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-250px) translateY(4px);
+    }
+  }
+
+  @keyframes CuriositySelectedShiftPerseverance {
+    0% {
+      transform: translateX(0) translateY(0);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-50px) translateY(3px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-100px) translateY(10px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-150px) translateY(19px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    70% {
+      transform: translateX(-175px) translateY(25px);
+    }
+    80% {
+      transform: translateX(-200px) translateY(33px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    90% {
+      transform: translateX(-225px) translateY(43px);
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-250px) translateY(56px);
+    }
+  }
+
+  @keyframes PerseveranceSelectedShiftCuriosity {
+    0% {
+      transform: translateX(0px) translateY(0px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-17px) translateY(36.6px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-37px) translateY(73.2px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-61px) translateY(109.8px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    70% {
+      transform: translateX(-75px) translateY(128.1px);
+    }
+
+    80% {
+      transform: translateX(-90px) translateY(146.4px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    90% {
+      transform: translateX(-107px) translateY(164.7px);
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-126px) translateY(183px);
+    }
+  }
+
+  @keyframes PerseveranceSelectedShiftPerseverance {
+    0% {
+      transform: translateX(0px) translateY(0px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    20% {
+      transform: translateX(-15px) translateY(36.6px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    40% {
+      transform: translateX(-29px) translateY(73.2px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    60% {
+      transform: translateX(-42px) translateY(109.8px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    80% {
+      transform: translateX(-53px) translateY(146.4px);
+      /*Moves pupils to left, change number to see what happens*/
+      /* transform: translateX(-25px); */
+    }
+    100% {
+      /*Moves pupils right and up, change numbers to see what happens*/
+      transform: translateX(-63px) translateY(183px);
+    }
   }
 
   /* rover landing site button (expands rover route map when clicked) */
-  .curiosity-teardrop {
-    background-color: purple;
+  .curiosity-teardrop,
+  .perseverance-teardrop {
+    background-color: plum;
     height: 50px;
     width: 50px;
     z-index: 10;
+    border: papayawhip 1px solid;
     transform: rotate(45deg);
     border-radius: 50% 50% 0% 50%;
     margin: 0;
     position: absolute;
   }
 
+  .curiosity-teardrop:before,
+  .perseverance-teardrop:before {
+    content: "";
+    position: absolute;
+    z-index: -5;
+    bottom: 30px;
+    left: 26px;
+    height: 55px;
+    width: 25px;
+    border-radius: 50% 50% 0% 50%;
+    transform: rotate(45deg);
+    /* border-radius: 50%; */
+    box-shadow: 35px 4px 2px 1px rgba(0, 0, 0, 0.75);
+    /* transform: skew(15deg); */
+  }
+
   /* container for plotting dom elements over rover route map */
   .canvas-container {
-    border: springgreen solid 1px;
+    /* border: springgreen solid 1px; */
+    visibility: hidden;
     width: 50px;
     height: 50px;
     padding: 0;
     margin: 0;
     position: absolute;
+    z-index: 9;
   }
 
   .show-canvas-container {
@@ -301,15 +717,16 @@ body * + * {
   }
 
   .rover-route {
-    visibility: visible;
+    visibility: hidden;
     opacity: 1;
     height: 50px;
     width: 50px;
     padding: 0;
     margin: 0;
-    border: green solid 1px;
+    /* border: green solid 1px; */
     position: absolute;
     /* background: grey; */
+    z-index: 10;
   }
 
   .show-rover-route {
@@ -320,7 +737,6 @@ body * + * {
     padding: 0;
     margin: 0;
     border: grey solid 1px;
-    /* background: grey; */
     border-radius: 0.1em;
     animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
     animation-fill-mode: forwards;
