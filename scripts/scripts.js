@@ -26,6 +26,12 @@ teardrop.addEventListener("click", (e) => {
   marsDiagram.style.opacity = "0.8";
 });
 
+const dropdown = document.querySelector(".select-rover-button")
+
+dropdown.addEventListener("click", (e) => {
+  
+}) 
+
 //plots select waypoints on the rover map (class name includes the sol)
 const addRoverWaypoints = (
   adjustedCenterRoverPositionsX,
@@ -161,6 +167,16 @@ const addPerseveranceWaypointsForSelectDomElements = (
 };
 //////Curiosity-specific API calls/data storage/magnification//////////
 ///////////////////////////////////////////////////////////
+// fetches curiosity photo 
+async function getCuriosityPhoto() {
+  const response = await fetch(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=DEMO_KEY`
+    );
+    const photoData = await response.json();
+    return photoData;
+}
+getCuriosityPhoto().then(photoData => console.log(photoData));
+
 //fetches Curiosity rover waypoint (position) data
 async function getCuriosityLocationData() {
   const response = await fetch("./assets/Waypoints-Curiosity.geojson");
@@ -197,16 +213,6 @@ const magnifyCuriosityRoverLocationData = (longitudeArray, latitudeArray) => {
   });
   centerRoverLocationData(magnifiedPositionsX, magnifiedPositionsY);
 };
-
-// fetches curiosity photo 
-async function getCuriosityPhoto() {
-  const response = await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=DEMO_KEY`
-    );
-    const photoData = await response.json();
-    return photoData;
-}
-getCuriosityPhoto().then(photoData => console.log(photoData));
 
 //////persaverance-specific API calls and data storage//////////
 ///////////////////////////////////////////////////////////
