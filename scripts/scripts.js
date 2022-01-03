@@ -28,9 +28,9 @@ teardrop.addEventListener("click", (e) => {
 
 const dropdown = document.querySelector(".select-rover-button")
 
-dropdown.addEventListener("click", (e) => {
+//dropdown.addEventListener("click", (e) => {
   
-}) 
+//}) 
 
 //plots select waypoints on the rover map (class name includes the sol)
 const addRoverWaypoints = (
@@ -170,7 +170,8 @@ const addPerseveranceWaypointsForSelectDomElements = (
 // fetches curiosity photo 
 async function getCuriosityPhoto() {
   const response = await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=DEMO_KEY`
+      //`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
+      `https://api.nasa.gov/mars-photos/api/v1/maifests/curiosity&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
     );
     const photoData = await response.json();
     return photoData;
