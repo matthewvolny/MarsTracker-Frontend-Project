@@ -769,9 +769,6 @@ body * + * {
     left: 50px;
     top: 50px;
   }
-  /* .timeline-container {
-    margin-top: 5em;
-  } */
 
   .rover-waypoint-info-container {
     visibility: hidden;
@@ -788,6 +785,39 @@ body * + * {
     visibility: visible;
     opacity: 1;
     z-index: 101;
+  }
+
+  .star-cluster {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    margin-left: -827px;
+    margin-bottom: 600px;
+    /* border: hotpink 1px solid; */
+  }
+
+  .star-cluster img {
+    object-position: contain;
+    position: absolute;
+    width: 100%;
+  }
+
+  .timeline-container {
+    position: relative;
+  }
+
+  .planet2 {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    margin-left: 975px;
+    margin-top: -200px;
+  }
+
+  .planet2 img {
+    width: 100%;
+    object-position: contain;
+    position: absolute;
   }
 
   /* remove default ul list padding */

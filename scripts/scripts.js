@@ -321,18 +321,12 @@ const drawRoverPosition = (
 
 //event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
 retrieveCuriosityData.addEventListener("click", (e) => {
-  // planetMapContainer.scrollIntoView({
-  //   behavior: "smooth",
-  // });
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
 });
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
-  // planetMapContainer.scrollIntoView({
-  //   behavior: "smooth",
-  // });
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
 });
@@ -423,6 +417,11 @@ function addInViewToMars() {
       "curiosity-selected-in-viewport-perseverance"
     );
     circle1.setAttribute("id", "curiosity-selected-circle1-globe-effect");
+    const perseveranceTeardrop = document.querySelector(
+      ".perseverance-teardrop"
+    );
+    perseveranceTeardrop.disabled = true;
+    // perseveranceTeardrop.style.backgroundColor = "red";
 
     //timelineElements[i].classList.remove("in-viewport");
   } else if (
@@ -438,6 +437,8 @@ function addInViewToMars() {
       "perseverance-selected-in-viewport-perseverance"
     );
     circle2.setAttribute("id", "perseverance-selected-circle2-globe-effect");
+    const curiosityTeardrop = document.querySelector(".curiosity-teardrop");
+    curiosityTeardrop.disabled = true;
   }
 }
 
