@@ -864,7 +864,7 @@ body * + * {
 
   .rovey-timeline-image {
     visibility: hidden;
-    opacity: 0.2;
+    opacity: 0;
     width: 300px;
     height: 300px;
     object-fit: contain;
@@ -879,9 +879,18 @@ body * + * {
   }
 
   .rovey-fact {
+    visibility: hidden;
+    opacity: 0;
     width: 300px;
     height: 300px;
     border: khaki 2px solid;
+    transition: all 2500ms ease-in-out;
+  }
+
+  #in-viewport-fact {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1.2);
   }
 
   /* the dots on the timeline */
