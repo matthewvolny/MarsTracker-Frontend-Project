@@ -28,6 +28,26 @@ selectRoverButton.addEventListener("click", (e) => {
   dropdownMenu.classList.toggle("show");
 });
 
+// fetches curiosity photo
+async function getCuriosityPhoto() {
+  const response = await fetch(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
+    );
+    const photoData = await response.json();
+    return photoData;
+ }
+ getCuriosityPhoto().then(photoData => console.log(photoData));
+
+ /*const populateCuriostyArray = () => {
+  make the big array containing all the headlines and subheadlines for each rover;
+
+  //get the timeline elements with document.querySelectorAll(".timeline")
+   for (i=0; i < timelineElements.length; i++) {
+     if(indexof timelineElement[i] / )
+    roveyFact.innerHTML = `<div  
+   }
+ }*/
+
 //event listener for rover position teardrop
 for (i = 0; i < teardrops.length; i++) {
   teardrops[i].addEventListener("click", (e) => {
@@ -192,15 +212,6 @@ const addPerseveranceWaypointsForSelectDomElements = (
 };
 //////Curiosity-specific API calls/data storage/magnification//////////
 ///////////////////////////////////////////////////////////
-// fetches curiosity photo
-async function getCuriosityPhoto() {
-  const response = await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
-    );
-    const photoData = await response.json();
-    return photoData;
- }
- getCuriosityPhoto().then(photoData => console.log(photoData));
 
 //fetches Curiosity rover waypoint (position) data
 async function getCuriosityLocationData() {
