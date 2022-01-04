@@ -22,7 +22,7 @@ selectRoverButton.addEventListener("click", (e) => {
   dropdownMenu.classList.toggle("show");
 });
 
-//event listener for rover position teardrop
+//event listener for rover position teardrops
 for (i = 0; i < teardrops.length; i++) {
   teardrops[i].addEventListener("click", (e) => {
     marsDiagram.classList.add("minimize-planet");
@@ -35,7 +35,6 @@ for (i = 0; i < teardrops.length; i++) {
     for (i = 0; i < waypoint.length; i++) {
       waypoint[i].classList.add("show-waypoint");
     }
-    // marsDiagram.style.opacity = "0.8";
   });
 }
 //plots select waypoints on the rover map (class name includes the sol)
@@ -327,12 +326,14 @@ const drawRoverPosition = (
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
+  // populateCuriosityArray();
 });
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
+  // populatePerseveranceArray();
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
@@ -372,6 +373,29 @@ function addInViewToElements() {
 }
 
 window.addEventListener("scroll", addInViewToElements);
+
+/*
+api calls -
+ make an array containing the dates that you want to show photos for
+ grab random photo from that day and the earth date
+ store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
+*/
+
+/*
+const populateCuriosityTimeLineData = () => {
+
+  -make the big array containing all the headlines and subheadlines and links for each rover(per date);
+  (these are for the ODD timeline elements -the squares)
+  get the timeline elements with document.querySelectorAll(".timeline");
+  for (i=0; i < timelineElements.length; i++) {
+    if(i % 2 === 0 ) {
+timelineElements[i].innerHTML = `<div class=""></div>`;  //date in earth days and sol  ("${api call}")
+    }else {
+      timelineElements[i].innerHTML = `<div class="headline"></div>`;  //headline (${timelineElements[i].headline}), subheadline (${timelineElements[i].subheadline}), photo ${apicall}, link(${timelineElements[i].link})
+    }
+  }
+}
+*/
 
 //displays random mars fact in timeline
 const displayRoveyFact = () => {
@@ -471,6 +495,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrieveCuriosityData.classList.contains("curiosity-button-clicked")
   ) {
+    roverRouteMap.classList.add("curiosity-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "curiosity-selected-in-viewport-curiosity"
@@ -491,6 +516,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
   ) {
+    roverRouteMap.classList.add("perseverance-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "perseverance-selected-in-viewport-curiosity"
