@@ -787,11 +787,20 @@ body * + * {
     border: white 2px solid;
     height: 225px;
     width: 150px;
-    margin-left: 450px;
-    margin-bottom: 125px;
+    background-color: rgb(255, 255, 255);
   }
 
-  .reveal-waypoint-info {
+  .reveal-curiosity-waypoint-info {
+    margin-left: 450px;
+    margin-bottom: 125px;
+    visibility: visible;
+    opacity: 1;
+    z-index: 101;
+  }
+
+  .reveal-perseverance-waypoint-info {
+    margin-left: -70px;
+    margin-bottom: 450px;
     visibility: visible;
     opacity: 1;
     z-index: 101;
