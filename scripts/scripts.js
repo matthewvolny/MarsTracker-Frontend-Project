@@ -15,12 +15,16 @@ const retrievePerseveranceData = document.querySelector(
   ".retrieve-perseverance-data"
 );
 const planetMapContainer = document.getElementById("planet-map-container");
+const backgroundImageContainer = document.querySelector(
+  ".background-image-container"
+);
 
 //render rover map and waypoints
 const renderRoverMap = () => {
   marsDiagram.classList.add("minimize-planet");
   roverRouteMap.classList.add("show-rover-route");
   canvasContainer.classList.add("show-canvas-container");
+  backgroundImageContainer.classList.add("show-background-image-container");
   const waypoint = document.querySelectorAll(".waypoint");
   for (i = 0; i < teardrops.length; i++) {
     teardrops[i].style.visibility = "hidden";
@@ -62,7 +66,6 @@ body.addEventListener("click", (e) => {
     } else {
       waypointInfoCard.classList.add("reveal-perseverance-waypoint-info");
     }
-
     //fetch request on the date(i.e. "e.target.classList[0]"), then display data in card
   }
 });
@@ -476,6 +479,9 @@ window.addEventListener("scroll", addInViewToRovey);
 
 //add inView to mars planet image
 function addInViewToMars() {
+  const backgroundImage = document.querySelector(
+    ".background-image-container > img"
+  );
   const curiosityRoverPopupContainer = document.querySelector(
     ".curiosity-rover-route-container"
   );
@@ -496,7 +502,9 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrieveCuriosityData.classList.contains("curiosity-button-clicked")
   ) {
-    roverRouteMap.classList.add("curiosity-mars-image-overlay");
+    backgroundImage.src = "/assets/curiosity-rover-map.jpg";
+    backgroundImageContainer.classList.add("curiosity-mars-image-overlay");
+
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "curiosity-selected-in-viewport-curiosity"
@@ -517,7 +525,8 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
   ) {
-    roverRouteMap.classList.add("perseverance-mars-image-overlay");
+    backgroundImage.src = "/assets/perseverance-mars-surface-imagepsd.jpg";
+    backgroundImageContainer.classList.add("perseverance-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "perseverance-selected-in-viewport-curiosity"
