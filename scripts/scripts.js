@@ -316,12 +316,14 @@ const drawRoverPosition = (
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
+  // populateCuriosityArray();
 });
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
+  // populatePerseveranceArray();
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
@@ -361,6 +363,29 @@ function addInViewToElements() {
 }
 
 window.addEventListener("scroll", addInViewToElements);
+
+/*
+api calls -
+ make an array containing the dates that you want to show photos for
+ grab random photo from that day and the earth date
+ store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
+*/
+
+/*
+const populateCuriosityTimeLineData = () => {
+
+  -make the big array containing all the headlines and subheadlines and links for each rover(per date);
+  (these are for the ODD timeline elements -the squares)
+  get the timeline elements with document.querySelectorAll(".timeline");
+  for (i=0; i < timelineElements.length; i++) {
+    if(i % 2 === 0 ) {
+timelineElements[i].innerHTML = `<div class=""></div>`;  //date in earth days and sol  ("${api call}")
+    }else {
+      timelineElements[i].innerHTML = `<div class="headline"></div>`;  //headline (${timelineElements[i].headline}), subheadline (${timelineElements[i].subheadline}), photo ${apicall}, link(${timelineElements[i].link})
+    }
+  }
+}
+*/
 
 //displays random mars fact in timeline
 const displayRoveyFact = () => {
