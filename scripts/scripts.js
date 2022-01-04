@@ -22,7 +22,7 @@ selectRoverButton.addEventListener("click", (e) => {
   dropdownMenu.classList.toggle("show");
 });
 
-//event listener for rover position teardrop
+//event listener for rover position teardrops
 for (i = 0; i < teardrops.length; i++) {
   teardrops[i].addEventListener("click", (e) => {
     marsDiagram.classList.add("minimize-planet");
@@ -35,7 +35,6 @@ for (i = 0; i < teardrops.length; i++) {
     for (i = 0; i < waypoint.length; i++) {
       waypoint[i].classList.add("show-waypoint");
     }
-    // marsDiagram.style.opacity = "0.8";
   });
 }
 //plots select waypoints on the rover map (class name includes the sol)
@@ -461,6 +460,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrieveCuriosityData.classList.contains("curiosity-button-clicked")
   ) {
+    roverRouteMap.classList.add("curiosity-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "curiosity-selected-in-viewport-curiosity"
@@ -481,6 +481,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
   ) {
+    roverRouteMap.classList.add("perseverance-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "perseverance-selected-in-viewport-curiosity"

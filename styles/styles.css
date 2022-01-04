@@ -729,6 +729,14 @@ body * + * {
     position: absolute;
     /* background: grey; */
     z-index: 5;
+  }
+
+  .curiosity-mars-image-overlay {
+    background-image: url("/assets/curiosity-rover-map.jpg");
+    background-size: 50px;
+  }
+
+  .perseverance-mars-image-overlay {
     background-image: url("/assets/perseverance-mars-surface-imagepsd.jpg");
     background-size: 50px;
   }
