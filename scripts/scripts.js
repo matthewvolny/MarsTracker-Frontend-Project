@@ -325,20 +325,22 @@ const curiosityDatesArray = [
   { earthDate: "october 13, 2013", marsDate: "sol-200" },
 ];
 
+const perseveranceDatesArray = [
+  { earthDate: "dec 18, 2020", marsDate: "sol-25" },
+  { earthDate: "july 24, 2020", marsDate: "sol-92" },
+];
+
 const populateTimeline = (datesArray) => {
   const timelineElementsContent = document.querySelectorAll(
     ".timeline-container ul li > div > div"
   );
+  let circleElementsCounter = 0;
   for (i = 0; i < timelineElementsContent.length; i++) {
     if (i % 2 === 0) {
       timelineElementsContent[
         i
-      ].innerHTML = `<div class="circle-element"><div class="earth-date">hello</div><div class="mars-date">hello</div></div>`;
-      // const earthDates = document.querySelectorAll(".earth-date");
-      // const marsDates = document.querySelectorAll(".mars-date");
-      // for (i = 0; i < datesArray.length; i++) {
-      //   earthDates.innerHTML = `<div class="earth-date">${datesArray[i].earthDate}</div>`;
-      //   marsDates.innerHTML = `<div class="mars-date">${datesArray[i].marsDate}</div>`;
+      ].innerHTML = `<div class="circle-element"><div class="earth-date">${datesArray[circleElementsCounter].earthDate}</div><div class="mars-date">${datesArray[circleElementsCounter].marsDate}</div></div>`;
+      circleElementsCounter += 1;
     } else {
       timelineElementsContent[
         i
@@ -347,6 +349,11 @@ const populateTimeline = (datesArray) => {
   }
 };
 
+//const earthDates = document.querySelectorAll(".earth-date");
+// const marsDates = document.querySelectorAll(".mars-date");
+// for (i = 0; i < datesArray.length; i++) {
+//   earthDates.innerHTML = `<div class="earth-date">${datesArray[i].earthDate}</div>`;
+//   marsDates.innerHTML = `<div class="mars-date">${datesArray[i].marsDate}</div>`;
 ////////////////////////////////////////////////////
 
 //'select rover' dropdown button
@@ -368,7 +375,7 @@ retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
   dropdownMenu.classList.toggle("show");
-  // populatePerseveranceArray();
+  populateTimeline(perseveranceDatesArray);
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
