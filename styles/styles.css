@@ -451,7 +451,7 @@ body * + * {
     margin: 0;
     width: 150px;
     height: 50px;
-    border: powderblue 1px solid;
+    /* border: powderblue 1px solid; */
     margin-left: -200px;
     margin-bottom: -50px;
     z-index: 1;
@@ -678,6 +678,7 @@ body * + * {
   .canvas-container {
     /* border: springgreen solid 1px; */
     visibility: hidden;
+    opacity: 0;
     width: 50px;
     height: 50px;
     padding: 0;
@@ -688,6 +689,8 @@ body * + * {
 
   .show-canvas-container {
     /* background-color: springgreen; */
+    visibility: visible;
+    opacity: 1;
     width: 50px;
     height: 50px;
     animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -720,7 +723,7 @@ body * + * {
 
   .rover-route {
     visibility: hidden;
-    opacity: 1;
+    opacity: 0;
     height: 50px;
     width: 50px;
     padding: 0;
@@ -731,14 +734,54 @@ body * + * {
     z-index: 5;
   }
 
-  .curiosity-mars-image-overlay {
-    background-image: url("/assets/curiosity-rover-map.jpg");
-    background-size: 50px;
+  .background-image-container {
+    visibility: hidden;
+    opacity: 0;
+    /* border: 1px solid royalblue; */
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    border-radius: 0.1em;
+    position: absolute;
+    overflow: hidden;
   }
 
-  .perseverance-mars-image-overlay {
-    background-image: url("/assets/perseverance-mars-surface-imagepsd.jpg");
-    background-size: 50px;
+  .show-background-image-container {
+    visibility: visible;
+    opacity: 1;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    border: royalblue solid 1px;
+    /* border-radius: 0.1em; */
+    animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .background-image-container > img {
+    visibility: visible;
+    display: block;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    /* border: yellow solid 1px; */
+    /* bottom: -1px; */
+  }
+
+  .curiosity-mars-image-overlay > img {
+    /* transform: rotate(5deg); */
+    width: 59px;
+    bottom: -5px;
+    left: -6px;
+  }
+
+  .perseverance-mars-image-overlay > img {
+    /* transform: rotate(5deg); */
+    width: 63px;
+    bottom: -13px;
+    left: -1px;
   }
 
   .show-rover-route {
@@ -748,7 +791,7 @@ body * + * {
     width: 50px;
     padding: 0;
     margin: 0;
-    border: grey solid 1px;
+    /* border: grey dotted 1px; */
     border-radius: 0.1em;
     animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
     animation-fill-mode: forwards;
@@ -787,11 +830,20 @@ body * + * {
     border: white 2px solid;
     height: 225px;
     width: 150px;
-    margin-left: 450px;
-    margin-bottom: 125px;
+    background-color: rgb(255, 255, 255);
   }
 
-  .reveal-waypoint-info {
+  .reveal-curiosity-waypoint-info {
+    margin-left: 450px;
+    margin-bottom: 125px;
+    visibility: visible;
+    opacity: 1;
+    z-index: 101;
+  }
+
+  .reveal-perseverance-waypoint-info {
+    margin-left: -70px;
+    margin-bottom: 450px;
     visibility: visible;
     opacity: 1;
     z-index: 101;
