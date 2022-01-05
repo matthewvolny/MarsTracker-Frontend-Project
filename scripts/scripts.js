@@ -428,11 +428,11 @@ const populateCuriosityTimeLineData = () => {
   //(these are for the ODD timeline elements -the squares)
   for (i=0; i < timelineArray.length; i++) {
     if (i % 2 === 0 ) {
-      timelineElementsForCards[i].innerHTML = `<div class=""></div>`;  //date in earth days and sol  ("${api call}")
+      timelineElementsForCards[i].innerHTML = `<div class="">Hello</div>`;  //date in earth days and sol  ("${api call}")
     } else {
-      timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineElementsForCards[i].headline}</div>
-              <div class="subheadline">${timelineElementsForCards[i].subheadline}</div>
-              <div class="link">${timelineElementsForCards[i].link}</div>`;  //photo ${apicall}
+      // timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineElementsForCards[i].headline}</div>
+      //         <div class="subheadline">${timelineElementsForCards[i].subheadline}</div>
+      //         <div class="link">${timelineElementsForCards[i].link}</div>`;  //photo ${apicall}
     }
     //populateCuriosityTimeLineData();
   }
