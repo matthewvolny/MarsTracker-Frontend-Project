@@ -318,6 +318,37 @@ const drawRoverPosition = (
   ctx.stroke();
 };
 
+///////for christy////////////
+
+const curiosityDatesArray = [
+  { earthDate: "jan 9, 2012", marsDate: "sol-15" },
+  { earthDate: "october 13, 2013", marsDate: "sol-200" },
+];
+
+const populateTimeline = (datesArray) => {
+  const timelineElementsContent = document.querySelectorAll(
+    ".timeline-container ul li > div > div"
+  );
+  for (i = 0; i < timelineElementsContent.length; i++) {
+    if (i % 2 === 0) {
+      timelineElementsContent[
+        i
+      ].innerHTML = `<div class="circle-element"><div class="earth-date">hello</div><div class="mars-date">hello</div></div>`;
+      // const earthDates = document.querySelectorAll(".earth-date");
+      // const marsDates = document.querySelectorAll(".mars-date");
+      // for (i = 0; i < datesArray.length; i++) {
+      //   earthDates.innerHTML = `<div class="earth-date">${datesArray[i].earthDate}</div>`;
+      //   marsDates.innerHTML = `<div class="mars-date">${datesArray[i].marsDate}</div>`;
+    } else {
+      timelineElementsContent[
+        i
+      ].innerHTML = `<div class="square-element">bye</div>`;
+    }
+  }
+};
+
+////////////////////////////////////////////////////
+
 //'select rover' dropdown button
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -329,7 +360,7 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
   dropdownMenu.classList.toggle("show");
-  // populateCuriosityArray();
+  populateTimeline(curiosityDatesArray);
 });
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
