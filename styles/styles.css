@@ -677,8 +677,7 @@ body * + * {
   /* container for plotting dom elements over rover route map */
   .canvas-container {
     /* border: springgreen solid 1px; */
-    visibility: hidden;
-    opacity: 0;
+    visibility: visible;
     width: 50px;
     height: 50px;
     padding: 0;
@@ -689,8 +688,6 @@ body * + * {
 
   .show-canvas-container {
     /* background-color: springgreen; */
-    visibility: visible;
-    opacity: 1;
     width: 50px;
     height: 50px;
     animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
