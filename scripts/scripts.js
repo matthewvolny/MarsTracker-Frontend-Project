@@ -1,9 +1,3 @@
-// let curiosityWaypointLatitudes = [];
-// let curiosityWaypointLongitudes = [];
-// let curiosityWaypointElevations = [];
-// let curiostyWaypointMilesTraveled = [];
-// let curiosityWaypointSol = [];
-
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-image");
 const teardrops = document.querySelectorAll(".teardrop");
@@ -28,27 +22,7 @@ selectRoverButton.addEventListener("click", (e) => {
   dropdownMenu.classList.toggle("show");
 });
 
-// fetches curiosity photo
-async function getCuriosityPhoto() {
-  const response = await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
-    );
-    const photoData = await response.json();
-    return photoData;
- }
- getCuriosityPhoto().then(photoData => console.log(photoData));
-
- /*const populateCuriostyArray = () => {
-  make the big array containing all the headlines and subheadlines for each rover;
-
-  //get the timeline elements with document.querySelectorAll(".timeline")
-   for (i=0; i < timelineElements.length; i++) {
-     if(indexof timelineElement[i] / )
-    roveyFact.innerHTML = `<div  
-   }
- }*/
-
-//event listener for rover position teardrop
+//event listener for rover position teardrops
 for (i = 0; i < teardrops.length; i++) {
   teardrops[i].addEventListener("click", (e) => {
     marsDiagram.classList.add("minimize-planet");
@@ -61,7 +35,6 @@ for (i = 0; i < teardrops.length; i++) {
     for (i = 0; i < waypoint.length; i++) {
       waypoint[i].classList.add("show-waypoint");
     }
-    // marsDiagram.style.opacity = "0.8";
   });
 }
 //plots select waypoints on the rover map (class name includes the sol)
@@ -212,7 +185,6 @@ const addPerseveranceWaypointsForSelectDomElements = (
 };
 //////Curiosity-specific API calls/data storage/magnification//////////
 ///////////////////////////////////////////////////////////
-
 //fetches Curiosity rover waypoint (position) data
 async function getCuriosityLocationData() {
   const response = await fetch("./assets/Waypoints-Curiosity.geojson");
@@ -344,12 +316,14 @@ const drawRoverPosition = (
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
+  // populateCuriosityArray();
 });
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
+  // populatePerseveranceArray();
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
@@ -390,6 +364,136 @@ function addInViewToElements() {
 
 window.addEventListener("scroll", addInViewToElements);
 
+/*
+api calls -
+ make an array containing the dates that you want to show photos for
+ grab random photo from that day and the earth date
+ store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
+ // fetches curiosity photo
+async function getCuriosityPhoto() {
+  const response = await fetch(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
+    );
+    const photoData = await response.json();
+    return photoData;
+ }
+ getCuriosityPhoto().then(photoData => console.log(photoData));
+*/
+
+//display curiosity timeline data
+const populateCuriosityTimeLineData = () => {
+  const timelineElementsForCards = document.querySelectorAll(".timeline");
+  const timelineArray = [
+    { 
+      headline: "NASA Lands Rover Beside Martian Mountain", 
+      subheadline: "NASA Lands Car-Size Rover Beside Martian Mountain.", 
+      link: "https://mars.nasa.gov/news/1288/nasa-lands-car-size-rover-beside-martian-mountain/?site=msl",
+    },
+    {
+      headline: "Rover's Laser Instrument Zaps First Martian Rock",
+      subheadline: "NASA's Mars rover Curiosity fired its laser for the first time on Mars, using the beam from a science instrument to interrogate a fist-size rock called 'Coronation.'",
+      link: "https://mars.nasa.gov/news/1315/rovers-laser-instrument-zaps-first-martian-rock/?site=msl",
+    },
+    {
+      headline: "NASA Mars Rover Begins Driving At Bradbury Landing",
+      subheadline: "Curiosity has begun driving from its landing site",
+      link: "https://mars.nasa.gov/news/1323/nasa-mars-rover-begins-driving-at-bradbury-landing/?site=msl",
+    },
+    {
+      headline: "First Scoopful A Success",
+      subheadline: "Curiosity used its soil scoop for the first time, collecting a scoopful of sand and powdery material at the 'Rocknest' site.",
+      link: "https://mars.nasa.gov/news/1370/first-scoopful-a-success/?site=msl",
+    },
+    {
+      headline: "Mars Soil Sample Delivered for Analysis Inside Rover",
+      subheadline: "Curiosity has ingested its first solid sample into an analytical instrument inside the rover, a capability at the core of the two-year mission.",
+      link: "https://mars.nasa.gov/news/1379/mars-soil-sample-delivered-for-analysis-inside-rover/?site=msl",
+    },
+    {
+      headline: "First Soil Studies Help Fingerprint Martian Minerals",
+      subheadline: "Curiosity has completed initial experiments showing the mineralogy of Martian soil is similar to weathered basaltic soils of volcanic origin in Hawaii.",
+      link: "https://mars.nasa.gov/news/1385/nasa-rovers-first-soil-studies-help-fingerprint-martian-minerals/?site=msl",
+    },
+    {
+      headline: "Collects First Martian Bedrock Sample",
+      subheadline: "Curiosity rover has, for the first time, used a drill carried at the end of its robotic arm to bore into a flat, veiny rock on Mars and collect a sample from its interior. This is the first time any robot has drilled into a rock to collect a sample on Mars.",
+      link: "https://mars.nasa.gov/news/1423/nasa-curiosity-rover-collects-first-martian-bedrock-sample/?site=msl",
+    },
+    {
+      headline: "Curiosity Rover Marks First Martian Year with Mission Successes",
+      subheadline: "Curiosity rover will complete a Martian year -- 687 Earth days -- on June 24, having accomplished the mission's main goal of determining whether Mars once offered environmental conditions favorable for microbial life.",
+      link: "https://mars.nasa.gov/news/1653/nasas-mars-curiosity-rover-marks-first-martian-year-with-mission-successes/?site=msl",
+    },
+  ]
+  //(these are for the ODD timeline elements -the squares)
+  for (i=0; i < timelineArray.length; i++) {
+    if (i % 2 === 0 ) {
+      timelineElementsForCards[i].innerHTML = `<div class=""></div>`;  //date in earth days and sol  ("${api call}")
+    } else {
+      timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineElementsForCards[i].headline}</div>
+              <div class="subheadline">${timelineElementsForCards[i].subheadline}</div>
+              <div class="link">${timelineElementsForCards[i].link}</div>`;  //photo ${apicall}
+    }
+    //populateCuriosityTimeLineData();
+  }
+}
+
+
+//displays random mars fact in timeline
+const displayRoveyFact = () => {
+  const roveyFact = document.querySelector(".rovey-fact");
+  const marsFactArray = [
+    { headline: "Mars is named after the Roman god of war", text: "....." },
+    {
+      headline:
+        "Mars is red because of a mineral called iron oxide that’s very common on its surface",
+      text: "......",
+    },
+    {
+      headline: "Mar’s atmosphere is very thin.",
+      text: "It’s composed primarily of carbon dioxide.",
+    },
+    {
+      headline: "The Martian gravity is only a third that of the Earth’s",
+      text: "This means you could leap nearly three times higher on Mars.",
+    },
+    {
+      headline: "Mars has the largest dust storms in the solar system.",
+      text: "They can last for months and cover the entire planet.",
+    },
+    {
+      headline:
+        "Mars has seasons just like on Earth but they’re much longer because Mars is further away from the Sun.",
+      text: "The seasons are more extreme too because Mars’s orbit is in an elliptical shape. That means when it gets cold it gets really cold – even the hottest summer’s day would be not much above freezing.",
+    },
+    {
+      headline: "A Martian year lasts 687 days – almost double that of Earth.",
+      text: "Each day themselves are about the same as on Earth – 24 hours and then an extra 9 minutes.",
+    },
+    {
+      headline: "Mars has two moons called Phobos and Deimos.",
+      text: "Sometime is the next 2 to 4 million years Phobos is expected to be torn apart by gravity – leaving a ring of dust and debris around the planet.",
+    },
+  ];
+  let randomFact =
+    marsFactArray[Math.floor(Math.random() * marsFactArray.length)];
+
+  roveyFact.innerHTML = `<div class="headline"></div><span>Hey! </span>
+           ${randomFact.headline}</div>
+             <div class="additional-info">${randomFact.text}</div>`;
+};
+
+//checks to see if rovey is visible on page, then calls function to display a random Mars fact
+let roveyVisible = 0;
+const isRoveyVisible = () => {
+  if (!roveyVisible) {
+    displayRoveyFact();
+    console.log("hello");
+    roveyVisible = 1;
+  }
+};
+
+//adds 'in-viewport' to timeline rovey character, and checks to see if a random quote will be displayed
 function addInViewToRovey() {
   for (i = 0; i < roveyTimeLineImages.length; i++) {
     //topSide = timelineElements[i].getBoundingClientRect().top;
@@ -402,9 +506,13 @@ function addInViewToRovey() {
     if (bottomSide <= viewportHeight) {
       roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
       //timelineElements[i].classList.remove("in-viewport");
+      isRoveyVisible();
+      roveyFact = document.querySelector(".rovey-fact");
+      roveyFact.setAttribute("id", "in-viewport-fact");
     }
   }
 }
+
 window.addEventListener("scroll", addInViewToRovey);
 
 //add inView to mars planet image
@@ -429,6 +537,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrieveCuriosityData.classList.contains("curiosity-button-clicked")
   ) {
+    roverRouteMap.classList.add("curiosity-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "curiosity-selected-in-viewport-curiosity"
@@ -449,6 +558,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
   ) {
+    roverRouteMap.classList.add("perseverance-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "perseverance-selected-in-viewport-curiosity"
