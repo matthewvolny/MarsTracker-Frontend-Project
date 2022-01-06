@@ -41,6 +41,8 @@ for (i = 0; i < teardrops.length; i++) {
 
 /////////map card data//////
 
+const perseveranceMapInfo = [];
+
 const curiosityMapInfo = [
   {
     date: "August 5, 2012",
@@ -127,31 +129,23 @@ roverRouteSolArray = [];
 roverRouteDistanceMiles = [];
 
 //render map waypoint info cards (classlist is an index value stored as a class name for the selected waypoint element)
-const renderMapCards = (classList) => {
+const renderMapCards = (classList, mapInfoArray) => {
   const waypointInfoCard = document.querySelector(
     ".rover-waypoint-info-container"
   );
   waypointInfoCard.innerHTML = `<div class = "waypoint-date">${
     roverRouteSolArray[classList[2]]
-  }</div><div class = "waypoint-date">${
+  }</div><div class = "waypoint-miles">${
     roverRouteDistanceMiles[classList[2]]
   }</div>`;
   const solDateNumber = parseInt(roverRouteSolArray[classList[2]]);
   //solDateValue = roverRouteSolArray[classList[2]];
-  const headline = curiosityMapInfo.find((solDate) => {
+  const curiosityMapInfoItem = mapInfoArray.find((solDate) => {
     return solDate.sol === solDateNumber;
   });
-  console.log(headline);
+  waypointInfoCard.innerHTML += `<div class = "waypoint-headline">${curiosityMapInfoItem.headline}</div>`;
+  waypointInfoCard.innerHTML += `<div class = "waypoint-image-container"><img src="<img${curiosityMapInfoItem.imageUrl}"></div>`;
 };
-
-// array = [
-//   { sol: 43, name: "me" },
-//   { sol: 22, name: "you" },
-// ];
-
-// array.find((solDate) => {
-//   return (solDate.sol = 43);
-// });
 
 //plots select waypoints on the rover map (class name includes the sol)
 const addRoverWaypoints = (
@@ -178,12 +172,12 @@ body.addEventListener("click", (e) => {
     );
     if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
       waypointInfoCard.classList.add("reveal-curiosity-waypoint-info");
-      renderMapCards(e.target.classList);
+      renderMapCards(e.target.classList, curiosityMapInfo);
 
       // waypointInfoCard.innerHTML = `<div class = "waypoint-date">${}</div>`;
     } else {
       waypointInfoCard.classList.add("reveal-perseverance-waypoint-info");
-      renderMapCards(e.target.classList);
+      renderMapCards(e.target.classList, perseveranceMapInfo);
     }
   }
 });
