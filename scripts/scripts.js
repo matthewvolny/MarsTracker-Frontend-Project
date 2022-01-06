@@ -319,7 +319,7 @@ async function getCuriosityLocationData() {
   const response = await fetch("./assets/Waypoints-Curiosity.geojson");
   const locationData = await response.json();
   const waypoints = locationData.features;
-  console.log(locationData.features); //logs all waypoint data
+  // console.log(locationData.features); //logs all waypoint data
   // drawWaypointDomElements(waypoints);
   return storeCuriosityWaypointData(waypoints);
 }
@@ -453,13 +453,48 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
   populateCuriosityTimeLineData();
+
+  dropdownMenu.classList.toggle("show");
+  const earthDatesToFetch = [];
+  for (i = 0; i < curiosityInfoArray.length; i++) {
+    // fetchRoverData(curiosityInfoArray[i].earthDate);
+    earthDatesToFetch.push(curiosityInfoArray[i].earthDate);
+  }
+  manageFetchRequests(earthDatesToFetch).then((data) => {
+    console.log(data);
+    populateTimeline(curiosityInfoArray, data);
+  });
+  // .then((a) => console.log(a))
+  //   .then(console.log(a));
+  // console.log(a);
+  // return populateTimeline(curiosityInfoArray, a);
+
 });
+
+// populateTimeline(curiosityInfoArray, fetchRequest);
+
+// manageFetchRequests(earthDatesToFetch).then((roverDataArrayMultipleFetches) =>
+
+// );
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
   // populatePerseveranceArray();
+
+  dropdownMenu.classList.toggle("show");
+  const earthDatesToFetch = [];
+  for (i = 0; i < perseveranceInfoArray.length; i++) {
+    earthDatesToFetch.push(perseveranceInfoArray[i].earthDate);
+  }
+  manageFetchRequests(earthDatesToFetch).then((data) => {
+    console.log(data);
+    populateTimeline(perseveranceInfoArray, data);
+  });
+  // .then((roverDataArrayMultipleFetches) =>
+  //   populateTimeline(perseveranceInfoArray, roverDataArrayMultipleFetches)
+  // Promise.all(f1()).then(console.log);
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
