@@ -445,8 +445,14 @@ const drawRoverPosition = (
 ///////for christy////////////
 
 const curiosityDatesArray = [
-  { earthDate: "jan 9, 2012", marsDate: "sol-15" },
-  { earthDate: "october 13, 2013", marsDate: "sol-200" },
+  { earthDate: "August 6, 2012", marsDate: "sol-1" },
+  { earthDate: "August 19, 2012", marsDate: "sol-12" },
+  { earthDate: "August 22, 2012", marsDate: "sol-16" },
+  { earthDate: "October 8, 2012", marsDate: "sol-61" },
+  { earthDate: "October 18, 2012", marsDate: "sol-71" },
+  { earthDate: "October 30, 2012", marsDate: "sol-69" },
+  { earthDate: "February 9, 2013", marsDate: "sol-182" },
+  { earthDate: "June 23, 2014", marsDate: "sol-687" },
 ];
 
 const perseveranceDatesArray = [
@@ -461,14 +467,10 @@ const populateTimeline = (datesArray) => {
   let circleElementsCounter = 0;
   for (i = 0; i < timelineElementsContent.length; i++) {
     if (i % 2 === 0) {
-      timelineElementsContent[
-        i
-      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${datesArray[circleElementsCounter].earthDate}</div><div class="mars-date">${datesArray[circleElementsCounter].marsDate}</div></div>`;
+      timelineElementsContent[i].innerHTML = `<div class= "circle-element"><div class="earth-date">${datesArray[circleElementsCounter].earthDate}</div><div class="mars-date">${datesArray[circleElementsCounter].marsDate}</div></div>`;
       circleElementsCounter += 1;
     } else {
-      timelineElementsContent[
-        i
-      ].innerHTML = `<div class="square-element">bye</div>`;
+      timelineElementsContent[i].innerHTML = `<div class="square-element">bye</div>`;
     }
   }
 };
@@ -485,7 +487,7 @@ selectRoverButton.addEventListener("click", (e) => {
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
-  // populateCuriosityArray();
+  populateCuriosityTimeLineData();
 });
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
@@ -533,21 +535,31 @@ function addInViewToElements() {
 
 window.addEventListener("scroll", addInViewToElements);
 
-/*
-api calls -
- make an array containing the dates that you want to show photos for
- grab random photo from that day and the earth date
- store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
- // fetches curiosity photo
+
+//api calls -
+ //make an array containing the dates that you want to show photos for
+ //grab random photo from that day and the earth date
+ //store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
+//fetches curiosity photo
 async function getCuriosityPhoto() {
+  const marsDateArray = [
+    { marsDate: "sol=1" },
+    { marsDate: "sol=12" },
+    { marsDate: "sol=16" },
+    { marsDate: "sol=61" },
+    { marsDate: "sol=71" },
+    { marsDate: "sol=69" },
+    { marsDate: "sol=182" },
+    { marsDate: "sol=687" },
+  ]
   const response = await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?${marsDateArray.marsDate}&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
     );
     const photoData = await response.json();
     return photoData;
  }
  getCuriosityPhoto().then(photoData => console.log(photoData));
-*/
+
 
 //display curiosity timeline data
 const populateCuriosityTimeLineData = () => {
@@ -557,6 +569,7 @@ const populateCuriosityTimeLineData = () => {
       headline: "NASA Lands Rover Beside Martian Mountain", 
       subheadline: "NASA Lands Car-Size Rover Beside Martian Mountain.", 
       link: "https://mars.nasa.gov/news/1288/nasa-lands-car-size-rover-beside-martian-mountain/?site=msl",
+      photo: "${marsDateArray.marsDate}"
     },
     {
       headline: "Rover's Laser Instrument Zaps First Martian Rock",
@@ -599,9 +612,10 @@ const populateCuriosityTimeLineData = () => {
     if (i % 2 === 0 ) {
       timelineElementsForCards[i].innerHTML = `<div class="">Hello</div>`;  //date in earth days and sol  ("${api call}")
     } else {
-      // timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineElementsForCards[i].headline}</div>
-      //         <div class="subheadline">${timelineElementsForCards[i].subheadline}</div>
-      //         <div class="link">${timelineElementsForCards[i].link}</div>`;  //photo ${apicall}
+      timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineElementsForCards[i].headline}</div>
+              <div class="subheadline">${timelineElementsForCards[i].subheadline}</div>
+              <div class="link">${timelineElementsForCards[i].link}</div>
+              <div class="photo">${timelineElementsForCards[i].photo}</div>`;  //photo ${apicall}
     }
     //populateCuriosityTimeLineData();
   }
