@@ -895,6 +895,11 @@ body * + * {
     background: #ebebeb;
   }
 
+  .timeline-image-container > img {
+    height: 200px;
+    width: 200px;
+  }
+
   /* creates an open area of the timeline for 'rovey' */
   .timeline:nth-child(5) {
     height: 600px;
