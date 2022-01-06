@@ -39,36 +39,35 @@ for (i = 0; i < teardrops.length; i++) {
   teardrops[i].addEventListener("click", renderRoverMap);
 }
 
+/////search for date info///////
+async function checkDates() {
+  const response = await fetch(
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2014-09-11&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+  );
+  const locationData = await response.json();
+  console.log(locationData);
+}
+checkDates();
 /////////map card data//////
 
 const perseveranceMapInfo = [];
 
 const curiosityMapInfo = [
   {
-    date: "August 5, 2012",
+    date: "2012-08-09",
     sol: 3,
     headline: 'Curiosity lands at "Gale Crater"',
     additionalText:
-      "Gale crater is a 2 billion year old impact crater, believed to at one time have been underwater",
+      "Gale crater is a 2 billion year old impact crater, that is believed to have at one time been underwater",
     imageUrl: "assets/Curiosity_Cradled_by_Gale_Crater.jpg",
   },
   {
-    date: "August 29, 2012",
-    sol: 37,
-    headline:
-      "Glenelg is a location where three types of terrain intersect, and is the mission's first major driving destination.One of the three types of terrain intersecting at Glenelg is layered bedrock, which is attractive as the first drilling target.",
-    additionalText: "",
-    imageUrl: "",
-  },
-
-  {
-    date: "September 11, 2014",
+    date: "2014-09-11",
     sol: 746,
-    distanceTraveled: "6.9 km (4.3 mi)",
-    headline:
-      "Curiosity reached the slopes of Aeolis Mons (or Mount Sharp), the rover mission's long-term prime destination",
-    additionalText: "",
-    imageUrl: "",
+    headline: "Curiosity reaches the slopes of Mount Sharp",
+    additionalText:
+      "Mount Sharp (or Aeolis Mons)is a 3-mile-tall mountain inside of Gale Crater, and curiosity's first major destination.",
+    imageUrl: "assets/First_360_color_panorama_from_the_Curosity_rover.jpeg",
   },
 
   {
