@@ -634,8 +634,8 @@ const populateCuriosityTimeLineData = () => {
     } else {
       timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineArray[i].headline}</div>
               <div class="subheadline">${timelineArray[i].subheadline}</div>
-              <button class="link">More Info (${timelineArray[i].link})</button>
-              <div class="photo">${timelineArray[i].photo}</div>`;  //photo ${apicall}
+              <div class="photo">${timelineArray[i].photo}</div>
+              <a href="${timelineArray[i].link}">More Info</a>`;  //photo ${apicall}
     }
     //populateCuriosityTimeLineData();
   }
