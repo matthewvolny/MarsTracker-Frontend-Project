@@ -442,111 +442,6 @@ const drawRoverPosition = (
   ctx.stroke();
 };
 
-///////for christy////////////
-
-const curiosityInfoArray = [
-  {
-    earthDate: "2015-06-03",
-    marsDate: "sol-15",
-    headline: "rover curiosity lands",
-    subheading: "there it goes!",
-  },
-  {
-    earthDate: "2015-06-03",
-    marsDate: "sol-200",
-    headline: "rover curiosity finds signs of life",
-    subheading: "look at that!",
-  },
-];
-
-const perseveranceInfoArray = [
-  {
-    earthDate: "2015-06-03",
-    marsDate: "sol-25",
-    headline: "rover perseverance lands",
-    subheading: "there it goes!",
-  },
-  {
-    earthDate: "2015-06-03",
-    marsDate: "sol-92",
-    headline: "rover perseverance launches a helicopter",
-    subheading: "see it fly!",
-  },
-];
-
-// let timelineEarthDates = [];
-// let timelineSolDates = [];
-// let randomPhotoUrl = [];
-// async function assembleTimelineDataArrays(date) {
-//   const response = await fetch(
-//     `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
-//   );
-//   const roverData = await response.json();
-//   console.log(roverData.photos);
-//   timelineEarthDates.push(roverData.photos[0].earth_date);
-//   timelineSolDates.push(roverData.photos[0].sol);
-//   let randomNumber = Math.floor(Math.random() * roverData.photos.length);
-//   randomPhotoUrl.push(roverData.photos[randomNumber].img_src);
-// }
-
-// let timelineEarthDates = [];
-// let timelineSolDates = [];
-// let randomPhotoUrl = [];
-
-const fetchRoverData = async (url) => {
-  console.log(url);
-  console.log(`Fetching ${url}`);
-  const response = await fetch(url); // API call to get user info from Github.
-  const roverData = await response.json();
-  console.log(roverData);
-  console.log(roverData.photos);
-  // return assembleTimelineDataArrays(roverData.photos);
-
-  let randomNumber = Math.floor(Math.random() * roverData.photos.length);
-
-  return {
-    timelineEarthDate: roverData.photos[0].earth_date,
-    timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl: roverData.photos[randomNumber].img_src,
-  };
-};
-
-const manageFetchRequests = async (earthDatesToFetch) => {
-  const requests = earthDatesToFetch.map((earthDate) => {
-    const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
-    return fetchRoverData(url).then((a) => {
-      return a; // Returns the user info.
-    });
-  });
-  return Promise.all(requests); // Waiting for all the requests to get resolved.
-};
-
-const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
-  console.log(roverDataArrayMultipleFetches);
-  console.log(infoArray);
-  const timelineElementsContent = document.querySelectorAll(
-    ".timeline-container ul li > div > div"
-  );
-  let circleElementsCounter = 0;
-  let squareElementsCounter = 0;
-  for (i = 0; i < timelineElementsContent.length; i++) {
-    if (i % 2 === 0) {
-      timelineElementsContent[
-        i
-      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
-      circleElementsCounter += 1;
-    } else {
-      console.log(infoArray[squareElementsCounter].headline);
-      timelineElementsContent[
-        i
-      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl}"></div></div>`;
-      squareElementsCounter += 1;
-    }
-  }
-};
-
-////////////////////////////////////////////////////
-
 //'select rover' dropdown button
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -557,6 +452,8 @@ selectRoverButton.addEventListener("click", (e) => {
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
+  populateCuriosityTimeLineData();
+
   dropdownMenu.classList.toggle("show");
   const earthDatesToFetch = [];
   for (i = 0; i < curiosityInfoArray.length; i++) {
@@ -571,6 +468,7 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   //   .then(console.log(a));
   // console.log(a);
   // return populateTimeline(curiosityInfoArray, a);
+
 });
 
 // populateTimeline(curiosityInfoArray, fetchRequest);
@@ -583,6 +481,8 @@ retrieveCuriosityData.addEventListener("click", (e) => {
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
+  // populatePerseveranceArray();
+
   dropdownMenu.classList.toggle("show");
   const earthDatesToFetch = [];
   for (i = 0; i < perseveranceInfoArray.length; i++) {
@@ -635,28 +535,110 @@ function addInViewToElements() {
 
 window.addEventListener("scroll", addInViewToElements);
 
-/*
-api calls -
- make an array containing the dates that you want to show photos for
- grab random photo from that day and the earth date
- store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
-*/
 
-/*
+//api calls -
+ //make an array containing the dates that you want to show photos for
+ //grab random photo from that day and the earth date
+ //store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
+//fetches curiosity photo
+async function getCuriosityPhoto() {
+  const marsDateArray = [
+    { marsDate: "sol=1" },
+    { marsDate: "sol=12" },
+    { marsDate: "sol=16" },
+    { marsDate: "sol=61" },
+    { marsDate: "sol=71" },
+    { marsDate: "sol=69" },
+    { marsDate: "sol=182" },
+    { marsDate: "sol=687" },
+  ]
+  const response = await fetch(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?${marsDateArray.marsDate}&api_key=HpSgllaNaqTg6ol7ahfadG0zV9fWEhjvJGtJAglR`
+    );
+    const photoData = await response.json();
+    return photoData;
+ }
+ getCuriosityPhoto().then(photoData => console.log(photoData));
+
+
+//display curiosity timeline data
 const populateCuriosityTimeLineData = () => {
+  const timelineElementsForCards = document.querySelectorAll(".timeline-container ul li > div > div");
+  const timelineArray = [
+    { 
+      headline: "NASA Lands Rover Beside Martian Mountain", 
+      subheadline: "NASA Lands Car-Size Rover Beside Martian Mountain.", 
+      link: "https://mars.nasa.gov/news/1288/nasa-lands-car-size-rover-beside-martian-mountain/?site=msl",
+    },
+    {
+      headline: "Rover's Laser Instrument Zaps First Martian Rock",
+      subheadline: "NASA's Mars rover Curiosity fired its laser for the first time on Mars, using the beam from a science instrument to interrogate a fist-size rock called 'Coronation.'",
+      link: "https://mars.nasa.gov/news/1315/rovers-laser-instrument-zaps-first-martian-rock/?site=msl",
+    },
+    {
+      headline: "NASA Mars Rover Begins Driving At Bradbury Landing",
+      subheadline: "Curiosity has begun driving from its landing site",
+      link: "https://mars.nasa.gov/news/1323/nasa-mars-rover-begins-driving-at-bradbury-landing/?site=msl",
+    },
+    {
+      headline: "First Scoopful A Success",
+      subheadline: "Curiosity used its soil scoop for the first time, collecting a scoopful of sand and powdery material at the 'Rocknest' site.",
+      link: "https://mars.nasa.gov/news/1370/first-scoopful-a-success/?site=msl",
+    },
+    {
+      headline: "Mars Soil Sample Delivered for Analysis Inside Rover",
+      subheadline: "Curiosity has ingested its first solid sample into an analytical instrument inside the rover, a capability at the core of the two-year mission.",
+      link: "https://mars.nasa.gov/news/1379/mars-soil-sample-delivered-for-analysis-inside-rover/?site=msl",
+    },
+    {
+      headline: "First Soil Studies Help Fingerprint Martian Minerals",
+      subheadline: "Curiosity has completed initial experiments showing the mineralogy of Martian soil is similar to weathered basaltic soils of volcanic origin in Hawaii.",
+      link: "https://mars.nasa.gov/news/1385/nasa-rovers-first-soil-studies-help-fingerprint-martian-minerals/?site=msl",
+    },
+    {
+      headline: "Collects First Martian Bedrock Sample",
+      subheadline: "Curiosity rover has, for the first time, used a drill carried at the end of its robotic arm to bore into a flat, veiny rock on Mars and collect a sample from its interior. This is the first time any robot has drilled into a rock to collect a sample on Mars.",
+      link: "https://mars.nasa.gov/news/1423/nasa-curiosity-rover-collects-first-martian-bedrock-sample/?site=msl",
+    },
+    {
+      headline: "Curiosity Rover Marks First Martian Year with Mission Successes",
+      subheadline: "Curiosity rover will complete a Martian year -- 687 Earth days -- on June 24, having accomplished the mission's main goal of determining whether Mars once offered environmental conditions favorable for microbial life.",
+      link: "https://mars.nasa.gov/news/1653/nasas-mars-curiosity-rover-marks-first-martian-year-with-mission-successes/?site=msl",
+    },
+  ];
 
-  -make the big array containing all the headlines and subheadlines and links for each rover(per date);
-  (these are for the ODD timeline elements -the squares)
-  get the timeline elements with document.querySelectorAll(".timeline");
-  for (i=0; i < timelineElements.length; i++) {
-    if(i % 2 === 0 ) {
-timelineElements[i].innerHTML = `<div class=""></div>`;  //date in earth days and sol  ("${api call}")
-    }else {
-      timelineElements[i].innerHTML = `<div class="headline"></div>`;  //headline (${timelineElements[i].headline}), subheadline (${timelineElements[i].subheadline}), photo ${apicall}, link(${timelineElements[i].link})
+  const curiosityDatesArray = [
+    { earthDate: "August 6, 2012", 
+      marsDate: "sol-1" },
+    { earthDate: "August 19, 2012", 
+      marsDate: "sol-12" },
+    { earthDate: "August 22, 2012", 
+      marsDate: "sol-16" },
+    { earthDate: "October 8, 2012", 
+      marsDate: "sol-61" },
+    { earthDate: "October 18, 2012", 
+      marsDate: "sol-71" },
+    { earthDate: "October 30, 2012", 
+      marsDate: "sol-69" },
+    { earthDate: "February 9, 2013", 
+      marsDate: "sol-182" },
+    { earthDate: "June 23, 2014", 
+      marsDate: "sol-687" },
+  ];
+
+  //(these are for the ODD timeline elements -the squares)
+  for (i=0; i < timelineArray.length; i++) {
+    if (i % 2 === 0 ) {
+      timelineElementsForCards[i].innerHTML = `<div class="earthDate">${curiosityDatesArray[i].earthDate}</div><div class="marsDate>${curiosityDatesArray[i].marsDate}</div>`;  //date in earth days and sol  ("${api call}")
+    } else {
+      timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineArray[i].headline}</div>
+              <div class="subheadline">${timelineArray[i].subheadline}</div>
+              <a href="${timelineArray[i].link}">More Info</a>`;  //photo ${apicall}
     }
+    //populateCuriosityTimeLineData();
   }
 }
-*/
+
 
 //displays random mars fact in timeline
 const displayRoveyFact = () => {
