@@ -319,7 +319,7 @@ async function getCuriosityLocationData() {
   const response = await fetch("./assets/Waypoints-Curiosity.geojson");
   const locationData = await response.json();
   const waypoints = locationData.features;
-  console.log(locationData.features); //logs all waypoint data
+  // console.log(locationData.features); //logs all waypoint data
   // drawWaypointDomElements(waypoints);
   return storeCuriosityWaypointData(waypoints);
 }
@@ -444,31 +444,103 @@ const drawRoverPosition = (
 
 ///////for christy////////////
 
-const curiosityDatesArray = [
-  { earthDate: "jan 9, 2012", marsDate: "sol-15" },
-  { earthDate: "october 13, 2013", marsDate: "sol-200" },
+const curiosityInfoArray = [
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-15",
+    headline: "rover curiosity lands",
+    subheading: "there it goes!",
+  },
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-200",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
 ];
 
-const perseveranceDatesArray = [
-  { earthDate: "dec 18, 2020", marsDate: "sol-25" },
-  { earthDate: "july 24, 2020", marsDate: "sol-92" },
+const perseveranceInfoArray = [
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-25",
+    headline: "rover perseverance lands",
+    subheading: "there it goes!",
+  },
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-92",
+    headline: "rover perseverance launches a helicopter",
+    subheading: "see it fly!",
+  },
 ];
 
-const populateTimeline = (datesArray) => {
+// let timelineEarthDates = [];
+// let timelineSolDates = [];
+// let randomPhotoUrl = [];
+// async function assembleTimelineDataArrays(date) {
+//   const response = await fetch(
+//     `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+//   );
+//   const roverData = await response.json();
+//   console.log(roverData.photos);
+//   timelineEarthDates.push(roverData.photos[0].earth_date);
+//   timelineSolDates.push(roverData.photos[0].sol);
+//   let randomNumber = Math.floor(Math.random() * roverData.photos.length);
+//   randomPhotoUrl.push(roverData.photos[randomNumber].img_src);
+// }
+
+// let timelineEarthDates = [];
+// let timelineSolDates = [];
+// let randomPhotoUrl = [];
+
+const fetchRoverData = async (url) => {
+  console.log(url);
+  console.log(`Fetching ${url}`);
+  const response = await fetch(url); // API call to get user info from Github.
+  const roverData = await response.json();
+  console.log(roverData);
+  console.log(roverData.photos);
+  // return assembleTimelineDataArrays(roverData.photos);
+
+  let randomNumber = Math.floor(Math.random() * roverData.photos.length);
+
+  return {
+    timelineEarthDate: roverData.photos[0].earth_date,
+    timelineSolDate: roverData.photos[0].sol,
+    randomPhotoUrl: roverData.photos[randomNumber].img_src,
+  };
+};
+
+const manageFetchRequests = async (earthDatesToFetch) => {
+  const requests = earthDatesToFetch.map((earthDate) => {
+    const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
+    return fetchRoverData(url).then((a) => {
+      return a; // Returns the user info.
+    });
+  });
+  return Promise.all(requests); // Waiting for all the requests to get resolved.
+};
+
+const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
+  console.log(roverDataArrayMultipleFetches);
+  console.log(infoArray);
   const timelineElementsContent = document.querySelectorAll(
     ".timeline-container ul li > div > div"
   );
   let circleElementsCounter = 0;
+  let squareElementsCounter = 0;
   for (i = 0; i < timelineElementsContent.length; i++) {
     if (i % 2 === 0) {
       timelineElementsContent[
         i
-      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${datesArray[circleElementsCounter].earthDate}</div><div class="mars-date">${datesArray[circleElementsCounter].marsDate}</div></div>`;
+      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
       circleElementsCounter += 1;
     } else {
+      console.log(infoArray[squareElementsCounter].headline);
       timelineElementsContent[
         i
-      ].innerHTML = `<div class="square-element">bye</div>`;
+      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl}"></div></div>`;
+      squareElementsCounter += 1;
     }
   }
 };
@@ -486,15 +558,43 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
   dropdownMenu.classList.toggle("show");
-  populateTimeline(curiosityDatesArray);
+  const earthDatesToFetch = [];
+  for (i = 0; i < curiosityInfoArray.length; i++) {
+    // fetchRoverData(curiosityInfoArray[i].earthDate);
+    earthDatesToFetch.push(curiosityInfoArray[i].earthDate);
+  }
+  manageFetchRequests(earthDatesToFetch).then((data) => {
+    console.log(data);
+    populateTimeline(curiosityInfoArray, data);
+  });
+  // .then((a) => console.log(a))
+  //   .then(console.log(a));
+  // console.log(a);
+  // return populateTimeline(curiosityInfoArray, a);
 });
+
+// populateTimeline(curiosityInfoArray, fetchRequest);
+
+// manageFetchRequests(earthDatesToFetch).then((roverDataArrayMultipleFetches) =>
+
+// );
 
 //event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
   dropdownMenu.classList.toggle("show");
-  populateTimeline(perseveranceDatesArray);
+  const earthDatesToFetch = [];
+  for (i = 0; i < perseveranceInfoArray.length; i++) {
+    earthDatesToFetch.push(perseveranceInfoArray[i].earthDate);
+  }
+  manageFetchRequests(earthDatesToFetch).then((data) => {
+    console.log(data);
+    populateTimeline(perseveranceInfoArray, data);
+  });
+  // .then((roverDataArrayMultipleFetches) =>
+  //   populateTimeline(perseveranceInfoArray, roverDataArrayMultipleFetches)
+  // Promise.all(f1()).then(console.log);
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
