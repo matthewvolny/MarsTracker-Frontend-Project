@@ -15,37 +15,154 @@ const retrievePerseveranceData = document.querySelector(
   ".retrieve-perseverance-data"
 );
 const planetMapContainer = document.getElementById("planet-map-container");
+const backgroundImageContainer = document.querySelector(
+  ".background-image-container"
+);
 
-//'select rover' dropdown button
-selectRoverButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  dropdownMenu.classList.toggle("show");
-});
+//render rover map and waypoints
+const renderRoverMap = () => {
+  marsDiagram.classList.add("minimize-planet");
+  roverRouteMap.classList.add("show-rover-route");
+  canvasContainer.classList.add("show-canvas-container");
+  backgroundImageContainer.classList.add("show-background-image-container");
+  const waypoint = document.querySelectorAll(".waypoint");
+  for (i = 0; i < teardrops.length; i++) {
+    teardrops[i].style.visibility = "hidden";
+  }
+  for (i = 0; i < waypoint.length; i++) {
+    waypoint[i].classList.add("show-waypoint");
+  }
+};
 
 //event listener for rover position teardrops
 for (i = 0; i < teardrops.length; i++) {
-  teardrops[i].addEventListener("click", (e) => {
-    marsDiagram.classList.add("minimize-planet");
-    roverRouteMap.classList.add("show-rover-route");
-    canvasContainer.classList.add("show-canvas-container");
-    const waypoint = document.querySelectorAll(".waypoint");
-    for (i = 0; i < teardrops.length; i++) {
-      teardrops[i].style.visibility = "hidden";
-    }
-    for (i = 0; i < waypoint.length; i++) {
-      waypoint[i].classList.add("show-waypoint");
-    }
-  });
+  teardrops[i].addEventListener("click", renderRoverMap);
 }
+
+/////////map card data//////
+
+const curiosityMapInfo = [
+  {
+    date: "August 5, 2012",
+    sol: 15,
+    headline: "Curiosity’s landing site was Gale Crater",
+    additonalText: "",
+    imageUrl: "Curiosity_Cradled_by_Gale_Crater.jpg",
+  },
+  {
+    date: "August 29, 2012",
+    sol: 37,
+    headline:
+      "Glenelg is a location where three types of terrain intersect, and is the mission's first major driving destination.One of the three types of terrain intersecting at Glenelg is layered bedrock, which is attractive as the first drilling target.",
+    additonalText: "",
+    imageUrl: "",
+  },
+
+  {
+    date: "September 11, 2014",
+    sol: 746,
+    distanceTraveled: "6.9 km (4.3 mi)",
+    headline:
+      "Curiosity reached the slopes of Aeolis Mons (or Mount Sharp), the rover mission's long-term prime destination",
+    additonalText: "",
+    imageUrl: "",
+  },
+
+  {
+    date: "December 17, 2015",
+    sol: 24,
+    headline:
+      "Curiosity climbed higher up Mount Sharp, the composition of rocks were changing substantially. For example, rocks found higher up the mountain contained much higher levels of silica than the basaltic rocks found earlier. After further analysis, the silica-rich rocks on Mars were found to be tridymite, a mineral that is not commonly found on Earth. Opal-A, another form of silica, was also found on Mars.",
+    additonalText: "",
+    imageUrl: "",
+  },
+
+  {
+    date: "December 13, 2016",
+    sol: 331,
+    headline:
+      "further evidence supporting habitability on Mars as the Curiosity rover climbed higher, studying younger layers, on Mount Sharp",
+    additonalText: "",
+    imageUrl: "",
+  },
+
+  {
+    date: "January 17, 2017",
+    sol: 672,
+    headline:
+      "an image of a rock slab, named 'Old Soaker', which may contain mud cracks. ",
+    additonalText: "",
+    imageUrl: "",
+  },
+
+  {
+    date: "January 2, 2018",
+    sol: 67,
+    headline:
+      "captured images of rock shapes that may require further study in order to help better determine whether the shapes are biological or geological.",
+    additonalText: "",
+    imageUrl: "",
+  },
+
+  {
+    date: "April 11, 2019",
+    headline:
+      "the Curiosity rover on the planet Mars drilled into, and closely studied, a 'clay-bearing unit' which, according to the rover Project Manager, is a 'major milestone' in Curiosity's journey up Mount Sharp.",
+    additonalText: "",
+    imageUrl: "",
+  },
+
+  {
+    date: "17 August 2021",
+
+    sol: 45,
+    headline: "mosaic of drill holes",
+    additonalText: "",
+    imageUrl: "",
+  },
+];
+
+//arrays containing all sol dates, and miles traveled for either rover
+roverRouteSolArray = [];
+roverRouteDistanceMiles = [];
+
+//render map waypoint info cards (classlist is an index value stored as a class name for the selected waypoint element)
+const renderMapCards = (classList) => {
+  const waypointInfoCard = document.querySelector(
+    ".rover-waypoint-info-container"
+  );
+  waypointInfoCard.innerHTML = `<div class = "waypoint-date">${
+    roverRouteSolArray[classList[2]]
+  }</div><div class = "waypoint-date">${
+    roverRouteDistanceMiles[classList[2]]
+  }</div>`;
+  const solDateNumber = parseInt(roverRouteSolArray[classList[2]]);
+  //solDateValue = roverRouteSolArray[classList[2]];
+  const headline = curiosityMapInfo.find((solDate) => {
+    return solDate.sol === solDateNumber;
+  });
+  console.log(headline);
+};
+
+// array = [
+//   { sol: 43, name: "me" },
+//   { sol: 22, name: "you" },
+// ];
+
+// array.find((solDate) => {
+//   return (solDate.sol = 43);
+// });
+
 //plots select waypoints on the rover map (class name includes the sol)
 const addRoverWaypoints = (
   adjustedCenterRoverPositionsX,
   adjustedCenterRoverPositionsY,
   i,
   solValue
+  // distanceTraveled
 ) => {
   let waypoint = document.createElement("div");
-  waypoint.classList.add(`sol-${solValue}`, "waypoint");
+  waypoint.classList.add(`sol-${solValue}`, "waypoint", `${i}`);
   waypoint.style.top = `${adjustedCenterRoverPositionsY[i]}px`;
   waypoint.style.left = `${adjustedCenterRoverPositionsX[i]}px`;
   canvasContainer.appendChild(waypoint);
@@ -59,13 +176,20 @@ body.addEventListener("click", (e) => {
     const waypointInfoCard = document.querySelector(
       ".rover-waypoint-info-container"
     );
-    waypointInfoCard.classList.add("reveal-waypoint-info");
-    //fetch request on the date(i.e. "e.target.classList[0]"), then display data in card
+    if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
+      waypointInfoCard.classList.add("reveal-curiosity-waypoint-info");
+      renderMapCards(e.target.classList);
+
+      // waypointInfoCard.innerHTML = `<div class = "waypoint-date">${}</div>`;
+    } else {
+      waypointInfoCard.classList.add("reveal-perseverance-waypoint-info");
+      renderMapCards(e.target.classList);
+    }
   }
 });
 
 //scale rover waypoint x and y values for 50px/50px canvas, and call addRoverWaypoints (rover plotting function) for select dates
-roverRouteSolArray = [];
+
 const scaleRoverPositionsForSmallerCanvas = (
   centeredRoverPositionsX,
   centeredRoverPositionsY
@@ -83,7 +207,7 @@ const scaleRoverPositionsForSmallerCanvas = (
   if (roverRouteSolArray.length == 886) {
     addCuriosityWaypointsForSelectDomElements(
       adjustedCenterRoverPositionsX,
-      adjustedCenterRoverPositionsY
+      adjustedCenterRoverPositionsY /*, 56, 331, 672, 1387, 2563*/
     );
   } else {
     addPerseveranceWaypointsForSelectDomElements(
@@ -95,7 +219,7 @@ const scaleRoverPositionsForSmallerCanvas = (
 
 const addCuriosityWaypointsForSelectDomElements = (
   adjustedCenterRoverPositionsX,
-  adjustedCenterRoverPositionsY
+  adjustedCenterRoverPositionsY /*, a, b, c, d ,e*/
 ) => {
   const roverRouteSolArrayNumbers = roverRouteSolArray.map((value) => {
     return parseInt(value);
@@ -106,35 +230,40 @@ const addCuriosityWaypointsForSelectDomElements = (
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArrayNumbers[i] === 331) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArrayNumbers[i] === 672) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArrayNumbers[i] === 1387) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArrayNumbers[i] === 2563) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     }
   }
@@ -150,39 +279,45 @@ const addPerseveranceWaypointsForSelectDomElements = (
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArray[i] === 129) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArray[i] === 173) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArray[i] === 238) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     } else if (roverRouteSolArray[i] === 283) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
         i,
-        roverRouteSolArray[i]
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
       );
     }
   }
 };
+
 //////Curiosity-specific API calls/data storage/magnification//////////
 ///////////////////////////////////////////////////////////
 //fetches Curiosity rover waypoint (position) data
@@ -200,11 +335,11 @@ async function getCuriosityLocationData() {
 const storeCuriosityWaypointData = (waypoints) => {
   let longitudeArray = [];
   let latitudeArray = [];
-  roverRouteSolArray = [];
   waypoints.forEach((waypoint) => {
     longitudeArray.push(waypoint.geometry.coordinates[0]);
     latitudeArray.push(waypoint.geometry.coordinates[1]);
     roverRouteSolArray.push(waypoint.properties.sol);
+    roverRouteDistanceMiles.push(waypoint.properties.dist_mi);
   });
   return magnifyCuriosityRoverLocationData(longitudeArray, latitudeArray);
 };
@@ -243,6 +378,7 @@ const storePerseveranceWaypointData = (waypoints) => {
     longitudeArray.push(waypoint.properties.lon);
     latitudeArray.push(waypoint.properties.lat);
     roverRouteSolArray.push(waypoint.properties.sol);
+    roverRouteDistanceMiles.push(waypoint.properties.dist_mi);
   });
   return magnifyRoverLocationData(longitudeArray, latitudeArray);
 };
@@ -311,6 +447,45 @@ const drawRoverPosition = (
   }
   ctx.stroke();
 };
+
+///////for christy////////////
+
+const curiosityDatesArray = [
+  { earthDate: "jan 9, 2012", marsDate: "sol-15" },
+  { earthDate: "october 13, 2013", marsDate: "sol-200" },
+];
+
+const perseveranceDatesArray = [
+  { earthDate: "dec 18, 2020", marsDate: "sol-25" },
+  { earthDate: "july 24, 2020", marsDate: "sol-92" },
+];
+
+const populateTimeline = (datesArray) => {
+  const timelineElementsContent = document.querySelectorAll(
+    ".timeline-container ul li > div > div"
+  );
+  let circleElementsCounter = 0;
+  for (i = 0; i < timelineElementsContent.length; i++) {
+    if (i % 2 === 0) {
+      timelineElementsContent[
+        i
+      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${datesArray[circleElementsCounter].earthDate}</div><div class="mars-date">${datesArray[circleElementsCounter].marsDate}</div></div>`;
+      circleElementsCounter += 1;
+    } else {
+      timelineElementsContent[
+        i
+      ].innerHTML = `<div class="square-element">bye</div>`;
+    }
+  }
+};
+
+////////////////////////////////////////////////////
+
+//'select rover' dropdown button
+selectRoverButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  dropdownMenu.classList.toggle("show");
+});
 
 //event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
 retrieveCuriosityData.addEventListener("click", (e) => {
@@ -517,6 +692,9 @@ window.addEventListener("scroll", addInViewToRovey);
 
 //add inView to mars planet image
 function addInViewToMars() {
+  const backgroundImage = document.querySelector(
+    ".background-image-container > img"
+  );
   const curiosityRoverPopupContainer = document.querySelector(
     ".curiosity-rover-route-container"
   );
@@ -537,7 +715,9 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrieveCuriosityData.classList.contains("curiosity-button-clicked")
   ) {
-    roverRouteMap.classList.add("curiosity-mars-image-overlay");
+    backgroundImage.src = "/assets/curiosity-rover-map.jpg";
+    backgroundImageContainer.classList.add("curiosity-mars-image-overlay");
+
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "curiosity-selected-in-viewport-curiosity"
@@ -550,15 +730,16 @@ function addInViewToMars() {
     const perseveranceTeardrop = document.querySelector(
       ".perseverance-teardrop"
     );
-    perseveranceTeardrop.disabled = true;
+    // perseveranceTeardrop.disabled = true;
     // perseveranceTeardrop.style.backgroundColor = "red";
-
+    teardrops[1].removeEventListener("click", renderRoverMap);
     //timelineElements[i].classList.remove("in-viewport");
   } else if (
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
   ) {
-    roverRouteMap.classList.add("perseverance-mars-image-overlay");
+    backgroundImage.src = "/assets/perseverance-mars-surface-imagepsd.jpg";
+    backgroundImageContainer.classList.add("perseverance-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
       "perseverance-selected-in-viewport-curiosity"
@@ -569,7 +750,8 @@ function addInViewToMars() {
     );
     circle2.setAttribute("id", "perseverance-selected-circle2-globe-effect");
     const curiosityTeardrop = document.querySelector(".curiosity-teardrop");
-    curiosityTeardrop.disabled = true;
+    // curiosityTeardrop.disabled = true;
+    teardrops[0].removeEventListener("click", renderRoverMap);
   }
 }
 
