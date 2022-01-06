@@ -46,17 +46,18 @@ const perseveranceMapInfo = [];
 const curiosityMapInfo = [
   {
     date: "August 5, 2012",
-    sol: 15,
-    headline: "Curiosity’s landing site was Gale Crater",
-    additonalText: "",
-    imageUrl: "Curiosity_Cradled_by_Gale_Crater.jpg",
+    sol: 3,
+    headline: 'Curiosity lands at "Gale Crater"',
+    additionalText:
+      "Gale crater is a 2 billion year old impact crater, believed to at one time have been underwater",
+    imageUrl: "assets/Curiosity_Cradled_by_Gale_Crater.jpg",
   },
   {
     date: "August 29, 2012",
     sol: 37,
     headline:
       "Glenelg is a location where three types of terrain intersect, and is the mission's first major driving destination.One of the three types of terrain intersecting at Glenelg is layered bedrock, which is attractive as the first drilling target.",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -66,7 +67,7 @@ const curiosityMapInfo = [
     distanceTraveled: "6.9 km (4.3 mi)",
     headline:
       "Curiosity reached the slopes of Aeolis Mons (or Mount Sharp), the rover mission's long-term prime destination",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -84,7 +85,7 @@ const curiosityMapInfo = [
     sol: 331,
     headline:
       "further evidence supporting habitability on Mars as the Curiosity rover climbed higher, studying younger layers, on Mount Sharp",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -93,7 +94,7 @@ const curiosityMapInfo = [
     sol: 672,
     headline:
       "an image of a rock slab, named 'Old Soaker', which may contain mud cracks. ",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -102,7 +103,7 @@ const curiosityMapInfo = [
     sol: 67,
     headline:
       "captured images of rock shapes that may require further study in order to help better determine whether the shapes are biological or geological.",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -110,7 +111,7 @@ const curiosityMapInfo = [
     date: "April 11, 2019",
     headline:
       "the Curiosity rover on the planet Mars drilled into, and closely studied, a 'clay-bearing unit' which, according to the rover Project Manager, is a 'major milestone' in Curiosity's journey up Mount Sharp.",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -119,7 +120,7 @@ const curiosityMapInfo = [
 
     sol: 45,
     headline: "mosaic of drill holes",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 ];
@@ -133,9 +134,9 @@ const renderMapCards = (classList, mapInfoArray) => {
   const waypointInfoCard = document.querySelector(
     ".rover-waypoint-info-container"
   );
-  waypointInfoCard.innerHTML = `<div class = "waypoint-date">${
+  waypointInfoCard.innerHTML = `<div class = "waypoint-date">Day ${
     roverRouteSolArray[classList[2]]
-  }</div><div class = "waypoint-miles">${
+  }</div><div class = "waypoint-miles">Miles traveled: ${
     roverRouteDistanceMiles[classList[2]]
   }</div>`;
   const solDateNumber = parseInt(roverRouteSolArray[classList[2]]);
@@ -144,7 +145,8 @@ const renderMapCards = (classList, mapInfoArray) => {
     return solDate.sol === solDateNumber;
   });
   waypointInfoCard.innerHTML += `<div class = "waypoint-headline">${curiosityMapInfoItem.headline}</div>`;
-  waypointInfoCard.innerHTML += `<div class = "waypoint-image-container"><img src="<img${curiosityMapInfoItem.imageUrl}"></div>`;
+  waypointInfoCard.innerHTML += `<div class = "waypoint-additional-text">${curiosityMapInfoItem.additionalText}</div>`;
+  waypointInfoCard.innerHTML += `<div class = "waypoint-image-container"><img src="${curiosityMapInfoItem.imageUrl}"></div>`;
 };
 
 //plots select waypoints on the rover map (class name includes the sol)
@@ -219,7 +221,7 @@ const addCuriosityWaypointsForSelectDomElements = (
     return parseInt(value);
   });
   for (i = 0; i < roverRouteSolArrayNumbers.length; i++) {
-    if (roverRouteSolArrayNumbers[i] === 56) {
+    if (roverRouteSolArrayNumbers[i] === 3) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
