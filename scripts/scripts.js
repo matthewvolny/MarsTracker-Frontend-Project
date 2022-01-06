@@ -444,7 +444,7 @@ const drawRoverPosition = (
 
 ///////for christy////////////
 
-const curiosityDatesArray = [
+/*const curiosityDatesArray = [
   { earthDate: "August 6, 2012", marsDate: "sol-1" },
   { earthDate: "August 19, 2012", marsDate: "sol-12" },
   { earthDate: "August 22, 2012", marsDate: "sol-16" },
@@ -473,7 +473,7 @@ const populateTimeline = (datesArray) => {
       timelineElementsContent[i].innerHTML = `<div class="square-element">bye</div>`;
     }
   }
-};
+};*/
 
 ////////////////////////////////////////////////////
 
@@ -563,13 +563,13 @@ async function getCuriosityPhoto() {
 
 //display curiosity timeline data
 const populateCuriosityTimeLineData = () => {
-  const timelineElementsForCards = document.querySelectorAll(".timeline");
+  const timelineElementsForCards = document.querySelectorAll(".timeline-container ul li > div > div");
   const timelineArray = [
     { 
       headline: "NASA Lands Rover Beside Martian Mountain", 
       subheadline: "NASA Lands Car-Size Rover Beside Martian Mountain.", 
       link: "https://mars.nasa.gov/news/1288/nasa-lands-car-size-rover-beside-martian-mountain/?site=msl",
-      photo: "${marsDateArray.marsDate}"
+      photo: "${marsDateArray.marsDate}",
     },
     {
       headline: "Rover's Laser Instrument Zaps First Martian Rock",
@@ -606,16 +606,36 @@ const populateCuriosityTimeLineData = () => {
       subheadline: "Curiosity rover will complete a Martian year -- 687 Earth days -- on June 24, having accomplished the mission's main goal of determining whether Mars once offered environmental conditions favorable for microbial life.",
       link: "https://mars.nasa.gov/news/1653/nasas-mars-curiosity-rover-marks-first-martian-year-with-mission-successes/?site=msl",
     },
-  ]
+  ];
+
+  const curiosityDatesArray = [
+    { earthDate: "August 6, 2012", 
+      marsDate: "sol-1" },
+    { earthDate: "August 19, 2012", 
+      marsDate: "sol-12" },
+    { earthDate: "August 22, 2012", 
+      marsDate: "sol-16" },
+    { earthDate: "October 8, 2012", 
+      marsDate: "sol-61" },
+    { earthDate: "October 18, 2012", 
+      marsDate: "sol-71" },
+    { earthDate: "October 30, 2012", 
+      marsDate: "sol-69" },
+    { earthDate: "February 9, 2013", 
+      marsDate: "sol-182" },
+    { earthDate: "June 23, 2014", 
+      marsDate: "sol-687" },
+  ];
+
   //(these are for the ODD timeline elements -the squares)
   for (i=0; i < timelineArray.length; i++) {
     if (i % 2 === 0 ) {
-      timelineElementsForCards[i].innerHTML = `<div class="">Hello</div>`;  //date in earth days and sol  ("${api call}")
+      timelineElementsForCards[i].innerHTML = `<div class="earthDate">${curiosityDatesArray[i].earthDate}</div><div class="marsDate>${curiosityDatesArray[i].marsDate}</div>`;  //date in earth days and sol  ("${api call}")
     } else {
-      timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineElementsForCards[i].headline}</div>
-              <div class="subheadline">${timelineElementsForCards[i].subheadline}</div>
-              <div class="link">${timelineElementsForCards[i].link}</div>
-              <div class="photo">${timelineElementsForCards[i].photo}</div>`;  //photo ${apicall}
+      timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineArray[i].headline}</div>
+              <div class="subheadline">${timelineArray[i].subheadline}</div>
+              <button class="link">More Info (${timelineArray[i].link})</button>
+              <div class="photo">${timelineArray[i].photo}</div>`;  //photo ${apicall}
     }
     //populateCuriosityTimeLineData();
   }
