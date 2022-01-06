@@ -442,41 +442,6 @@ const drawRoverPosition = (
   ctx.stroke();
 };
 
-///////for christy////////////
-
-/*const curiosityDatesArray = [
-  { earthDate: "August 6, 2012", marsDate: "sol-1" },
-  { earthDate: "August 19, 2012", marsDate: "sol-12" },
-  { earthDate: "August 22, 2012", marsDate: "sol-16" },
-  { earthDate: "October 8, 2012", marsDate: "sol-61" },
-  { earthDate: "October 18, 2012", marsDate: "sol-71" },
-  { earthDate: "October 30, 2012", marsDate: "sol-69" },
-  { earthDate: "February 9, 2013", marsDate: "sol-182" },
-  { earthDate: "June 23, 2014", marsDate: "sol-687" },
-];
-
-const perseveranceDatesArray = [
-  { earthDate: "dec 18, 2020", marsDate: "sol-25" },
-  { earthDate: "july 24, 2020", marsDate: "sol-92" },
-];
-
-const populateTimeline = (datesArray) => {
-  const timelineElementsContent = document.querySelectorAll(
-    ".timeline-container ul li > div > div"
-  );
-  let circleElementsCounter = 0;
-  for (i = 0; i < timelineElementsContent.length; i++) {
-    if (i % 2 === 0) {
-      timelineElementsContent[i].innerHTML = `<div class= "circle-element"><div class="earth-date">${datesArray[circleElementsCounter].earthDate}</div><div class="mars-date">${datesArray[circleElementsCounter].marsDate}</div></div>`;
-      circleElementsCounter += 1;
-    } else {
-      timelineElementsContent[i].innerHTML = `<div class="square-element">bye</div>`;
-    }
-  }
-};*/
-
-////////////////////////////////////////////////////
-
 //'select rover' dropdown button
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -569,7 +534,6 @@ const populateCuriosityTimeLineData = () => {
       headline: "NASA Lands Rover Beside Martian Mountain", 
       subheadline: "NASA Lands Car-Size Rover Beside Martian Mountain.", 
       link: "https://mars.nasa.gov/news/1288/nasa-lands-car-size-rover-beside-martian-mountain/?site=msl",
-      photo: "${marsDateArray.marsDate}",
     },
     {
       headline: "Rover's Laser Instrument Zaps First Martian Rock",
@@ -634,7 +598,6 @@ const populateCuriosityTimeLineData = () => {
     } else {
       timelineElementsForCards[i].innerHTML = `<div class="headline">${timelineArray[i].headline}</div>
               <div class="subheadline">${timelineArray[i].subheadline}</div>
-              <div class="photo">${timelineArray[i].photo}</div>
               <a href="${timelineArray[i].link}">More Info</a>`;  //photo ${apicall}
     }
     //populateCuriosityTimeLineData();
