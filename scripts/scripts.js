@@ -42,7 +42,7 @@ for (i = 0; i < teardrops.length; i++) {
 /////search for date info///////
 async function checkDates() {
   const response = await fetch(
-    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=3072&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-03-04&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
   );
   const locationData = await response.json();
   console.log(locationData);
@@ -50,13 +50,64 @@ async function checkDates() {
 checkDates();
 /////////map card data//////
 
-const perseveranceMapInfo = [];
+const perseveranceMapInfo = [
+  {
+    date: "2021-03-04",
+    sol: 14,
+    headline: "Perseverance completes its first test drive",
+    additionalText:
+      "After two weeks of instrument tests, Perseverance leaves its landing site for the first time",
+    imageUrl: "",
+  },
+  {
+    date: "...",
+    sol: 52,
+    headline:
+      "Perseverance's mini-helicopter, “Ingenuity” makes its first flight ",
+    additionalText:
+      "The Ingenuity mini-helicopter is a small experimental aircraft capable of reaching areas normally unavailable to the Perseverance rover.",
+    imageUrl: "",
+  },
+  {
+    date: "....",
+    sol: 104,
+    headline: "",
+    additionalText: "Perseverance begins its first science campaign.",
+    imageUrl:
+      "In a mission that could last months, the rover will intensively study the rocks and soil from key geological regions within the Jezero area",
+  },
+  {
+    date: "2021-07-07",
+    sol: 136,
+    headline: "Perseverance samples its first Martian dirt",
+    additionalText:
+      "To test its sampling system, Perseverance drills its first core of martian soil, which it will later test for signs of past microbial life.",
+    imageUrl: "",
+  },
+  {
+    date: "....",
+    sol: 175,
+    headline:
+      '"Ingenuity" spots Perseverance during its 11th successful flight on Mars',
+    additionalText:
+      'The Ingenuity captures aerial video of Perseverance as it surveys the geological features of the "South Seí­tah" region of Jezero Crater.',
+    imageUrl: "",
+  },
+  {
+    date: "2021-12-09",
+    sol: 286,
+    headline: "Perseverance approaches 300 days on the Martian surface",
+    additionalText:
+      'With its first science campaign nearly complete, Perseverance plans its second major action - A months long trip to an ancient river delta (called the "Three Forks").',
+    imageUrl: "",
+  },
+];
 
 const curiosityMapInfo = [
   {
     date: "2012-08-09",
     sol: 3,
-    headline: 'Curiosity lands at "Gale Crater"',
+    headline: 'Curiosity takes first measurements from "Gale Crater"',
     additionalText:
       "Gale crater is a 2 billion year old impact crater, that is believed to have at one time been underwater",
     imageUrl: "assets/Curiosity_Cradled_by_Gale_Crater.jpg",
@@ -103,15 +154,6 @@ const curiosityMapInfo = [
     additionalText:
       "The rover identifies hand size rocks with raised darkly colored sections.  Do these have a biological origin?",
     imageUrl: "assets/stick shaped rocks.jpeg",
-  },
-
-  {
-    date: "2019-04-18",
-    sol: 2381,
-    headline: "Curiosity searches for signs of life in ancient clay",
-    additionalText:
-      "After nearly seven years on Mars, the rover begins an intensive regiment of drilling in what was once an ancient seabed.",
-    imageUrl: "assets/curiosity mount mercou.jpeg",
   },
 
   {
@@ -268,14 +310,6 @@ const addCuriosityWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArrayNumbers[i] === 2381) {
-      addRoverWaypoints(
-        adjustedCenterRoverPositionsX,
-        adjustedCenterRoverPositionsY,
-        i,
-        roverRouteSolArray[i],
-        roverRouteDistanceMiles[i]
-      );
     } else if (roverRouteSolArrayNumbers[i] === 3072) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
@@ -293,7 +327,7 @@ const addPerseveranceWaypointsForSelectDomElements = (
   adjustedCenterRoverPositionsY
 ) => {
   for (i = 0; i < roverRouteSolArray.length; i++) {
-    if (roverRouteSolArray[i] === 20) {
+    if (roverRouteSolArray[i] === 14) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -301,7 +335,7 @@ const addPerseveranceWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArray[i] === 129) {
+    } else if (roverRouteSolArray[i] === 52) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -309,7 +343,7 @@ const addPerseveranceWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArray[i] === 173) {
+    } else if (roverRouteSolArray[i] === 104) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -317,7 +351,7 @@ const addPerseveranceWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArray[i] === 238) {
+    } else if (roverRouteSolArray[i] === 136) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -325,7 +359,23 @@ const addPerseveranceWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArray[i] === 283) {
+    } else if (roverRouteSolArray[i] === 163) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
+      );
+    } else if (roverRouteSolArray[i] === 175) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
+      );
+    } else if (roverRouteSolArray[i] === 286) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
