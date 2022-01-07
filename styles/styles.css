@@ -830,6 +830,11 @@ body * + * {
     background-color: rgb(255, 255, 255);
   }
 
+  .waypoint-image-container > img {
+    width: 100px;
+    height: 100px;
+  }
+
   .reveal-curiosity-waypoint-info {
     margin-left: 450px;
     margin-bottom: 125px;

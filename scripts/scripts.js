@@ -39,43 +39,43 @@ for (i = 0; i < teardrops.length; i++) {
   teardrops[i].addEventListener("click", renderRoverMap);
 }
 
+/////search for date info///////
+async function checkDates() {
+  const response = await fetch(
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2014-09-11&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+  );
+  const locationData = await response.json();
+  console.log(locationData);
+}
+checkDates();
 /////////map card data//////
 
 const perseveranceMapInfo = [];
 
 const curiosityMapInfo = [
   {
-    date: "August 5, 2012",
-    sol: 15,
-    headline: "Curiosity’s landing site was Gale Crater",
-    additonalText: "",
-    imageUrl: "Curiosity_Cradled_by_Gale_Crater.jpg",
+    date: "2012-08-09",
+    sol: 3,
+    headline: 'Curiosity lands at "Gale Crater"',
+    additionalText:
+      "Gale crater is a 2 billion year old impact crater, that is believed to have at one time been underwater",
+    imageUrl: "assets/Curiosity_Cradled_by_Gale_Crater.jpg",
   },
   {
-    date: "August 29, 2012",
-    sol: 37,
-    headline:
-      "Glenelg is a location where three types of terrain intersect, and is the mission's first major driving destination.One of the three types of terrain intersecting at Glenelg is layered bedrock, which is attractive as the first drilling target.",
-    additonalText: "",
-    imageUrl: "",
-  },
-
-  {
-    date: "September 11, 2014",
+    date: "2014-09-11",
     sol: 746,
-    distanceTraveled: "6.9 km (4.3 mi)",
-    headline:
-      "Curiosity reached the slopes of Aeolis Mons (or Mount Sharp), the rover mission's long-term prime destination",
-    additonalText: "",
-    imageUrl: "",
+    headline: "Curiosity reaches the slopes of Mount Sharp",
+    additionalText:
+      "Mount Sharp (or Aeolis Mons)is a 3-mile-tall mountain inside of Gale Crater, and curiosity's first major destination.",
+    imageUrl: "assets/First_360_color_panorama_from_the_Curosity_rover.jpeg",
   },
 
   {
     date: "December 17, 2015",
     sol: 24,
-    headline:
+    headline: "Curiosity continues it's climb up Mount Sharp",
+    additonalText:
       "Curiosity climbed higher up Mount Sharp, the composition of rocks were changing substantially. For example, rocks found higher up the mountain contained much higher levels of silica than the basaltic rocks found earlier. After further analysis, the silica-rich rocks on Mars were found to be tridymite, a mineral that is not commonly found on Earth. Opal-A, another form of silica, was also found on Mars.",
-    additonalText: "",
     imageUrl: "",
   },
 
@@ -84,7 +84,7 @@ const curiosityMapInfo = [
     sol: 331,
     headline:
       "further evidence supporting habitability on Mars as the Curiosity rover climbed higher, studying younger layers, on Mount Sharp",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -93,7 +93,7 @@ const curiosityMapInfo = [
     sol: 672,
     headline:
       "an image of a rock slab, named 'Old Soaker', which may contain mud cracks. ",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -102,7 +102,7 @@ const curiosityMapInfo = [
     sol: 67,
     headline:
       "captured images of rock shapes that may require further study in order to help better determine whether the shapes are biological or geological.",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -110,7 +110,7 @@ const curiosityMapInfo = [
     date: "April 11, 2019",
     headline:
       "the Curiosity rover on the planet Mars drilled into, and closely studied, a 'clay-bearing unit' which, according to the rover Project Manager, is a 'major milestone' in Curiosity's journey up Mount Sharp.",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 
@@ -119,7 +119,7 @@ const curiosityMapInfo = [
 
     sol: 45,
     headline: "mosaic of drill holes",
-    additonalText: "",
+    additionalText: "",
     imageUrl: "",
   },
 ];
@@ -133,9 +133,9 @@ const renderMapCards = (classList, mapInfoArray) => {
   const waypointInfoCard = document.querySelector(
     ".rover-waypoint-info-container"
   );
-  waypointInfoCard.innerHTML = `<div class = "waypoint-date">${
+  waypointInfoCard.innerHTML = `<div class = "waypoint-date">Day ${
     roverRouteSolArray[classList[2]]
-  }</div><div class = "waypoint-miles">${
+  }</div><div class = "waypoint-miles">Miles traveled: ${
     roverRouteDistanceMiles[classList[2]]
   }</div>`;
   const solDateNumber = parseInt(roverRouteSolArray[classList[2]]);
@@ -144,7 +144,8 @@ const renderMapCards = (classList, mapInfoArray) => {
     return solDate.sol === solDateNumber;
   });
   waypointInfoCard.innerHTML += `<div class = "waypoint-headline">${curiosityMapInfoItem.headline}</div>`;
-  waypointInfoCard.innerHTML += `<div class = "waypoint-image-container"><img src="<img${curiosityMapInfoItem.imageUrl}"></div>`;
+  waypointInfoCard.innerHTML += `<div class = "waypoint-additional-text">${curiosityMapInfoItem.additionalText}</div>`;
+  waypointInfoCard.innerHTML += `<div class = "waypoint-image-container"><img src="${curiosityMapInfoItem.imageUrl}"></div>`;
 };
 
 //plots select waypoints on the rover map (class name includes the sol)
@@ -219,7 +220,7 @@ const addCuriosityWaypointsForSelectDomElements = (
     return parseInt(value);
   });
   for (i = 0; i < roverRouteSolArrayNumbers.length; i++) {
-    if (roverRouteSolArrayNumbers[i] === 56) {
+    if (roverRouteSolArrayNumbers[i] === 3) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -442,20 +443,116 @@ const drawRoverPosition = (
   ctx.stroke();
 };
 
-//'select rover' dropdown button
+
+///////for christy////////////
+
+const curiosityInfoArray = [
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-15",
+    headline: "rover curiosity lands",
+    subheading: "there it goes!",
+  },
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-200",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
+];
+
+const perseveranceInfoArray = [
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-25",
+    headline: "rover perseverance lands",
+    subheading: "there it goes!",
+  },
+  {
+    earthDate: "2015-06-03",
+    marsDate: "sol-92",
+    headline: "rover perseverance launches a helicopter",
+    subheading: "see it fly!",
+  },
+];
+
+///
+// (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
+const fetchRoverData = async (url) => {
+  console.log(url);
+  console.log(`Fetching ${url}`);
+  const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
+  const roverData = await response.json();
+  console.log(roverData);
+  console.log(roverData.photos);
+  // return assembleTimelineDataArrays(roverData.photos);
+
+  let randomNumber = Math.floor(Math.random() * roverData.photos.length);
+
+  return {
+    timelineEarthDate: roverData.photos[0].earth_date,
+    timelineSolDate: roverData.photos[0].sol,
+    randomPhotoUrl1: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl2: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl3: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl4: roverData.photos[randomNumber].img_src,
+  };
+};
+
+// (step 3) handler function, calls fetch for each date we are interested in
+const manageFetchRequests = async (earthDatesToFetch) => {
+  const requests = earthDatesToFetch.map((earthDate) => {
+    const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
+    return fetchRoverData(url).then((a) => {
+      return a; // Returns the user info.
+    });
+  });
+  return Promise.all(requests); // Waiting for all the requests to get resolved.
+};
+//(step 5)
+const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
+  console.log(roverDataArrayMultipleFetches); //check here, see what photos are in there
+  console.log(infoArray);
+  const timelineElementsContent = document.querySelectorAll(
+    ".timeline-container ul li > div > div"
+  );
+  let circleElementsCounter = 0;
+  let squareElementsCounter = 0;
+  for (i = 0; i < timelineElementsContent.length; i++) {
+    if (i % 2 === 0) {
+      timelineElementsContent[
+        i
+      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+      circleElementsCounter += 1;
+    } else {
+      console.log(infoArray[squareElementsCounter].headline);
+      //check for these photos coming in here as well
+      timelineElementsContent[
+        i
+      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div></div>`;
+      squareElementsCounter += 1;
+    }
+  }
+};
+
+////////////////////////////////////////////////////
+
+// (step1)'select rover' dropdown button
+
+
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
   dropdownMenu.classList.toggle("show");
 });
 
-//event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
+// (step2) event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
   populateCuriosityTimeLineData();
 
   dropdownMenu.classList.toggle("show");
-  const earthDatesToFetch = [];
+  const earthDatesToFetch = []; //make an array of the dates we want info about
   for (i = 0; i < curiosityInfoArray.length; i++) {
     // fetchRoverData(curiosityInfoArray[i].earthDate);
     earthDatesToFetch.push(curiosityInfoArray[i].earthDate);
@@ -463,21 +560,11 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   manageFetchRequests(earthDatesToFetch).then((data) => {
     console.log(data);
     populateTimeline(curiosityInfoArray, data);
-  });
-  // .then((a) => console.log(a))
-  //   .then(console.log(a));
-  // console.log(a);
-  // return populateTimeline(curiosityInfoArray, a);
+  }); //call fetch data function with dates we are interested in (from our homemade array)
 
 });
 
-// populateTimeline(curiosityInfoArray, fetchRequest);
-
-// manageFetchRequests(earthDatesToFetch).then((roverDataArrayMultipleFetches) =>
-
-// );
-
-//event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
+// (step2) event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
