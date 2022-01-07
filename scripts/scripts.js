@@ -471,7 +471,7 @@ const drawRoverPosition = (
 
 const curiosityInfoArray = [
   {
-    earthDate: "2015-06-03",
+    earthDate: "2014-09-11",
     marsDate: "sol-15",
     headline: "rover curiosity lands",
     subheading: "there it goes!",
@@ -510,15 +510,16 @@ const fetchRoverData = async (url) => {
   console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
-  let randomNumber = Math.floor(Math.random() * roverData.photos.length);
-
+  const generateRandomNumber = function () {
+    return Math.floor(Math.random() * roverData.photos.length);
+  };
   return {
     timelineEarthDate: roverData.photos[0].earth_date,
     timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl1: roverData.photos[randomNumber].img_src,
-    randomPhotoUrl2: roverData.photos[randomNumber].img_src,
-    randomPhotoUrl3: roverData.photos[randomNumber].img_src,
-    randomPhotoUrl4: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
   };
 };
 
@@ -546,8 +547,12 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       timelineElementsContent[
         i
       ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+      console.log(roverDataArrayMultipleFetches);
+      console.log(circleElementsCounter);
       circleElementsCounter += 1;
     } else {
+      console.log(infoArray);
+      console.log(squareElementsCounter);
       console.log(infoArray[squareElementsCounter].headline);
       //check for these photos coming in here as well
       timelineElementsContent[
@@ -576,6 +581,7 @@ retrieveCuriosityData.addEventListener("click", (e) => {
     // fetchRoverData(curiosityInfoArray[i].earthDate);
     earthDatesToFetch.push(curiosityInfoArray[i].earthDate);
   }
+  console.log(earthDatesToFetch);
   manageFetchRequests(earthDatesToFetch).then((data) => {
     console.log(data);
     populateTimeline(curiosityInfoArray, data);
