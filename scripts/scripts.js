@@ -448,20 +448,20 @@ const drawRoverPosition = (
 
 const curiosityInfoArray = [
   {
-    earthDate: "2015-06-03",
+    earthDate: "2014-09-11",
     marsDate: "sol-15",
     headline: "rover curiosity lands",
     subheading: "there it goes!",
   },
   {
-    earthDate: "2015-06-03",
+    earthDate: "2012-08-19",
     marsDate: "sol-200",
     headline: "rover curiosity finds signs of life",
     subheading: "look at that!",
   },
 ];
 
-const perseveranceInfoArray = [
+/*const perseveranceInfoArray = [
   {
     earthDate: "2015-06-03",
     marsDate: "sol-25",
@@ -474,7 +474,7 @@ const perseveranceInfoArray = [
     headline: "rover perseverance launches a helicopter",
     subheading: "see it fly!",
   },
-];
+];*/
 
 ///
 // (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
@@ -487,15 +487,17 @@ const fetchRoverData = async (url) => {
   console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
-  let randomNumber = Math.floor(Math.random() * roverData.photos.length);
-
+  const generateRandomNumber = function () {
+    return Math.floor(Math.random() * roverData.photos.length);
+  };
+  
   return {
     timelineEarthDate: roverData.photos[0].earth_date,
     timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl1: roverData.photos[randomNumber].img_src,
-    randomPhotoUrl2: roverData.photos[randomNumber].img_src,
-    randomPhotoUrl3: roverData.photos[randomNumber].img_src,
-    randomPhotoUrl4: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
   };
 };
 
@@ -549,7 +551,7 @@ selectRoverButton.addEventListener("click", (e) => {
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
-  populateCuriosityTimeLineData();
+  //populateCuriosityTimeLineData();
 
   dropdownMenu.classList.toggle("show");
   const earthDatesToFetch = []; //make an array of the dates we want info about
@@ -647,7 +649,7 @@ async function getCuriosityPhoto() {
  }
  getCuriosityPhoto().then(photoData => console.log(photoData));
 
-
+/*
 //display curiosity timeline data
 const populateCuriosityTimeLineData = () => {
   const timelineElementsForCards = document.querySelectorAll(".timeline-container ul li > div > div");
@@ -724,7 +726,7 @@ const populateCuriosityTimeLineData = () => {
     }
     //populateCuriosityTimeLineData();
   }
-}
+}*/
 
 
 //displays random mars fact in timeline
