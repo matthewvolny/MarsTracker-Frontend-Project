@@ -42,7 +42,7 @@ for (i = 0; i < teardrops.length; i++) {
 /////search for date info///////
 async function checkDates() {
   const response = await fetch(
-    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2014-09-11&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2013-08-27&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
   );
   const locationData = await response.json();
   console.log(locationData);
@@ -62,6 +62,14 @@ const curiosityMapInfo = [
     imageUrl: "assets/Curiosity_Cradled_by_Gale_Crater.jpg",
   },
   {
+    date: "2013-08-27",
+    sol: 376,
+    headline: "Curiosity heads cross country",
+    additonalText:
+      "Glenelg is a location where three types of terrain intersect, and is the mission's first major driving destination.One of the three types of terrain intersecting at Glenelg is layered bedrock, which is attractive as the first drilling target.",
+    imageUrl: "",
+  },
+  {
     date: "2014-09-11",
     sol: 746,
     headline: "Curiosity reaches the slopes of Mount Sharp",
@@ -71,38 +79,38 @@ const curiosityMapInfo = [
   },
 
   {
-    date: "December 17, 2015",
-    sol: 24,
-    headline: "Curiosity continues it's climb up Mount Sharp",
+    date: "2015-12-17",
+    sol: 1196,
+    headline: "Curiosity begins it's climb",
     additonalText:
-      "Curiosity climbed higher up Mount Sharp, the composition of rocks were changing substantially. For example, rocks found higher up the mountain contained much higher levels of silica than the basaltic rocks found earlier. After further analysis, the silica-rich rocks on Mars were found to be tridymite, a mineral that is not commonly found on Earth. Opal-A, another form of silica, was also found on Mars.",
-    imageUrl: "",
+      "The rover heads to an area of Mount Sharp with rocks containing tridymite, a mineral that is hardly ever found on Earth.",
+    imageUrl: ".......",
   },
 
   {
     date: "December 13, 2016",
-    sol: 331,
+    sol: "",
     headline:
-      "further evidence supporting habitability on Mars as the Curiosity rover climbed higher, studying younger layers, on Mount Sharp",
+      "Curiosty As the Curiosity rover climbs further evidence supporting habitability on Mars as the Curiosity rover climbed higher, studying younger layers, on Mount Sharp",
     additionalText: "",
     imageUrl: "",
   },
 
   {
-    date: "January 17, 2017",
-    sol: 672,
-    headline:
-      "an image of a rock slab, named 'Old Soaker', which may contain mud cracks. ",
-    additionalText: "",
+    date: "2017-01-17",
+    sol: 1582,
+    headline: "Curiosity finds ancient mud",
+    additionalText:
+      "The rover identifies a large rock slab with with what appear to be ancient mud cracks.  Scientists call the rock 'Old Soaker'.",
     imageUrl: "",
   },
 
   {
-    date: "January 2, 2018",
-    sol: 67,
-    headline:
-      "captured images of rock shapes that may require further study in order to help better determine whether the shapes are biological or geological.",
-    additionalText: "",
+    date: "2018-01-17",
+    sol: 1937,
+    headline: "Curiosity discovers peculiar rock formations",
+    additionalText:
+      "The rover identifies hand size rocks with raised darkly colored sections.  Do these have a biological origin?",
     imageUrl: "",
   },
 
@@ -115,9 +123,9 @@ const curiosityMapInfo = [
   },
 
   {
-    date: "17 August 2021",
+    date: "2021-08-17",
 
-    sol: 45,
+    sol: 3210,
     headline: "mosaic of drill holes",
     additionalText: "",
     imageUrl: "",
@@ -228,7 +236,7 @@ const addCuriosityWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArrayNumbers[i] === 331) {
+    } else if (roverRouteSolArrayNumbers[i] === 376) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -236,7 +244,7 @@ const addCuriosityWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArrayNumbers[i] === 672) {
+    } else if (roverRouteSolArrayNumbers[i] === 746) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -244,7 +252,7 @@ const addCuriosityWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArrayNumbers[i] === 1387) {
+    } else if (roverRouteSolArrayNumbers[i] === 1196) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -252,7 +260,23 @@ const addCuriosityWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArrayNumbers[i] === 2563) {
+    } else if (roverRouteSolArrayNumbers[i] === 1582) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
+      );
+    } else if (roverRouteSolArrayNumbers[i] === 1937) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
+      );
+    } else if (roverRouteSolArrayNumbers[i] === 3210) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
