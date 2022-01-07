@@ -34,11 +34,49 @@ const renderRoverMap = () => {
   }
 };
 
+// const manageTeardropButtons = () => {
+//   if (
+//     retrieveCuriosityData.classList.contains("curiosity-button-clicked") ||
+//     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
+//   ) {
+//     renderRoverMap();
+//   } else if (){
+//   }
+// };
+
+// //event listener for rover position teardrops
+// for (i = 0; i < teardrops.length; i++) {
+//   teardrops[i].addEventListener("click", manageTeardropButtons);
+// }
+
 //event listener for rover position teardrops
 for (i = 0; i < teardrops.length; i++) {
-  teardrops[i].addEventListener("click", renderRoverMap);
+  teardrops[i].addEventListener("click", (e) => {
+    const message = "click the button to select a rover";
+    if (
+      retrieveCuriosityData.classList.contains("curiosity-button-clicked") ||
+      retrievePerseveranceData.classList.contains("perseverance-button-clicked")
+    ) {
+      renderRoverMap();
+    } else if (e.target.classList.contains("curiosity-teardrop")) {
+      const curiosityTeardropContainer = document.querySelector(
+        ".curiosity-rover-route-container"
+      );
+      const messageBox = document.createElement("div");
+      messageBox.classList.add("curiosity-message-box");
+      messageBox.textContent = message;
+      curiosityTeardropContainer.appendChild(messageBox);
+    } else if (e.target.classList.contains("perseverance-teardrop")) {
+      const perseveranceTeardropContainer = document.querySelector(
+        ".perseverance-rover-route-container"
+      );
+      const messageBox = document.createElement("div");
+      messageBox.classList.add("perseverance-message-box");
+      messageBox.textContent = message;
+      perseveranceTeardropContainer.appendChild(messageBox);
+    }
+  });
 }
-
 /////search for date info///////
 async function checkDates() {
   const response = await fetch(
