@@ -674,6 +674,14 @@ body * + * {
     /* transform: skew(15deg); */
   }
 
+  .curiosity-message-box {
+    position: absolute;
+  }
+
+  .perseverance-message-box {
+    position: absolute;
+  }
+
   /* container for plotting dom elements over rover route map */
   .canvas-container {
     /* border: springgreen solid 1px; */
