@@ -42,7 +42,7 @@ for (i = 0; i < teardrops.length; i++) {
 /////search for date info///////
 async function checkDates() {
   const response = await fetch(
-    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2013-08-27&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=3072&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
   );
   const locationData = await response.json();
   console.log(locationData);
@@ -66,8 +66,8 @@ const curiosityMapInfo = [
     sol: 376,
     headline: "Curiosity heads cross country",
     additonalText:
-      "Glenelg is a location where three types of terrain intersect, and is the mission's first major driving destination.One of the three types of terrain intersecting at Glenelg is layered bedrock, which is attractive as the first drilling target.",
-    imageUrl: "",
+      "After months of sampling bedrock at 'Glenelg' (a palindrome, named for a small scottish village), curiosity begins what will be a nearly month long 'sprint' to Mount Sharp",
+    imageUrl: "assets/5533_PIA17355_RTRmap_Sol-376-full2.jpeg",
   },
   {
     date: "2014-09-11",
@@ -84,16 +84,7 @@ const curiosityMapInfo = [
     headline: "Curiosity begins it's climb",
     additonalText:
       "The rover heads to an area of Mount Sharp with rocks containing tridymite, a mineral that is hardly ever found on Earth.",
-    imageUrl: ".......",
-  },
-
-  {
-    date: "December 13, 2016",
-    sol: "",
-    headline:
-      "Curiosty As the Curiosity rover climbs further evidence supporting habitability on Mars as the Curiosity rover climbed higher, studying younger layers, on Mount Sharp",
-    additionalText: "",
-    imageUrl: "",
+    imageUrl: "assets/curisoirty climbing.jpeg",
   },
 
   {
@@ -102,32 +93,33 @@ const curiosityMapInfo = [
     headline: "Curiosity finds ancient mud",
     additionalText:
       "The rover identifies a large rock slab with with what appear to be ancient mud cracks.  Scientists call the rock 'Old Soaker'.",
-    imageUrl: "",
+    imageUrl: "assets/clay bearing unit mount sharp.jpeg",
   },
 
   {
-    date: "2018-01-17",
-    sol: 1937,
+    date: "2018-01-19",
+    sol: 1939,
     headline: "Curiosity discovers peculiar rock formations",
     additionalText:
       "The rover identifies hand size rocks with raised darkly colored sections.  Do these have a biological origin?",
-    imageUrl: "",
+    imageUrl: "assets/stick shaped rocks.jpeg",
   },
 
   {
-    date: "April 11, 2019",
-    headline:
-      "the Curiosity rover on the planet Mars drilled into, and closely studied, a 'clay-bearing unit' which, according to the rover Project Manager, is a 'major milestone' in Curiosity's journey up Mount Sharp.",
-    additionalText: "",
-    imageUrl: "",
+    date: "2019-04-18",
+    sol: 2381,
+    headline: "Curiosity searches for signs of life in ancient clay",
+    additionalText:
+      "After nearly seven years on Mars, the rover begins an intensive regiment of drilling in what was once an ancient seabed.",
+    imageUrl: "assets/curiosity mount mercou.jpeg",
   },
 
   {
-    date: "2021-08-17",
-
-    sol: 3210,
-    headline: "mosaic of drill holes",
-    additionalText: "",
+    date: "2021-03-28",
+    sol: 3072,
+    headline: "Curiosity celebrates 9 years on Mars",
+    additionalText:
+      "The rover sends back a selfie in front of the 20 foot tall Mont Mercou. ",
     imageUrl: "",
   },
 ];
@@ -268,7 +260,7 @@ const addCuriosityWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArrayNumbers[i] === 1937) {
+    } else if (roverRouteSolArrayNumbers[i] === 1939) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -276,7 +268,15 @@ const addCuriosityWaypointsForSelectDomElements = (
         roverRouteSolArray[i],
         roverRouteDistanceMiles[i]
       );
-    } else if (roverRouteSolArrayNumbers[i] === 3210) {
+    } else if (roverRouteSolArrayNumbers[i] === 2381) {
+      addRoverWaypoints(
+        adjustedCenterRoverPositionsX,
+        adjustedCenterRoverPositionsY,
+        i,
+        roverRouteSolArray[i],
+        roverRouteDistanceMiles[i]
+      );
+    } else if (roverRouteSolArrayNumbers[i] === 3072) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
         adjustedCenterRoverPositionsY,
@@ -643,29 +643,6 @@ function addInViewToElements() {
 }
 
 window.addEventListener("scroll", addInViewToElements);
-
-/*
-api calls -
- make an array containing the dates that you want to show photos for
- grab random photo from that day and the earth date
- store it all in a highly complex array (an array ofg objects - sol date, earth date, and photo url (or something))
-*/
-
-/*
-const populateCuriosityTimeLineData = () => {
-
-  -make the big array containing all the headlines and subheadlines and links for each rover(per date);
-  (these are for the ODD timeline elements -the squares)
-  get the timeline elements with document.querySelectorAll(".timeline");
-  for (i=0; i < timelineElements.length; i++) {
-    if(i % 2 === 0 ) {
-timelineElements[i].innerHTML = `<div class=""></div>`;  //date in earth days and sol  ("${api call}")
-    }else {
-      timelineElements[i].innerHTML = `<div class="headline"></div>`;  //headline (${timelineElements[i].headline}), subheadline (${timelineElements[i].subheadline}), photo ${apicall}, link(${timelineElements[i].link})
-    }
-  }
-}
-*/
 
 //displays random mars fact in timeline
 const displayRoveyFact = () => {
