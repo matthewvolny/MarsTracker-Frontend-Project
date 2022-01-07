@@ -73,9 +73,9 @@ const curiosityMapInfo = [
   {
     date: "December 17, 2015",
     sol: 24,
-    headline:
+    headline: "Curiosity continues it's climb up Mount Sharp",
+    additonalText:
       "Curiosity climbed higher up Mount Sharp, the composition of rocks were changing substantially. For example, rocks found higher up the mountain contained much higher levels of silica than the basaltic rocks found earlier. After further analysis, the silica-rich rocks on Mars were found to be tridymite, a mineral that is not commonly found on Earth. Opal-A, another form of silica, was also found on Mars.",
-    additonalText: "",
     imageUrl: "",
   },
 
@@ -475,29 +475,12 @@ const perseveranceInfoArray = [
   },
 ];
 
-// let timelineEarthDates = [];
-// let timelineSolDates = [];
-// let randomPhotoUrl = [];
-// async function assembleTimelineDataArrays(date) {
-//   const response = await fetch(
-//     `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
-//   );
-//   const roverData = await response.json();
-//   console.log(roverData.photos);
-//   timelineEarthDates.push(roverData.photos[0].earth_date);
-//   timelineSolDates.push(roverData.photos[0].sol);
-//   let randomNumber = Math.floor(Math.random() * roverData.photos.length);
-//   randomPhotoUrl.push(roverData.photos[randomNumber].img_src);
-// }
-
-// let timelineEarthDates = [];
-// let timelineSolDates = [];
-// let randomPhotoUrl = [];
-
+///
+// (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
 const fetchRoverData = async (url) => {
   console.log(url);
   console.log(`Fetching ${url}`);
-  const response = await fetch(url); // API call to get user info from Github.
+  const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
   console.log(roverData);
   console.log(roverData.photos);
@@ -508,10 +491,14 @@ const fetchRoverData = async (url) => {
   return {
     timelineEarthDate: roverData.photos[0].earth_date,
     timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl1: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl2: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl3: roverData.photos[randomNumber].img_src,
+    randomPhotoUrl4: roverData.photos[randomNumber].img_src,
   };
 };
 
+// (step 3) handler function, calls fetch for each date we are interested in
 const manageFetchRequests = async (earthDatesToFetch) => {
   const requests = earthDatesToFetch.map((earthDate) => {
     const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
@@ -521,9 +508,9 @@ const manageFetchRequests = async (earthDatesToFetch) => {
   });
   return Promise.all(requests); // Waiting for all the requests to get resolved.
 };
-
+//(step 5)
 const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
-  console.log(roverDataArrayMultipleFetches);
+  console.log(roverDataArrayMultipleFetches); //check here, see what photos are in there
   console.log(infoArray);
   const timelineElementsContent = document.querySelectorAll(
     ".timeline-container ul li > div > div"
@@ -538,9 +525,10 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       circleElementsCounter += 1;
     } else {
       console.log(infoArray[squareElementsCounter].headline);
+      //check for these photos coming in here as well
       timelineElementsContent[
         i
-      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl}"></div></div>`;
+      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div></div>`;
       squareElementsCounter += 1;
     }
   }
@@ -548,18 +536,18 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
 
 ////////////////////////////////////////////////////
 
-//'select rover' dropdown button
+// (step1)'select rover' dropdown button
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
   dropdownMenu.classList.toggle("show");
 });
 
-//event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
+// (step2) event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
 retrieveCuriosityData.addEventListener("click", (e) => {
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
   dropdownMenu.classList.toggle("show");
-  const earthDatesToFetch = [];
+  const earthDatesToFetch = []; //make an array of the dates we want info about
   for (i = 0; i < curiosityInfoArray.length; i++) {
     // fetchRoverData(curiosityInfoArray[i].earthDate);
     earthDatesToFetch.push(curiosityInfoArray[i].earthDate);
@@ -567,20 +555,10 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   manageFetchRequests(earthDatesToFetch).then((data) => {
     console.log(data);
     populateTimeline(curiosityInfoArray, data);
-  });
-  // .then((a) => console.log(a))
-  //   .then(console.log(a));
-  // console.log(a);
-  // return populateTimeline(curiosityInfoArray, a);
+  }); //call fetch data function with dates we are interested in (from our homemade array)
 });
 
-// populateTimeline(curiosityInfoArray, fetchRequest);
-
-// manageFetchRequests(earthDatesToFetch).then((roverDataArrayMultipleFetches) =>
-
-// );
-
-//event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
+// (step2) event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
