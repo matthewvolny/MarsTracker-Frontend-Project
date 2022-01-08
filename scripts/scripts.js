@@ -54,10 +54,34 @@ for (i = 0; i < teardrops.length; i++) {
   teardrops[i].addEventListener("click", (e) => {
     const message = "click the button to select a rover";
     if (
-      retrieveCuriosityData.classList.contains("curiosity-button-clicked") ||
-      retrievePerseveranceData.classList.contains("perseverance-button-clicked")
+      retrieveCuriosityData.classList.contains("curiosity-button-clicked") &&
+      e.target.classList.contains("curiosity-teardrop")
     ) {
       renderRoverMap();
+    } else if (
+      retrievePerseveranceData.classList.contains(
+        "perseverance-button-clicked"
+      ) &&
+      e.target.classList.contains("perseverance-teardrop")
+    ) {
+      renderRoverMap();
+    } else if (
+      retrieveCuriosityData.classList.contains("curiosity-button-clicked") &&
+      e.target.classList.contains("perseverance-teardrop")
+    ) {
+      console.log("mismatch");
+    } else if (
+      retrieveCuriosityData.classList.contains("curiosity-button-clicked") &&
+      e.target.classList.contains("perseverance-teardrop")
+    ) {
+      console.log("mismatch");
+    } else if (
+      retrievePerseveranceData.classList.contains(
+        "perseverance-button-clicked"
+      ) &&
+      e.target.classList.contains("curiosity-teardrop")
+    ) {
+      console.log("mismatch");
     } else if (e.target.classList.contains("curiosity-teardrop")) {
       const curiosityTeardropContainer = document.querySelector(
         ".curiosity-rover-route-container"
@@ -659,6 +683,7 @@ selectRoverButton.addEventListener("click", (e) => {
   dropdownMenu.classList.toggle("show");
 });
 
+//re-hiding timeline elements is required when making timeline visible on button click
 const reHideTimelineElements = () => {
   const timelineContainer = document.querySelector(".timeline-container");
   timelineContainer.classList.add("show-timeline-container");
