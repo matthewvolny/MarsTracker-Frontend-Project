@@ -78,14 +78,14 @@ for (i = 0; i < teardrops.length; i++) {
   });
 }
 /////search for date info///////
-async function checkDates() {
-  const response = await fetch(
-    `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-03-04&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
-  );
-  const locationData = await response.json();
-  console.log(locationData);
-}
-checkDates();
+// async function checkDates() {
+//   const response = await fetch(
+//     `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-03-04&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+//   );
+//   const locationData = await response.json();
+//   console.log(locationData);
+// }
+// checkDates();
 /////////map card data//////
 
 const perseveranceMapInfo = [
@@ -590,12 +590,12 @@ const perseveranceInfoArray = [
 ///
 // (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
 const fetchRoverData = async (url) => {
-  console.log(url);
-  console.log(`Fetching ${url}`);
+  // console.log(url);
+  // console.log(`Fetching ${url}`);
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
-  console.log(roverData);
-  console.log(roverData.photos);
+  // console.log(roverData);
+  // console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
   const generateRandomNumber = function () {
@@ -635,13 +635,13 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       timelineElementsContent[
         i
       ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
-      console.log(roverDataArrayMultipleFetches);
-      console.log(circleElementsCounter);
+      // console.log(roverDataArrayMultipleFetches);
+      // console.log(circleElementsCounter);
       circleElementsCounter += 1;
     } else {
-      console.log(infoArray);
-      console.log(squareElementsCounter);
-      console.log(infoArray[squareElementsCounter].headline);
+      // console.log(infoArray);
+      // console.log(squareElementsCounter);
+      // console.log(infoArray[squareElementsCounter].headline);
       //check for these photos coming in here as well
       timelineElementsContent[
         i
@@ -659,8 +659,37 @@ selectRoverButton.addEventListener("click", (e) => {
   dropdownMenu.classList.toggle("show");
 });
 
+const reHideTimelineElements = () => {
+  const timelineContainer = document.querySelector(".timeline-container");
+  timelineContainer.classList.add("show-timeline-container");
+  const timelineElementsWithInViewport =
+    document.querySelectorAll(".timeline > div");
+  for (i = 0; i < timelineElementsWithInViewport.length; i++) {
+    if (timelineElementsWithInViewport[i].id) {
+      timelineElementsWithInViewport[i].setAttribute("id", "");
+    }
+  }
+  const roveyInViewport = document.querySelector(".rovey-fact");
+  const roveyFactInViewport = document.querySelector(".rovey-timeline-image");
+  roveyInViewport.setAttribute("id", "");
+  roveyFactInViewport.setAttribute("id", "");
+};
+
 // (step2) event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
 retrieveCuriosityData.addEventListener("click", (e) => {
+  const curiosityMessageBox = document.querySelector(".curiosity-message-box");
+  const perseveranceMessageBox = document.querySelector(
+    ".perseverance-message-box"
+  );
+
+  if (curiosityMessageBox) {
+    curiosityMessageBox.classList.add("hide");
+  } else if (perseveranceMessageBox) {
+    perseveranceMessageBox.classList.add("hide");
+  } else if (curiosityMessageBox && perseveranceMessageBox) {
+    curiosityMessageBox.classList.add("hide");
+    perseveranceMessageBox.classList.add("hide");
+  }
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
   dropdownMenu.classList.toggle("show");
@@ -671,13 +700,26 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   }
   console.log(earthDatesToFetch);
   manageFetchRequests(earthDatesToFetch).then((data) => {
-    console.log(data);
+    // console.log(data);
     populateTimeline(curiosityInfoArray, data);
   }); //call fetch data function with dates we are interested in (from our homemade array)
+  reHideTimelineElements();
 });
 
 // (step2) event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
 retrievePerseveranceData.addEventListener("click", (e) => {
+  const curiosityMessageBox = document.querySelector(".curiosity-message-box");
+  const perseveranceMessageBox = document.querySelector(
+    ".perseverance-message-box"
+  );
+  if (curiosityMessageBox) {
+    curiosityMessageBox.classList.add("hide");
+  } else if (perseveranceMessageBox) {
+    perseveranceMessageBox.classList.add("hide");
+  } else if (curiosityMessageBox && perseveranceMessageBox) {
+    curiosityMessageBox.classList.add("hide");
+    perseveranceMessageBox.classList.add("hide");
+  }
   retrievePerseveranceData.classList.add("perseverance-button-clicked");
   getPerseveranceLocationData();
   dropdownMenu.classList.toggle("show");
@@ -686,12 +728,10 @@ retrievePerseveranceData.addEventListener("click", (e) => {
     earthDatesToFetch.push(perseveranceInfoArray[i].earthDate);
   }
   manageFetchRequests(earthDatesToFetch).then((data) => {
-    console.log(data);
+    // console.log(data);
     populateTimeline(perseveranceInfoArray, data);
   });
-  // .then((roverDataArrayMultipleFetches) =>
-  //   populateTimeline(perseveranceInfoArray, roverDataArrayMultipleFetches)
-  // Promise.all(f1()).then(console.log);
+  reHideTimelineElements();
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
@@ -848,8 +888,6 @@ function addInViewToMars() {
     const perseveranceTeardrop = document.querySelector(
       ".perseverance-teardrop"
     );
-    // perseveranceTeardrop.disabled = true;
-    // perseveranceTeardrop.style.backgroundColor = "red";
     teardrops[1].removeEventListener("click", renderRoverMap);
     //timelineElements[i].classList.remove("in-viewport");
   } else if (
