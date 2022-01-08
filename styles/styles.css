@@ -21,16 +21,31 @@ body * + * {
   margin-top: 1em;
 }
 
+/* body > *:not(section1) {
+  display: none;
+} */
+
+.timeline-container {
+  display: none;
+}
+
+.show-timeline-container {
+  display: contents;
+}
+
+/* .hide-secondary-timeline-container {
+  visibility: hidden;
+} */
+
+/* .stop-scrolling {
+  height: 100%;
+  overflow-y: hidden;
+} */
+
 /* * {
   border: blueviolet dotted 1px;
 } */
 
-/* .color-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: royalblue solid 1px;
-} */
 @media only screen and (min-width: 1024px) {
   /* CSS grid for intro section */
   .intro-section-grid {
@@ -680,6 +695,10 @@ body * + * {
 
   .perseverance-message-box {
     position: absolute;
+  }
+
+  .hide {
+    visibility: hidden;
   }
 
   /* container for plotting dom elements over rover route map */
