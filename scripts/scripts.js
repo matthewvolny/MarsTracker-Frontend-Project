@@ -754,7 +754,6 @@ retrieveCuriosityData.addEventListener("click", (e) => {
 
   if (curiosityMessageBox && perseveranceMessageBox) {
     curiosityMessageBox.classList.add("hide");
-  } else if (perseveranceMessageBox) {
     perseveranceMessageBox.classList.add("hide");
   } else if (curiosityMessageBox) {
     curiosityMessageBox.classList.add("hide");
