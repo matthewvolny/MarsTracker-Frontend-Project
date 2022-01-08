@@ -656,6 +656,20 @@ const fetchRoverData = async (url) => {
     randomPhotoUrl2: roverData.photos[generateRandomPhoto()].img_src,
     randomPhotoUrl3: roverData.photos[generateRandomPhoto()].img_src,
     randomPhotoUrl4: roverData.photos[generateRandomPhoto()].img_src,
+
+  // console.log(roverData.photos);
+  // return assembleTimelineDataArrays(roverData.photos);
+
+  const generateRandomNumber = function () {
+    return Math.floor(Math.random() * roverData.photos.length);
+  };
+  return {
+    timelineEarthDate: roverData.photos[0].earth_date,
+    timelineSolDate: roverData.photos[0].sol,
+    randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
   };
 };
 
