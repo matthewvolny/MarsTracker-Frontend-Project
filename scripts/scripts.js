@@ -1,10 +1,3 @@
-import {
-  curiosityMapInfo,
-  perseveranceMapInfo,
-} from "../data/infoArrayData.js";
-console.log(curiosityMapInfo);
-console.log(perseveranceMapInfo);
-
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-image");
 const teardrops = document.querySelectorAll(".teardrop");
@@ -33,10 +26,10 @@ const renderRoverMap = () => {
   canvasContainer.classList.add("show-canvas-container");
   backgroundImageContainer.classList.add("show-background-image-container");
   const waypoint = document.querySelectorAll(".waypoint");
-  for (let i = 0; i < teardrops.length; i++) {
+  for (i = 0; i < teardrops.length; i++) {
     teardrops[i].style.visibility = "hidden";
   }
-  for (let i = 0; i < waypoint.length; i++) {
+  for (i = 0; i < waypoint.length; i++) {
     waypoint[i].classList.add("show-waypoint");
   }
 };
@@ -118,7 +111,7 @@ for (let i = 0; i < teardrops.length; i++) {
 // }
 // checkDates();
 /////////map card data//////
-/*
+
 const perseveranceMapInfo = [
   {
     date: "2021-03-04",
@@ -234,10 +227,10 @@ const curiosityMapInfo = [
     imageUrl: "",
   },
 ];
-*/
+
 //arrays containing all sol dates, and miles traveled for either rover
-const roverRouteSolArray = [];
-const roverRouteDistanceMiles = [];
+roverRouteSolArray = [];
+roverRouteDistanceMiles = [];
 
 //render map waypoint info cards (classlist is an index value stored as a class name for the selected waypoint element)
 const renderMapCards = (classList, mapInfoArray) => {
@@ -330,7 +323,7 @@ const addCuriosityWaypointsForSelectDomElements = (
   const roverRouteSolArrayNumbers = roverRouteSolArray.map((value) => {
     return parseInt(value);
   });
-  for (let i = 0; i < roverRouteSolArrayNumbers.length; i++) {
+  for (i = 0; i < roverRouteSolArrayNumbers.length; i++) {
     if (roverRouteSolArrayNumbers[i] === 3) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
@@ -395,7 +388,7 @@ const addPerseveranceWaypointsForSelectDomElements = (
   adjustedCenterRoverPositionsX,
   adjustedCenterRoverPositionsY
 ) => {
-  for (let i = 0; i < roverRouteSolArray.length; i++) {
+  for (i = 0; i < roverRouteSolArray.length; i++) {
     if (roverRouteSolArray[i] === 14) {
       addRoverWaypoints(
         adjustedCenterRoverPositionsX,
@@ -580,7 +573,7 @@ const drawRoverPosition = (
   ctx.lineWidth = 7;
   ctx.beginPath();
   //ctx.moveTo(175, 175);
-  for (let i = 0; i < centeredRoverPositionsX.length; i++) {
+  for (i = 0; i < centeredRoverPositionsX.length; i++) {
     ctx.lineTo(centeredRoverPositionsX[i], centeredRoverPositionsY[i]);
   }
   ctx.stroke();
@@ -626,20 +619,58 @@ const fetchRoverData = async (url) => {
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
   // console.log(roverData);
-  // console.log(roverData.photos);
+  console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
-  const generateRandomNumber = function () {
+  const generateRandomPhoto = function () {
     return Math.floor(Math.random() * roverData.photos.length);
   };
+
+    let images  = [];
+    roverData.photos.forEach((photo, index) => {
+      if (index < 10) {
+        images.push(photo.img_src)
+      }
+      return
+    });
+    console.log(images);
+    
+    const makeSlideshow = () => {
+    const pictures = document.querySelectorAll(".timeline-image-container");
+    if (pictures) {
+      //console.log(pictures);
+      pictures.forEach(picture => {
+        const i = (Math.floor(Math.random() * images.length));
+        console.log(i);
+        picture.innerHTML = `<img src=${images[i]} />`}
+        );
+      console.log(pictures);
+    }
+    setTimeout(makeSlideshow, 4000);
+  };
+  makeSlideshow();
   return {
     timelineEarthDate: roverData.photos[0].earth_date,
     timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
-  };
+    randomPhotoUrl1: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl2: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl3: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl4: roverData.photos[generateRandomPhoto()].img_src,
+  }
+  // console.log(roverData.photos);
+  // return assembleTimelineDataArrays(roverData.photos);
+
+  // const generateRandomNumber = function () {
+  //   return Math.floor(Math.random() * roverData.photos.length);
+  // };
+  // return {
+  //   timelineEarthDate: roverData.photos[0].earth_date,
+  //   timelineSolDate: roverData.photos[0].sol,
+  //   randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
+  // };
 };
 
 // (step 3) handler function, calls fetch for each date we are interested in
@@ -696,7 +727,7 @@ const reHideTimelineElements = () => {
   timelineContainer.classList.add("show-timeline-container");
   const timelineElementsWithInViewport =
     document.querySelectorAll(".timeline > div");
-  for (let i = 0; i < timelineElementsWithInViewport.length; i++) {
+  for (i = 0; i < timelineElementsWithInViewport.length; i++) {
     if (timelineElementsWithInViewport[i].id) {
       timelineElementsWithInViewport[i].setAttribute("id", "");
     }
@@ -714,20 +745,19 @@ retrieveCuriosityData.addEventListener("click", (e) => {
     ".perseverance-message-box"
   );
 
-  if (curiosityMessageBox && perseveranceMessageBox) {
-    curiosityMessageBox.classList.add("hide");
-    perseveranceMessageBox.classList.add("hide");
-  } else if (curiosityMessageBox) {
+  if (curiosityMessageBox) {
     curiosityMessageBox.classList.add("hide");
   } else if (perseveranceMessageBox) {
     perseveranceMessageBox.classList.add("hide");
+  } else if (curiosityMessageBox && perseveranceMessageBox) {
+    curiosityMessageBox.classList.add("hide");
+    perseveranceMessageBox.classList.add("hide");
   }
-
   retrieveCuriosityData.classList.add("curiosity-button-clicked");
   getCuriosityLocationData();
   dropdownMenu.classList.toggle("show");
   const earthDatesToFetch = []; //make an array of the dates we want info about
-  for (let i = 0; i < curiosityInfoArray.length; i++) {
+  for (i = 0; i < curiosityInfoArray.length; i++) {
     // fetchRoverData(curiosityInfoArray[i].earthDate);
     earthDatesToFetch.push(curiosityInfoArray[i].earthDate);
   }
@@ -757,7 +787,7 @@ retrievePerseveranceData.addEventListener("click", (e) => {
   getPerseveranceLocationData();
   dropdownMenu.classList.toggle("show");
   const earthDatesToFetch = [];
-  for (let i = 0; i < perseveranceInfoArray.length; i++) {
+  for (i = 0; i < perseveranceInfoArray.length; i++) {
     earthDatesToFetch.push(perseveranceInfoArray[i].earthDate);
   }
   manageFetchRequests(earthDatesToFetch).then((data) => {
@@ -772,10 +802,10 @@ const timelineElements = document.querySelectorAll(
   ".timeline-container ul li > div"
 );
 function addInViewToElements() {
-  for (let i = 0; i < timelineElements.length; i++) {
+  for (i = 0; i < timelineElements.length; i++) {
     //topSide = timelineElements[i].getBoundingClientRect().top;
     //rightSide = timelineElements[i].getBoundingClientRect().right;
-    let bottomSide = timelineElements[i].getBoundingClientRect().bottom;
+    bottomSide = timelineElements[i].getBoundingClientRect().bottom;
     //leftSide = timelineElements[i].getBoundingClientRect().left;
     //height = timelineElements[i].getBoundingClientRect().height;
     //width = timelineElements[i].getBoundingClientRect().width;
@@ -861,10 +891,10 @@ const isRoveyVisible = () => {
 
 //adds 'in-viewport' to timeline rovey character, and checks to see if a random quote will be displayed
 function addInViewToRovey() {
-  for (let i = 0; i < roveyTimeLineImages.length; i++) {
+  for (i = 0; i < roveyTimeLineImages.length; i++) {
     //topSide = timelineElements[i].getBoundingClientRect().top;
     //rightSide = timelineElements[i].getBoundingClientRect().right;
-    let bottomSide = roveyTimeLineImages[i].getBoundingClientRect().bottom;
+    bottomSide = roveyTimeLineImages[i].getBoundingClientRect().bottom;
     //leftSide = timelineElements[i].getBoundingClientRect().left;
     //height = timelineElements[i].getBoundingClientRect().height;
     //width = timelineElements[i].getBoundingClientRect().width;
@@ -873,7 +903,7 @@ function addInViewToRovey() {
       roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
       //timelineElements[i].classList.remove("in-viewport");
       isRoveyVisible();
-      let roveyFact = document.querySelector(".rovey-fact");
+      roveyFact = document.querySelector(".rovey-fact");
       roveyFact.setAttribute("id", "in-viewport-fact");
     }
   }
@@ -897,7 +927,7 @@ function addInViewToMars() {
 
   //topSide = timelineElements[i].getBoundingClientRect().top;
   //rightSide = timelineElements[i].getBoundingClientRect().right;
-  let bottomSide = marsDiagram.getBoundingClientRect().bottom;
+  bottomSide = marsDiagram.getBoundingClientRect().bottom;
   //leftSide = timelineElements[i].getBoundingClientRect().left;
   //height = timelineElements[i].getBoundingClientRect().height;
   //width = timelineElements[i].getBoundingClientRect().width;
