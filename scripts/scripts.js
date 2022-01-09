@@ -47,9 +47,9 @@ const renderRoverMap = () => {
   setTimeout(() => {
     roverMapInfoPopup.removeAttribute("id", "show-rover-info-popup");
   }, 10000);
-  setTimeout(() => {
-    timelineInfoPopup.setAttribute("id", "show-rover-info-popup");
-  }, 1000);
+  // setTimeout(() => {
+  //   timelineInfoPopup.setAttribute("id", "show-rover-info-popup");
+  // }, 1000);
 };
 
 // const manageTeardropButtons = () => {
@@ -174,6 +174,7 @@ const body = document.querySelector("body");
 body.addEventListener("click", (e) => {
   if (e.target.classList.contains("waypoint")) {
     console.log(e.target.classList[0]);
+    e.target.classList.add("waypoint-click-animation");
     const waypointInfoCard = document.querySelector(
       ".rover-waypoint-info-container"
     );
