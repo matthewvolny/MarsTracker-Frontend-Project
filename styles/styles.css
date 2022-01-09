@@ -11,6 +11,10 @@
   box-sizing: inherit;
 }
 
+/* * {
+  border: #b6e08c 1px solid;
+} */
+
 body {
   background-color: #fcef68;
   margin: 1em;
@@ -33,20 +37,56 @@ body * + * {
 
 @media only screen and (min-width: 1024px) {
   /* CSS grid for intro section */
-  .intro-section-grid {
-    display: grid;
-    height: 100vh;
+  .intro-section {
+    height: 60vh;
     width: 100%;
-    grid-template: repeat(12, 1fr) / repeat(12, 1fr);
-    grid-gap: 20px;
     max-width: 1300px;
-    min-height: 830px;
+    min-height: 600px;
     margin: 0 auto;
+  }
+
+  .logo-and-navigation-flexbox {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .bee-container {
+    height: 100%;
+    width: 12%;
+    margin-left: 1%;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .bee-container > img {
+    max-height: 120%;
+    display: inline-block;
+    transform: rotate(-15deg);
+    margin-top: -5px;
+  }
+
+  .navigation {
+    /* padding: 0; */
+  }
+
+  .logo-and-navigation-flexbox li {
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.4em;
+    padding: 1.3em;
+  }
+
+  .roveys-intro-container-flexbox {
+    display: flex;
   }
 
   /* Rovey's introduction text box */
   .intro-text {
-    grid-area: 1 / 1 / span 8 / span 7;
+    width: 75%;
     font-family: "Permanent Marker", cursive;
     font-size: 1.9rem;
     letter-spacing: 0.1em;
@@ -55,17 +95,109 @@ body * + * {
     color: white;
     background-color: #6cc8bb;
     /* min-height: 500px; */
+    margin: 0;
+  }
+
+  .star {
+    grid-area: 3/ 11 / span 3 / span 3;
+    margin-top: 0;
+  }
+
+  .star img {
+    height: 100%;
+    display: block;
+    object-position: cover;
+  }
+
+  /* rovey container element */
+  .rovey-outer-container {
+    width: 25%;
+  }
+
+  .rovey-inner-container {
+    position: relative;
+    /* margin-left: 3%; */
+    left: -90px;
+    top: 240px;
+    margin-left: 15%;
+    overflow: hidden;
+    border-radius: 50%;
+    border: #fafefd solid 6px;
+    height: 35vmin;
+    width: 35vmin;
+    background-color: white;
+  }
+
+  .rovey-inner-container > img {
+    /* transform: scaleX(-1); */
+    object-position: cover;
+    position: relative;
+    height: 150%;
+    margin-left: -600px;
+    top: 38px;
+  }
+
+  .planet {
+    grid-area: 8/ 10 / span 3 / span 3;
+    margin: 0;
+  }
+
+  .planet img {
+    object-position: contain;
+    height: 100%;
+  }
+
+  .moon {
+    grid-area: 10/ 8 / span 2 / span 2;
+  }
+
+  .moon img {
+    height: 100%;
+    object-position: cover;
+  }
+
+  /* .intro-text::after {
+    content: "";
+    border-bottom: 3px dotted #666;
+    border-right: 3px dotted #666;
+    display: block;
+    height: 50px;
+    width: 100px;
+    z-index: 15;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 350px;
+    top: 525px;
+    border: 25px solid;
+    border-color: #b7bdf7 #b7bdf7 transparent transparent;
+  } */
+
+  /* planet and rover map flex container */
+  .planet-map-container {
+    height: 100vh;
+    width: 100%;
+    max-width: 1300px;
+    min-height: 830px;
+    margin: 0 auto;
+    /* display: inline-block; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Select rover dropdown container */
   .dropdown-container {
-    grid-area: 9 / 1 / span 3 / span 7;
-    justify-self: center;
-    align-self: center;
     cursor: pointer;
     /* display: inline-block; */
-    position: relative;
-    margin-top: -20px; /* accounts for grid-gap above */
+    position: absolute;
+    z-index: 100;
+    /* margin-left: -90%; */
+    margin-right: 800px;
+    /* margin-top: -80%; */
+    margin-bottom: 800px;
+    margin-left: 1em;
+    margin-top: 1em;
   }
 
   /* Select rover dropdown button */
@@ -133,91 +265,11 @@ body * + * {
     flex-direction: column; */
   }
 
-  .star {
-    grid-area: 1/ 11 / span 3 / span 3;
-    margin-top: 0;
-  }
-
-  .star img {
-    height: 100%;
-    display: block;
-    object-position: cover;
-  }
-
-  /* rovey container element */
-  .rovey-container {
-    grid-area: 4 / 8 / span 4 / span 4;
-    margin-top: 0;
-    overflow: hidden;
-    border-radius: 50%;
-    border: #fafefd solid 6px;
-    height: 300px;
-    width: 300px;
-  }
-
-  .rovey-container > img {
-    transform: scaleX(-1);
-    object-position: cover;
-    position: relative;
-    height: 150%;
-    right: 95px;
-    top: 38px;
-  }
-
-  .planet {
-    grid-area: 8/ 10 / span 3 / span 3;
-    margin: 0;
-  }
-
-  .planet img {
-    object-position: contain;
-    height: 100%;
-  }
-
-  .moon {
-    grid-area: 10/ 8 / span 2 / span 2;
-  }
-
-  .moon img {
-    height: 100%;
-    object-position: cover;
-  }
-
-  /* .intro-text::after {
-    content: "";
-    border-bottom: 3px dotted #666;
-    border-right: 3px dotted #666;
-    display: block;
-    height: 50px;
-    width: 100px;
-    z-index: 15;
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 350px;
-    top: 525px;
-    border: 25px solid;
-    border-color: #b7bdf7 #b7bdf7 transparent transparent;
-  } */
-
-  /* planet and rover map flex container */
-  .planet-map-container {
-    height: 100vh;
-    width: 100%;
-    max-width: 1300px;
-    min-height: 830px;
-    margin: 0 auto;
-    /* display: inline-block; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   /* mars image */
   .mars-image {
     height: 650px;
     width: 650px;
-    margin: 0 auto;
+    margin: 25px auto 0px auto;
     position: relative;
     /* right: 200px; */
     background-color: coral;
@@ -609,6 +661,30 @@ body * + * {
     animation: slow-bounce 6s ease infinite;
   }
 
+  .perseverance-teardrop::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    opacity: 0.95;
+    z-index: 150;
+    border-radius: 50%;
+    transform: translateX(13px) translateY(13px);
+    position: absolute;
+  }
+
+  .curiosity-teardrop::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    opacity: 0.95;
+    z-index: 150;
+    border-radius: 50%;
+    transform: translateX(13px) translateY(13px);
+    position: absolute;
+  }
+
   .curiosity-teardrop {
     animation: slow-bounce 6s ease infinite;
   }
@@ -716,8 +792,8 @@ body * + * {
     position: absolute;
     visibility: hidden;
     opacity: 0.5;
-    width: 2px;
-    height: 2px;
+    width: 3px;
+    height: 3px;
     margin: 0;
     border-radius: 50%;
     opacity: 0.8;
@@ -725,6 +801,19 @@ body * + * {
     padding: 0;
     margin: 0;
     z-index: 55;
+    /* border: white 0.1px solid; */
+  }
+
+  .waypoint:after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    margin-left: 30%;
+    margin-top: 0px;
+    border-radius: 50%;
+    z-index: 300;
   }
 
   .show-waypoint {
@@ -848,6 +937,17 @@ body * + * {
   .waypoint-image-container > img {
     width: 100px;
     height: 100px;
+  }
+
+  .rover-map-info-popup {
+    position: absolute;
+    margin-right: -600px;
+    margin-bottom: -300px;
+    width: 200px;
+    /*height: 200px; */
+    background: white;
+    font-size: 1.2em;
+    z-index: 150;
   }
 
   .reveal-curiosity-waypoint-info {
