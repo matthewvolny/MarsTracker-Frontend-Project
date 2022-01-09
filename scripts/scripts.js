@@ -486,14 +486,50 @@ const drawRoverPosition = (
 
 const curiosityInfoArray = [
   {
-    earthDate: "2014-09-11",
-    marsDate: "sol-15",
+    earthDate: "2012-08-09",
+    marsDate: "sol-3",
     headline: "rover curiosity lands",
     subheading: "there it goes!",
   },
   {
+    earthDate: "2013-08-27",
+    marsDate: "sol-376",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
+  {
+    earthDate: "2014-09-11",
+    marsDate: "sol-746",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
+  {
+    earthDate: "2015-12-17",
+    marsDate: "sol-1196",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
+  {
     earthDate: "2015-06-03",
     marsDate: "sol-200",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
+  {
+    earthDate: "2017-01-17",
+    marsDate: "sol-1782",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
+  {
+    earthDate: "2018-01-19",
+    marsDate: "sol-1939",
+    headline: "rover curiosity finds signs of life",
+    subheading: "look at that!",
+  },
+  {
+    earthDate: "2021-03-28",
+    marsDate: "sol-3072",
     headline: "rover curiosity finds signs of life",
     subheading: "look at that!",
   },
@@ -531,7 +567,7 @@ const fetchRoverData = async (url) => {
 
     let images  = [];
     roverData.photos.forEach((photo, index) => {
-      if (index < 10) {
+      if (index < 4) {
         images.push(photo.img_src)
       }
       return
@@ -547,9 +583,9 @@ const fetchRoverData = async (url) => {
         console.log(i);
         picture.innerHTML = `<img src=${images[i]} />`}
         );
-      console.log(pictures);
+      //console.log(pictures);
     }
-    setTimeout(makeSlideshow, 4000);
+    setTimeout(makeSlideshow, 5000);
   };
   makeSlideshow();
   return {
