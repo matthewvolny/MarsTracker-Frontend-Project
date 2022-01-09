@@ -585,7 +585,7 @@ body * + * {
     background-color: plum;
     height: 50px;
     width: 50px;
-    z-index: 10;
+    z-index: 2147483647 !important;
     border: papayawhip 2px solid;
     transform: rotate(45deg);
     border-radius: 50% 50% 0% 50%;
@@ -593,17 +593,88 @@ body * + * {
     position: absolute;
   }
 
-  .teardrop:before {
-    content: "";
+  .perseverance-teardrop-shadow {
     position: absolute;
-    z-index: -5;
-    bottom: 30px;
-    left: 26px;
-    height: 55px;
-    width: 25px;
-    border-radius: 50% 50% 0% 50%;
-    transform: rotate(45deg);
-    box-shadow: 35px 4px 2px 1px rgba(0, 0, 0, 0.75);
+    z-index: -10;
+    bottom: -72px;
+    left: -17px;
+    height: 5px;
+    width: 15px;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 35px 5px 4px 1px rgba(0, 0, 0, 0.4);
+    animation: slow-bounce-shadow 6s ease infinite;
+  }
+
+  .perseverance-teardrop {
+    animation: slow-bounce 6s ease infinite;
+  }
+
+  .curiosity-teardrop {
+    animation: slow-bounce 6s ease infinite;
+  }
+
+  .curiosity-teardrop-shadow {
+    position: absolute;
+    z-index: -10;
+    bottom: -20px;
+    left: -18px;
+    height: 5px;
+    width: 15px;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 35px 5px 4px 1px rgba(0, 0, 0, 0.4);
+    animation: slow-bounce-shadow 6s ease infinite;
+  }
+
+  @keyframes slow-bounce {
+    0% {
+      transform: rotate(45deg) scale(1);
+    }
+    10% {
+      transform: rotate(45deg) scale(1.08);
+    }
+    30% {
+      transform: rotate(45deg) scale(1.08) translateX(4) translateY(4px);
+      /* background-color: red; */
+    }
+    50% {
+      transform: rotate(45deg) scale(1);
+      /* background-color: aqua; */
+    }
+    57% {
+      transform: rotate(45deg) scale(1) translateX(3px) translateY(3px);
+      /* background-color: blueviolet; */
+    }
+    64% {
+      transform: rotate(45deg) scale(1);
+      /* background-color: orange; */
+    }
+    100% {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+
+  @keyframes slow-bounce-shadow {
+    0% {
+      transform: scale(1);
+    }
+    10% {
+      transform: translateX(-7px) translateY(-1px) scale(1.22);
+    }
+    30% {
+      transform: translateX(-7px) translateY(-1px) scale(1.22);
+    }
+    50% {
+      transform: scale(1);
+    }
+    57% {
+      transform: translateX(-7px) translateY(-1px) scale(1.2);
+    }
+    64% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   .curiosity-message-box {
