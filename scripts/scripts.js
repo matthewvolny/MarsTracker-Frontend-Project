@@ -1,9 +1,43 @@
 import {
   curiosityMapInfo,
   perseveranceMapInfo,
+  curiosityInfoArray,
+  perseveranceInfoArray,
 } from "../data/infoArrayData.js";
-console.log(curiosityMapInfo);
-console.log(perseveranceMapInfo);
+// console.log(curiosityMapInfo);
+// console.log(perseveranceMapInfo);
+console.log(curiosityInfoArray);
+console.log(perseveranceInfoArray);
+
+// const curiosityInfoArray = [
+//   {
+//     earthDate: "2014-09-11",
+//     marsDate: "sol-15",
+//     headline: "rover curiosity lands",
+//     subheading: "there it goes!",
+//   },
+//   {
+//     earthDate: "2015-06-03",
+//     marsDate: "sol-200",
+//     headline: "rover curiosity finds signs of life",
+//     subheading: "look at that!",
+//   },
+// ];
+
+// const perseveranceInfoArray = [
+//   {
+//     earthDate: "2015-06-03",
+//     marsDate: "sol-25",
+//     headline: "rover perseverance lands",
+//     subheading: "there it goes!",
+//   },
+//   {
+//     earthDate: "2015-06-03",
+//     marsDate: "sol-92",
+//     headline: "rover perseverance launches a helicopter",
+//     subheading: "see it fly!",
+//   },
+// ];
 
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-image");
@@ -495,36 +529,6 @@ const drawRoverPosition = (
 };
 
 ///////for christy////////////
-
-const curiosityInfoArray = [
-  {
-    earthDate: "2014-09-11",
-    marsDate: "sol-15",
-    headline: "rover curiosity lands",
-    subheading: "there it goes!",
-  },
-  {
-    earthDate: "2015-06-03",
-    marsDate: "sol-200",
-    headline: "rover curiosity finds signs of life",
-    subheading: "look at that!",
-  },
-];
-
-const perseveranceInfoArray = [
-  {
-    earthDate: "2015-06-03",
-    marsDate: "sol-25",
-    headline: "rover perseverance lands",
-    subheading: "there it goes!",
-  },
-  {
-    earthDate: "2015-06-03",
-    marsDate: "sol-92",
-    headline: "rover perseverance launches a helicopter",
-    subheading: "see it fly!",
-  },
-];
 
 ///
 // (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
