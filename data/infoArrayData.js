@@ -226,7 +226,7 @@ const perseveranceInfoArray = [
     link: "https://mars.nasa.gov/news/9029/nasas-perseverance-rover-collects-first-mars-rock-sample/",
   },
   {
-    earthDate: "2020-12-15",
+    earthDate: "2021-12-15",
     headline: "Ingenuity reaches flight milestone",
     subheading:
       "With its seventeenth flight, the helicopter, Ingenuity, passes the 30-minute mark on its total flight time, having traveled a total of 2.2 miles.",
