@@ -166,14 +166,14 @@ for (let i = 0; i < teardrops.length; i++) {
   });
 }
 /////search for date info///////
-// async function checkDates() {
-//   const response = await fetch(
-//     `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-02-18&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
-//   );
-//   const locationData = await response.json();
-//   console.log(locationData);
-// }
-// checkDates();
+async function checkDates() {
+  const response = await fetch(
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-12-15&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+  );
+  const locationData = await response.json();
+  console.log(locationData);
+}
+checkDates();
 /////////map card data//////
 
 //arrays containing all sol dates, and miles traveled for either rover
@@ -537,8 +537,8 @@ const fetchRoverData = async (url) => {
   // console.log(`Fetching ${url}`);
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
-  // console.log(roverData);
-  // console.log(roverData.photos);
+  console.log(roverData);
+  console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
   const generateRandomNumber = function () {
@@ -660,7 +660,7 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   }
   console.log(earthDatesToFetch);
   manageFetchRequests(earthDatesToFetch).then((data) => {
-    // console.log(data);
+    console.log(data);
     populateTimeline(curiosityInfoArray, data);
   }); //call fetch data function with dates we are interested in (from our homemade array)
   reHideTimelineElements();
@@ -688,7 +688,7 @@ retrievePerseveranceData.addEventListener("click", (e) => {
     earthDatesToFetch.push(perseveranceInfoArray[i].earthDate);
   }
   manageFetchRequests(earthDatesToFetch).then((data) => {
-    // console.log(data);
+    console.log(data);
     populateTimeline(perseveranceInfoArray, data);
   });
   reHideTimelineElements();
