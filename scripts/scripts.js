@@ -567,7 +567,7 @@ const fetchRoverData = async (url) => {
       });
       // console.log(pictures);
     }
-    setTimeout(makeSlideshow, 4000);
+    // setTimeout(makeSlideshow, 4000);
   };
   makeSlideshow();
   return {

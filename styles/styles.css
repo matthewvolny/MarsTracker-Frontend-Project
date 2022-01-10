@@ -1142,12 +1142,12 @@ body * + * {
   }
 
   /* creates an open area of the timeline for 'rovey' */
-  .timeline:nth-child(5) {
+  .timeline:nth-child(7) {
     height: 600px;
   }
 
   /* circle timeline element after 'rovey' */
-  ul li:nth-child(5) > .element-after-rovey {
+  ul li:nth-child(7) > .element-after-rovey {
     position: relative; /*used to offset timeline elements */
     /* bottom: 0; */
     top: 440px;
