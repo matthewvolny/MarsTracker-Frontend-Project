@@ -537,21 +537,61 @@ const fetchRoverData = async (url) => {
   // console.log(`Fetching ${url}`);
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
-  console.log(roverData);
-  console.log(roverData.photos);
+
+  // console.log(roverData);
+  //console.log(roverData.photos);
+
   // return assembleTimelineDataArrays(roverData.photos);
 
-  const generateRandomNumber = function () {
+  const generateRandomPhoto = function () {
     return Math.floor(Math.random() * roverData.photos.length);
   };
+
+    let images  = [];
+    roverData.photos.forEach((photo, index) => {
+      if (index < 10) {
+        images.push(photo.img_src)
+      }
+      return
+    });
+    console.log(images);
+    
+    const makeSlideshow = () => {
+    const pictures = document.querySelectorAll(".timeline-image-container");
+    if (pictures) {
+      //console.log(pictures);
+      pictures.forEach(picture => {
+        const i = (Math.floor(Math.random() * images.length));
+        console.log(i);
+        picture.innerHTML = `<img src=${images[i]} />`}
+        );
+      console.log(pictures);
+    }
+    setTimeout(makeSlideshow, 4000);
+  };
+  makeSlideshow();
   return {
     timelineEarthDate: roverData.photos[0].earth_date,
     timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
-  };
+    randomPhotoUrl1: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl2: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl3: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl4: roverData.photos[generateRandomPhoto()].img_src,
+  }
+  // console.log(roverData.photos);
+  // return assembleTimelineDataArrays(roverData.photos);
+
+  // const generateRandomNumber = function () {
+  //   return Math.floor(Math.random() * roverData.photos.length);
+  // };
+  // return {
+  //   timelineEarthDate: roverData.photos[0].earth_date,
+  //   timelineSolDate: roverData.photos[0].sol,
+  //   randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
+  // };
 };
 
 // (step 3) handler function, calls fetch for each date we are interested in
