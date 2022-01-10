@@ -756,11 +756,48 @@ body * + * {
   }
 
   .curiosity-message-box {
+    display: flex;
     position: absolute;
+    width: 175px;
+    height: 175px;
+    margin-left: 15px;
+    margin-top: -150px;
+    font-size: 1.3em;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
   }
 
-  .perseverance-message-box {
+  .message-box:after {
     position: absolute;
+    content: "";
+    z-index: -10;
+    bottom: -24px;
+    left: -15px;
+    height: 17px;
+    width: 52px;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 75px 5px 4px 1px rgba(0, 0, 0, 0.4);
+  }
+
+
+  .perseverance-message-box {
+    display: flex;
+    position: absolute;
+    width: 175px;
+    height: 175px;
+    margin-left: 15px;
+    margin-top: -150px;
+    font-size: 1.3em;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
   }
 
   .hide {

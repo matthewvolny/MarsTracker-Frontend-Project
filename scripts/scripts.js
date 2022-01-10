@@ -116,6 +116,7 @@ for (let i = 0; i < teardrops.length; i++) {
       );
       const messageBox = document.createElement("div");
       messageBox.classList.add("curiosity-message-box");
+      messageBox.classList.add("message-box");
       messageBox.textContent = message;
       curiosityTeardropContainer.appendChild(messageBox);
     } else if (e.target.classList.contains("perseverance-teardrop")) {
@@ -124,6 +125,7 @@ for (let i = 0; i < teardrops.length; i++) {
       );
       const messageBox = document.createElement("div");
       messageBox.classList.add("perseverance-message-box");
+      messageBox.classList.add("message-box");
       messageBox.textContent = message;
       perseveranceTeardropContainer.appendChild(messageBox);
     }
@@ -812,7 +814,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrieveCuriosityData.classList.contains("curiosity-button-clicked")
   ) {
-    backgroundImage.src = "/assets/curiosity-rover-map.jpg";
+    backgroundImage.src = "assets/curiositymap-colored.jpg";
     backgroundImageContainer.classList.add("curiosity-mars-image-overlay");
 
     curiosityRoverPopupContainer.setAttribute(
@@ -833,7 +835,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
   ) {
-    backgroundImage.src = "assets/perseverance map recolored.jpg";
+    backgroundImage.src = "assets/perseverancemap-colored.jpg";
     backgroundImageContainer.classList.add("perseverance-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
