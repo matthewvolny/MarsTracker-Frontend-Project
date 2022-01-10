@@ -611,7 +611,7 @@ function advanceAllSlides(){
     }
 
     
-    setTimeout(advanceAllSlides, 5000);
+    setTimeout(advanceAllSlides, 2000);
 
 }
 
@@ -714,7 +714,7 @@ retrieveCuriosityData.addEventListener("click", async (e) => {
   let fetchData = await manageFetchRequests('curiosity', earthDatesToFetch);
   populateTimeline('curiosity', curiosityInfoArray, fetchData);
   reHideTimelineElements();
-  setTimeout(advanceAllSlides, 5000);
+  setTimeout(advanceAllSlides, 2000);
 });
 
 // (step2) event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
@@ -741,7 +741,7 @@ retrievePerseveranceData.addEventListener("click", async (e) => {
   let fetchData = await manageFetchRequests('perseverance', earthDatesToFetch)
   populateTimeline('perseverance', perseveranceInfoArray, fetchData);
   reHideTimelineElements();
-  setTimeout(advanceAllSlides, 5000);
+  setTimeout(advanceAllSlides, 2000);
 });
 
 //adds "in-viewport" class to timeline elements upon entering the viewport
