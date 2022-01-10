@@ -1130,7 +1130,7 @@ body * + * {
     list-style: none;
     position: relative;
     width: 6px;
-    height: 300px; /*spacing between each dot on timeline*/
+    height: 350px; /*spacing between each dot on timeline*/
     margin: 0 auto;
     /* padding-top: 1.5em; */
     background: #ebebeb;
@@ -1304,7 +1304,7 @@ body * + * {
     /* bottom: 0; */
     height: 300px;
     width: 300px; /* would like this measurement to reflect width of other elements on pg */
-    top: 140px;
+    top: 190px;
     padding: 1.5em;
     border-radius: 15em;
     transition: all 1500ms ease-in-out;
@@ -1321,11 +1321,11 @@ body * + * {
     opacity: 0;
     position: relative; /* used to offset timeline elements */
     /* bottom: 0; */
-    height: 575px;
-    width: 390px; /* would like this measurement to reflect width of other elements on pg */
-    bottom: 168px;
+    height: 585px;
+    width: 350px; /* would like this measurement to reflect width of other elements on pg */
+    bottom: 175px;
     padding: 1.3em 1.5em;
-    border-radius: 0.5em;
+    /* border-radius: 0.5em; */
     transition: all 1500ms ease-in-out;
   }
 
@@ -1346,7 +1346,7 @@ body * + * {
 
   /* right circle timeline elements */
   .timeline-container ul li:nth-child(4n + 1) > div {
-    left: 125px;
+    left: 150px;
     /* color: red; */
     visibility: visible;
     border: #fe8d56 6px solid;
@@ -1358,7 +1358,7 @@ body * + * {
     color: white;
     background: lightgrey;
     visibility: visible;
-    left: -450px;
+    left: -464px;
   }
 
   /* left circle timeline elements */
@@ -1368,7 +1368,7 @@ body * + * {
     border: #e96063 solid 6px;
     height: 300px;
     width: 300px;
-    left: -419px;
+    left: -444px;
     /* top: 150px; */
   }
 
@@ -1377,7 +1377,12 @@ body * + * {
     color: aqua;
     background: lightgrey;
     visibility: visible;
-    left: 156px;
+    left: 120px;
     /* top: 150px; */
+  }
+
+  /* spacer at bottom of timeline*/
+  .spacer {
+    height: 300px;
   }
 }
