@@ -47,7 +47,7 @@ const tearDropRoverRouteContainer = document.querySelector(
 );
 const canvasContainer = document.querySelector(".canvas-container");
 const selectRoverButton = document.querySelector(".select-rover-button");
-const roveyTimeLineImages = document.querySelectorAll(".rovey-timeline-image");
+// const roveyTimeLineImages = document.querySelectorAll(".rovey-timeline-image");
 const dropdownMenu = document.querySelector(".dropdown-menu");
 const retrieveCuriosityData = document.querySelector(
   ".retrieve-curiosity-data"
@@ -644,10 +644,23 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         // console.log(squareElementsCounter);
         // console.log(infoArray[squareElementsCounter].headline);
         //check for these photos coming in here as well
-        timelineElementsContent[
-          i
-        ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
-        squareElementsCounter += 1;
+        if (i === 5) {
+          timelineElementsContent[
+            i
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          timelineElementsContent[
+            i
+          ].innerHTML += ` <div class="rovey-timeline-container">
+          <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class="">
+          <div class="rovey-fact"><span>Hey! </span></div>
+        </div>`;
+          squareElementsCounter += 1;
+        } else {
+          timelineElementsContent[
+            i
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          squareElementsCounter += 1;
+        }
       }
     }
   } else {
@@ -670,10 +683,23 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         // console.log(squareElementsCounter);
         // console.log(infoArray[squareElementsCounter].headline);
         //check for these photos coming in here as well
-        timelineElementsContent[
-          i
-        ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
-        squareElementsCounter += 1;
+        if (i === 5) {
+          timelineElementsContent[
+            i
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          timelineElementsContent[
+            i
+          ].innerHTML += ` <div class="rovey-timeline-container">
+          <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class="">
+          <div class="rovey-fact"><span>Hey! </span></div>
+        </div>`;
+          squareElementsCounter += 1;
+        } else {
+          timelineElementsContent[
+            i
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          squareElementsCounter += 1;
+        }
       }
     }
   }
@@ -727,10 +753,10 @@ const reHideTimelineElements = () => {
       timelineElementsWithInViewport[i].setAttribute("id", "");
     }
   }
-  const roveyInViewport = document.querySelector(".rovey-fact");
-  const roveyFactInViewport = document.querySelector(".rovey-timeline-image");
-  roveyInViewport.setAttribute("id", "");
-  roveyFactInViewport.setAttribute("id", "");
+  // const roveyInViewport = document.querySelector(".rovey-fact");
+  // const roveyFactInViewport = document.querySelector(".rovey-timeline-image");
+  // roveyInViewport.setAttribute("id", "");
+  // roveyFactInViewport.setAttribute("id", "");
 };
 
 // (step2) event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
@@ -853,80 +879,80 @@ function addInViewToElements() {
 window.addEventListener("scroll", addInViewToElements);
 
 //displays random mars fact in timeline
-const displayRoveyFact = () => {
-  const roveyFact = document.querySelector(".rovey-fact");
-  const marsFactArray = [
-    { headline: "Mars is named after the Roman god of war", text: "....." },
-    {
-      headline:
-        "Mars is red because of a mineral called iron oxide that’s very common on its surface",
-      text: "......",
-    },
-    {
-      headline: "Mar’s atmosphere is very thin.",
-      text: "It’s composed primarily of carbon dioxide.",
-    },
-    {
-      headline: "The Martian gravity is only a third that of the Earth’s",
-      text: "This means you could leap nearly three times higher on Mars.",
-    },
-    {
-      headline: "Mars has the largest dust storms in the solar system.",
-      text: "They can last for months and cover the entire planet.",
-    },
-    {
-      headline:
-        "Mars has seasons just like on Earth but they’re much longer because Mars is further away from the Sun.",
-      text: "The seasons are more extreme too because Mars’s orbit is in an elliptical shape. That means when it gets cold it gets really cold – even the hottest summer’s day would be not much above freezing.",
-    },
-    {
-      headline: "A Martian year lasts 687 days – almost double that of Earth.",
-      text: "Each day themselves are about the same as on Earth – 24 hours and then an extra 9 minutes.",
-    },
-    {
-      headline: "Mars has two moons called Phobos and Deimos.",
-      text: "Sometime is the next 2 to 4 million years Phobos is expected to be torn apart by gravity – leaving a ring of dust and debris around the planet.",
-    },
-  ];
-  let randomFact =
-    marsFactArray[Math.floor(Math.random() * marsFactArray.length)];
+// const displayRoveyFact = () => {
+//   const roveyFact = document.querySelector(".rovey-fact");
+//   const marsFactArray = [
+//     { headline: "Mars is named after the Roman god of war", text: "....." },
+//     {
+//       headline:
+//         "Mars is red because of a mineral called iron oxide that’s very common on its surface",
+//       text: "......",
+//     },
+//     {
+//       headline: "Mar’s atmosphere is very thin.",
+//       text: "It’s composed primarily of carbon dioxide.",
+//     },
+//     {
+//       headline: "The Martian gravity is only a third that of the Earth’s",
+//       text: "This means you could leap nearly three times higher on Mars.",
+//     },
+//     {
+//       headline: "Mars has the largest dust storms in the solar system.",
+//       text: "They can last for months and cover the entire planet.",
+//     },
+//     {
+//       headline:
+//         "Mars has seasons just like on Earth but they’re much longer because Mars is further away from the Sun.",
+//       text: "The seasons are more extreme too because Mars’s orbit is in an elliptical shape. That means when it gets cold it gets really cold – even the hottest summer’s day would be not much above freezing.",
+//     },
+//     {
+//       headline: "A Martian year lasts 687 days – almost double that of Earth.",
+//       text: "Each day themselves are about the same as on Earth – 24 hours and then an extra 9 minutes.",
+//     },
+//     {
+//       headline: "Mars has two moons called Phobos and Deimos.",
+//       text: "Sometime is the next 2 to 4 million years Phobos is expected to be torn apart by gravity – leaving a ring of dust and debris around the planet.",
+//     },
+//   ];
+//   let randomFact =
+//     marsFactArray[Math.floor(Math.random() * marsFactArray.length)];
 
-  roveyFact.innerHTML = `<div class="headline"></div><span>Hey! </span>
-           ${randomFact.headline}</div>
-             <div class="additional-info">${randomFact.text}</div>`;
-};
+//   roveyFact.innerHTML = `<div class="headline"></div><span>Hey! </span>
+//            ${randomFact.headline}</div>
+//              <div class="additional-info">${randomFact.text}</div>`;
+// };
 
 //checks to see if rovey is visible on page, then calls function to display a random Mars fact
-let roveyVisible = 0;
-const isRoveyVisible = () => {
-  if (!roveyVisible) {
-    displayRoveyFact();
-    console.log("hello");
-    roveyVisible = 1;
-  }
-};
+// let roveyVisible = 0;
+// const isRoveyVisible = () => {
+//   if (!roveyVisible) {
+//     displayRoveyFact();
+//     console.log("hello");
+//     roveyVisible = 1;
+//   }
+// };
 
 //adds 'in-viewport' to timeline rovey character, and checks to see if a random quote will be displayed
-function addInViewToRovey() {
-  for (let i = 0; i < roveyTimeLineImages.length; i++) {
-    //topSide = timelineElements[i].getBoundingClientRect().top;
-    //rightSide = timelineElements[i].getBoundingClientRect().right;
-    let bottomSide = roveyTimeLineImages[i].getBoundingClientRect().bottom;
-    //leftSide = timelineElements[i].getBoundingClientRect().left;
-    //height = timelineElements[i].getBoundingClientRect().height;
-    //width = timelineElements[i].getBoundingClientRect().width;
-    let viewportHeight = document.documentElement.clientHeight;
-    if (bottomSide <= viewportHeight) {
-      roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
-      //timelineElements[i].classList.remove("in-viewport");
-      isRoveyVisible();
-      let roveyFact = document.querySelector(".rovey-fact");
-      roveyFact.setAttribute("id", "in-viewport-fact");
-    }
-  }
-}
+// function addInViewToRovey() {
+//   for (let i = 0; i < roveyTimeLineImages.length; i++) {
+//     //topSide = timelineElements[i].getBoundingClientRect().top;
+//     //rightSide = timelineElements[i].getBoundingClientRect().right;
+//     let bottomSide = roveyTimeLineImages[i].getBoundingClientRect().bottom;
+//     //leftSide = timelineElements[i].getBoundingClientRect().left;
+//     //height = timelineElements[i].getBoundingClientRect().height;
+//     //width = timelineElements[i].getBoundingClientRect().width;
+//     let viewportHeight = document.documentElement.clientHeight;
+//     if (bottomSide <= viewportHeight) {
+//       roveyTimeLineImages[i].setAttribute("id", "in-viewport-rovey");
+//       //timelineElements[i].classList.remove("in-viewport");
+//       isRoveyVisible();
+//       let roveyFact = document.querySelector(".rovey-fact");
+//       roveyFact.setAttribute("id", "in-viewport-fact");
+//     }
+//   }
+// }
 
-window.addEventListener("scroll", addInViewToRovey);
+// window.addEventListener("scroll", addInViewToRovey);
 
 //add inView to mars planet image
 function addInViewToMars() {
