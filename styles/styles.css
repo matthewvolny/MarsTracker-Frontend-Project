@@ -971,20 +971,58 @@ body * + * {
     height: 100px;
   } */
 
+  
+
+  /* style="fill:lime;stroke:purple;stroke-width:1 */
+
   .rover-map-info-popup {
-    visibility: hidden;
+     visibility: hidden;
     opacity: 0;
     position: absolute;
-    margin-right: -700px;
-    margin-bottom: -150px;
-    width: 230px;
-    border-radius: 1em;
-    /*height: 200px; */
-    background: white;
-    font-size: 1.2em;
-    padding: 1.2em 1.3em;
-    z-index: 150;
+    /* border: red 2px solid; */
+    /* height: 225px; */
+    margin-left: -800px;
+    margin-bottom: 510px;
+    width: 350px;
+    height: 395px;
+    font-size: 1.7em;
+    padding: 1em 1.1em;
+    /* text-align: center; */
+    /* background-color: rgb(255, 255, 255); */
+    border-radius: 0em 0em 2em 0em;
+    /* overflow: scroll; */
     transition: all 500ms linear;
+    
+  }
+
+  /* .shape-outside {
+    shape-outside: polygon(
+      0px 475px,
+      0px 595px,
+      595px 595px,
+      595px 0px,
+      475px 0px
+    );
+    width: 585px;
+    height: 595px;
+    float: right;
+    text-align: justify;
+  } */
+
+  .perseverance-svg {
+    visibility: hidden;
+    position: absolute;
+    z-index: 10;
+    margin-top: -255px;
+    fill: #d083af;
+    margin-left: -400px;
+  }
+}
+
+  #show-perseverance-svg {
+    visibility: visible;
+    opacity: 1;
+    z-index: 145;
   }
 
   #show-rover-info-popup {
@@ -1009,20 +1047,12 @@ body * + * {
     transition: all 500ms linear;
   }
 
-  .reveal-curiosity-waypoint-info {
-    margin-left: 450px;
-    margin-bottom: 125px;
-    visibility: visible;
-    opacity: 1;
-    z-index: 101;
-  }
-
-  .reveal-perseverance-waypoint-info {
+  .reveal-waypoint-info {
     margin-left: -800px;
     margin-bottom: 510px;
     visibility: visible;
     opacity: 1;
-    z-index: 101;
+    z-index: 300;
   }
 
   .star-cluster {
