@@ -1381,6 +1381,10 @@ body * + * {
     /* top: 150px; */
   }
 
+  #hide-extra-timeline-elements {
+    display: none;
+  }
+
   /* spacer at bottom of timeline*/
   .spacer {
     height: 300px;

@@ -547,25 +547,25 @@ const fetchRoverData = async (url) => {
     return Math.floor(Math.random() * roverData.photos.length);
   };
 
-    let images  = [];
-    roverData.photos.forEach((photo, index) => {
-      if (index < 10) {
-        images.push(photo.img_src)
-      }
-      return
-    });
-    console.log(images);
-    
-    const makeSlideshow = () => {
+  let images = [];
+  roverData.photos.forEach((photo, index) => {
+    if (index < 10) {
+      images.push(photo.img_src);
+    }
+    return;
+  });
+  // console.log(images);
+
+  const makeSlideshow = () => {
     const pictures = document.querySelectorAll(".timeline-image-container");
     if (pictures) {
       //console.log(pictures);
-      pictures.forEach(picture => {
-        const i = (Math.floor(Math.random() * images.length));
-        console.log(i);
-        picture.innerHTML = `<img src=${images[i]} />`}
-        );
-      console.log(pictures);
+      pictures.forEach((picture) => {
+        const i = Math.floor(Math.random() * images.length);
+        // console.log(i);
+        picture.innerHTML = `<img src=${images[i]} />`;
+      });
+      // console.log(pictures);
     }
     setTimeout(makeSlideshow, 4000);
   };
@@ -577,7 +577,7 @@ const fetchRoverData = async (url) => {
     randomPhotoUrl2: roverData.photos[generateRandomPhoto()].img_src,
     randomPhotoUrl3: roverData.photos[generateRandomPhoto()].img_src,
     randomPhotoUrl4: roverData.photos[generateRandomPhoto()].img_src,
-  }
+  };
   // console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
@@ -623,32 +623,91 @@ const manageFetchRequests = async (earthDatesToFetch) => {
 const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
   console.log(roverDataArrayMultipleFetches); //check here, see what photos are in there
   console.log(infoArray);
+
   const timelineElementsContent = document.querySelectorAll(
     ".timeline-container ul li > div > div"
   );
-  let circleElementsCounter = 0;
-  let squareElementsCounter = 0;
-  for (let i = 0; i < timelineElementsContent.length; i++) {
-    if (i % 2 === 0) {
-      timelineElementsContent[
-        i
-      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
-      // console.log(roverDataArrayMultipleFetches);
-      // console.log(circleElementsCounter);
-      circleElementsCounter += 1;
-    } else {
-      // console.log(infoArray);
-      // console.log(squareElementsCounter);
-      // console.log(infoArray[squareElementsCounter].headline);
-      //check for these photos coming in here as well
-      timelineElementsContent[
-        i
-      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
-      squareElementsCounter += 1;
+
+  if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
+    let circleElementsCounter = 0;
+    let squareElementsCounter = 0;
+    for (let i = 0; i < timelineElementsContent.length; i++) {
+      if (i % 2 === 0) {
+        timelineElementsContent[
+          i
+        ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+        // console.log(roverDataArrayMultipleFetches);
+        // console.log(circleElementsCounter);
+        circleElementsCounter += 1;
+      } else {
+        // console.log(infoArray);
+        // console.log(squareElementsCounter);
+        // console.log(infoArray[squareElementsCounter].headline);
+        //check for these photos coming in here as well
+        timelineElementsContent[
+          i
+        ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+        squareElementsCounter += 1;
+      }
+    }
+  } else {
+    const entireTimelineElements = document.querySelectorAll(".timeline");
+    for (let i = 12; i < entireTimelineElements.length; i++) {
+      entireTimelineElements[i].id = "hide-extra-timeline-elements";
+    }
+    let circleElementsCounter = 0;
+    let squareElementsCounter = 0;
+    for (let i = 0; i < 12; i++) {
+      if (i % 2 === 0) {
+        timelineElementsContent[
+          i
+        ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+        // console.log(roverDataArrayMultipleFetches);
+        // console.log(circleElementsCounter);
+        circleElementsCounter += 1;
+      } else {
+        // console.log(infoArray);
+        // console.log(squareElementsCounter);
+        // console.log(infoArray[squareElementsCounter].headline);
+        //check for these photos coming in here as well
+        timelineElementsContent[
+          i
+        ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+        squareElementsCounter += 1;
+      }
     }
   }
 };
 
+//(step 5)
+// const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
+//   console.log(roverDataArrayMultipleFetches); //check here, see what photos are in there
+//   console.log(infoArray);
+//   const timelineElementsContent = document.querySelectorAll(
+//     ".timeline-container ul li > div > div"
+//   );
+//   let circleElementsCounter = 0;
+//   let squareElementsCounter = 0;
+//   for (let i = 0; i < timelineElementsContent.length; i++) {
+//     if (i % 2 === 0) {
+//       timelineElementsContent[
+//         i
+//       ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+//       // console.log(roverDataArrayMultipleFetches);
+//       // console.log(circleElementsCounter);
+//       circleElementsCounter += 1;
+//     } else {
+//       // console.log(infoArray);
+//       // console.log(squareElementsCounter);
+//       // console.log(infoArray[squareElementsCounter].headline);
+//       //check for these photos coming in here as well
+//       timelineElementsContent[
+//         i
+//       ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+//       squareElementsCounter += 1;
+//     }
+//   }
+// };
 ////////////////////////////////////////////////////
 
 // (step1)'select rover' dropdown button
@@ -747,6 +806,7 @@ function addInViewToElements() {
     //height = timelineElements[i].getBoundingClientRect().height;
     //width = timelineElements[i].getBoundingClientRect().width;
     let viewportHeight = document.documentElement.clientHeight;
+
     if (bottomSide <= viewportHeight && i % 2 === 0) {
       timelineElements[i].setAttribute("id", "in-viewport-circles");
       //timelineElements[i].classList.remove("in-viewport");
@@ -767,13 +827,27 @@ function addInViewToElements() {
     } else if (bottomSide <= viewportHeight && i === 15) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     } else if (bottomSide <= viewportHeight && i === 17) {
-      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
     } else if (bottomSide <= viewportHeight && i === 19) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     } else if (bottomSide <= viewportHeight && i === 21) {
-      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+      timelineElements[i].setAttribute("id", "in-viewport-squares-left");
     }
   }
+  // if (
+  //   retrievePerseveranceData.classList.contains("perseverance-button-clicked")
+  // ) {
+  //   for (let i = 12; i < timelineElementsContent.length; i++) {
+  //     // timelineElementsContent[i].removeAttribute(
+  //     //   "id",
+  //     //   "hide-extra-timeline-elements"
+  //     // );
+  //     timelineElementsContent[i].setAttribute(
+  //       "id",
+  //       "hide-extra-timeline-elements"
+  //     );
+  //   }
+  // }
 }
 
 window.addEventListener("scroll", addInViewToElements);
