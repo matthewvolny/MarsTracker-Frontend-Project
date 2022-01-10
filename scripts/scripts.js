@@ -766,6 +766,12 @@ function addInViewToElements() {
       timelineElements[i].setAttribute("id", "in-viewport-squares-left");
     } else if (bottomSide <= viewportHeight && i === 15) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+    } else if (bottomSide <= viewportHeight && i === 17) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+    } else if (bottomSide <= viewportHeight && i === 19) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
+    } else if (bottomSide <= viewportHeight && i === 21) {
+      timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     }
   }
 }
