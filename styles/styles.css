@@ -11,13 +11,13 @@
   box-sizing: inherit;
 }
 
-/* * {
+* {
   border: #b6e08c 1px solid;
-} */
+}
 
 body {
   background-color: #fcef68;
-  margin: 2em;
+  margin: 2.5em;
 }
 
 body * + * {
@@ -35,7 +35,7 @@ body * + * {
   display: contents;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1139px) {
   /* CSS grid for intro section */
   .intro-section {
     height: 60vh;
@@ -82,11 +82,12 @@ body * + * {
 
   .roveys-intro-container-flexbox {
     display: flex;
+    left: 3%;
   }
 
   /* Rovey's introduction text box */
   .intro-text {
-    width: 75%;
+    width: 83%;
     font-family: "Permanent Marker", cursive;
     font-size: 1.9rem;
     letter-spacing: 0.1em;
@@ -98,7 +99,7 @@ body * + * {
     margin: 0;
   }
 
-  .star {
+  /* .star {
     grid-area: 3/ 11 / span 3 / span 3;
     margin-top: 0;
   }
@@ -107,17 +108,17 @@ body * + * {
     height: 100%;
     display: block;
     object-position: cover;
-  }
+  } */
 
   /* rovey container element */
   .rovey-outer-container {
-    width: 25%;
+    width: 17%;
   }
 
   .rovey-inner-container {
     position: relative;
     /* margin-left: 3%; */
-    left: -90px;
+    left: -150px;
     top: 240px;
     margin-left: 15%;
     overflow: hidden;
@@ -192,11 +193,12 @@ body * + * {
     /* display: inline-block; */
     position: absolute;
     z-index: 100;
+    min-width: 285px;
     /* margin-left: -90%; */
     margin-right: 800px;
     /* margin-top: -80%; */
     margin-bottom: 800px;
-    margin-left: 1em;
+    margin-left: 1.7em;
     margin-top: 1em;
   }
 
@@ -227,7 +229,8 @@ body * + * {
   /* ul within dropdown list */
   .dropdown-menu > ul {
     list-style: none;
-    border: #d083af solid 3px;
+    border-left: #d083af solid 3px;
+    border-right: #d083af solid 3px;
     background-color: white;
     margin: 0;
   }
@@ -240,7 +243,7 @@ body * + * {
   /* dropdown menu items */
   .dropdown-menu > ul li a {
     color: #d083af;
-    border: #d083af solid 3px;
+    border-bottom: #d083af solid 3px;
     background-color: white;
     /* padding: 0.6em 1em; */
     font-size: 1.8em;
