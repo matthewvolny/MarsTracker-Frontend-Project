@@ -234,9 +234,22 @@ const perseveranceInfoArray = [
   },
 ];
 
+//mars facts
+const marsFactArray = [
+  "Mars is named after the Roman god of war.",
+  "Mars is red.  This due to a high concentration of iron oxide in its soil.",
+  "Mar’s atmosphere is composed primarily of carbon dioxide.",
+  "Martian gravity is only a third that of Earth’s. This means you could leap nearly three times higher on Mars.",
+  "Mars has the largest dust storms in the solar system. They can last for months and cover the entire planet.",
+  "Mars has seasons.  They are much longer than the seasons of Earth though, as Mars is further away from the Sun.",
+  "A Martian year lasts 687 days – almost double that of Earth.",
+  "Mars has two moons - Phobos and Deimos.",
+];
+
 export {
   curiosityMapInfo,
   perseveranceMapInfo,
   curiosityInfoArray,
   perseveranceInfoArray,
+  marsFactArray,
 };

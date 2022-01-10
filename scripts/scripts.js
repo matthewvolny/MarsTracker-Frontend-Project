@@ -3,42 +3,12 @@ import {
   perseveranceMapInfo,
   curiosityInfoArray,
   perseveranceInfoArray,
+  marsFactArray,
 } from "../data/infoArrayData.js";
-// console.log(curiosityMapInfo);
-// console.log(perseveranceMapInfo);
-console.log(curiosityInfoArray);
-console.log(perseveranceInfoArray);
 
-// const curiosityInfoArray = [
-//   {
-//     earthDate: "2014-09-11",
-//     marsDate: "sol-15",
-//     headline: "rover curiosity lands",
-//     subheading: "there it goes!",
-//   },
-//   {
-//     earthDate: "2015-06-03",
-//     marsDate: "sol-200",
-//     headline: "rover curiosity finds signs of life",
-//     subheading: "look at that!",
-//   },
-// ];
+console.log(marsFactArray);
 
-// const perseveranceInfoArray = [
-//   {
-//     earthDate: "2015-06-03",
-//     marsDate: "sol-25",
-//     headline: "rover perseverance lands",
-//     subheading: "there it goes!",
-//   },
-//   {
-//     earthDate: "2015-06-03",
-//     marsDate: "sol-92",
-//     headline: "rover perseverance launches a helicopter",
-//     subheading: "see it fly!",
-//   },
-// ];
-
+//global DOM elements
 const roverRouteMap = document.querySelector(".rover-route");
 const marsDiagram = document.querySelector(".mars-image");
 const teardrops = document.querySelectorAll(".teardrop");
@@ -651,8 +621,8 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-          <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class="">
-          <div class="rovey-fact"><span>Hey! </span></div>
+          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
+          <div class="rovey-fact"></div>
         </div>`;
           squareElementsCounter += 1;
         } else {
@@ -690,8 +660,8 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-          <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class="">
-          <div class="rovey-fact"><span>Hey! </span></div>
+          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
+          <div class="rovey-fact"></div>
         </div>`;
           squareElementsCounter += 1;
         } else {
@@ -819,6 +789,23 @@ retrievePerseveranceData.addEventListener("click", (e) => {
   reHideTimelineElements();
 });
 
+//displays random mars fact in timeline
+const addRoveyQuote = () => {
+  const roveyFact = document.querySelector(".rovey-fact");
+  let randomFact =
+    marsFactArray[Math.floor(Math.random() * marsFactArray.length)];
+  roveyFact.innerHTML = `</div>Hey! Did you know that ${randomFact}</div>`;
+};
+
+// checks to see if rovey is visible on page, then calls function to display a random Mars fact
+let roveyVisible = 0;
+const isRoveyVisible = () => {
+  if (!roveyVisible) {
+    addRoveyQuote();
+    roveyVisible = 1;
+  }
+};
+
 //adds "in-viewport" class to timeline elements upon entering the viewport
 const timelineElements = document.querySelectorAll(
   ".timeline-container ul li > div"
@@ -842,6 +829,7 @@ function addInViewToElements() {
       timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     } else if (bottomSide <= viewportHeight && i === 5) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-left");
+      isRoveyVisible();
     } else if (bottomSide <= viewportHeight && i === 7) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-right");
     } else if (bottomSide <= viewportHeight && i === 9) {
@@ -859,6 +847,7 @@ function addInViewToElements() {
     } else if (bottomSide <= viewportHeight && i === 21) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-left");
     }
+    // isRoveyVisible();
   }
   // if (
   //   retrievePerseveranceData.classList.contains("perseverance-button-clicked")
@@ -877,60 +866,6 @@ function addInViewToElements() {
 }
 
 window.addEventListener("scroll", addInViewToElements);
-
-//displays random mars fact in timeline
-// const displayRoveyFact = () => {
-//   const roveyFact = document.querySelector(".rovey-fact");
-//   const marsFactArray = [
-//     { headline: "Mars is named after the Roman god of war", text: "....." },
-//     {
-//       headline:
-//         "Mars is red because of a mineral called iron oxide that’s very common on its surface",
-//       text: "......",
-//     },
-//     {
-//       headline: "Mar’s atmosphere is very thin.",
-//       text: "It’s composed primarily of carbon dioxide.",
-//     },
-//     {
-//       headline: "The Martian gravity is only a third that of the Earth’s",
-//       text: "This means you could leap nearly three times higher on Mars.",
-//     },
-//     {
-//       headline: "Mars has the largest dust storms in the solar system.",
-//       text: "They can last for months and cover the entire planet.",
-//     },
-//     {
-//       headline:
-//         "Mars has seasons just like on Earth but they’re much longer because Mars is further away from the Sun.",
-//       text: "The seasons are more extreme too because Mars’s orbit is in an elliptical shape. That means when it gets cold it gets really cold – even the hottest summer’s day would be not much above freezing.",
-//     },
-//     {
-//       headline: "A Martian year lasts 687 days – almost double that of Earth.",
-//       text: "Each day themselves are about the same as on Earth – 24 hours and then an extra 9 minutes.",
-//     },
-//     {
-//       headline: "Mars has two moons called Phobos and Deimos.",
-//       text: "Sometime is the next 2 to 4 million years Phobos is expected to be torn apart by gravity – leaving a ring of dust and debris around the planet.",
-//     },
-//   ];
-//   let randomFact =
-//     marsFactArray[Math.floor(Math.random() * marsFactArray.length)];
-
-//   roveyFact.innerHTML = `<div class="headline"></div><span>Hey! </span>
-//            ${randomFact.headline}</div>
-//              <div class="additional-info">${randomFact.text}</div>`;
-// };
-
-//checks to see if rovey is visible on page, then calls function to display a random Mars fact
-// let roveyVisible = 0;
-// const isRoveyVisible = () => {
-//   if (!roveyVisible) {
-//     displayRoveyFact();
-//     console.log("hello");
-//     roveyVisible = 1;
-//   }
-// };
 
 //adds 'in-viewport' to timeline rovey character, and checks to see if a random quote will be displayed
 // function addInViewToRovey() {
