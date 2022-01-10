@@ -118,116 +118,119 @@ const curiosityMapInfo = [
 //timeline info arrays
 const curiosityInfoArray = [
   {
-    earthDate: "2011-11-26",
-    headline: "Spacecraft carrying Curiosity launches from Cape Canaveral",
-    subheading: "Bon Voyage!",
-    link: "https://www.nasa.gov/mission_pages/msl/news/msl20111126.html",
-  },
-  {
-    earthDate: "2012-08-05",
+    earthDate: "2012-08-06",
     headline: "Curiosity lands on Mars",
-    subheading: "Success!",
-    link: "https://www.space.com/16932-mars-rover-curiosity-landing-success.html",
+    subheading:
+      "After a 36-week flight from Cape Canaveral, the Curiosity rover lands in Gale Crater near foot of Martian mountain.",
+    link: "https://mars.nasa.gov/news/1288/nasa-lands-car-size-rover-beside-martian-mountain/?site=msl ",
   },
   {
-    earthDate: "2013-03-12",
-    headline: "Curiosity finds key chemical ingredients for life on Mars",
-    subheading: "Nitrogen, Hydrogen, Oxygen, Phosphorus and Carbon!",
-    link: "https://www.nasa.gov/mission_pages/msl/news/msl20130312.html",
+    earthDate: "2013-03-14",
+    headline: "Curiosity finds key ingredients for life on Mars",
+    subheading:
+      "Rock sample from ancient stream bed shows some of the chemical elements needed by living microbes, including oxygen and carbon.",
+    link: "https://mars.nasa.gov/news/1438/nasa-rover-finds-conditions-once-suited-for-ancient-life-on-mars/ ",
   },
   {
     earthDate: "2014-12-16",
-    headline: "Curiosity drilling finds high levels of organic chemicals",
-    subheading: "The first definitive finding of Martian organics!",
-    link: "https://www.nasa.gov/press/2014/december/nasa-rover-finds-active-ancient-organic-chemistry-on-mars",
+    headline: "Curiosity detects organic matter on Mars",
+    subheading:
+      "Rock sampling identifies organic molecules, which are the building blocks of life on Earth – what did they mean for Mars?",
+    link: "https://mars.nasa.gov/news/1766/nasa-goddard-instrument-makes-first-detection-of-organic-matter-on-mars/ ",
   },
   {
-    earthDate: "2015-03-24",
-    headline: "Curiosity detects nitrogen in surface sediments of Mars",
-    subheading: "Ancient Mars may have been habitable for life!",
-    link: "https://www.jpl.nasa.gov/news/curiosity-rover-finds-biologically-useful-nitrogen-on-mars",
+    earthDate: "2015-04-16",
+    headline: "Curiosity passes mission’s 10-kilometer mark",
+    subheading:
+      "After spending six months investigating a series of shallow valleys near “Pahrump Hills,” Curiosity moves on to next science destination, “Logan Pass.”",
+    link: "https://mars.nasa.gov/news/1803/nasas-curiosity-rover-making-tracks-and-observations/ ",
   },
   {
-    earthDate: "2016-12-13",
-    headline: "Boron detected for first time on Mars",
-    subheading: "Further evidence for groundwater habitability!",
-    link: "http://www.sci-news.com/space/curiosity-boron-mars-04449.html#:~:text=Boron%2C%20a%20metalloid%20chemical%20element,groundwater%20in%20the%20ancient%20past.",
+    earthDate: "2016-09-01",
+    headline: "Curiosity mission begins two-year extension",
+    subheading:
+      "Curiosity leaves the scenic “Murray Buttes” to continue investigating evidence for ancient water-rich environments in new areas of Mount Sharp.",
+    link: "https://mars.nasa.gov/news/1936/nasas-curiosity-rover-begins-next-mars-chapter/ ",
   },
   {
-    earthDate: "2017-06-01",
-    headline: "Evidence of stratified ancient lake found in Gale Crater",
-    subheading: "Similar to lakes on Earth!",
-    link: "https://news.stonybrook.edu/newsroom/press-release/general/2017-06-01-mars-rover-reveals-ancient-lake/",
+    earthDate: "2017-06-02",
+    headline: "Curiosity explores ancient Martian lake",
+    subheading:
+      "Data suggests that a large, long-lasting ancient lake in Gale Crater had different environments in deep and shallow waters, similar to large lakes on Earth.",
+    link: "https://mars.nasa.gov/news/2863/curiosity-peels-back-layers-on-ancient-martian-lake/ ",
   },
   {
     earthDate: "2018-01-02",
-    headline: "Curious rock shapes discovered",
-    subheading: "Biological or Geological?",
+    headline: "Curiosity discovers unusual rock shapes",
+    subheading:
+      "Scientists will investigate whether the tiny, tube-like structures discovered were formed by living organisms or geological processes.",
     link: "https://www.space.com/39294-mars-rover-curiosity-weird-tube-structures.html",
   },
   {
-    earthDate: "2019-10-07",
-    headline: "Ancient basin in Gale Crater discovered",
-    subheading: "Previous location of salty lake?",
-    link: "https://www.jpl.nasa.gov/news/nasas-curiosity-rover-finds-an-ancient-oasis-on-mars",
+    earthDate: "2019-04-11",
+    headline: "Curiosity drills into clay-rich bedrock",
+    subheading:
+      "In a major milestone in the journey up Mount Sharp, Curiosity drills into ‘clay-bearing’ bedrock that scientists believe formed under water.",
+    link: "https://mars.nasa.gov/news/8427/curiosity-tastes-first-sample-in-clay-bearing-unit/ ",
   },
   {
-    earthDate: "2020-02-00",
-    headline: "Organic molecule associated with coal detected on Mars",
-    subheading: "Biological or Non-Biological?",
-    link: "https://phys.org/news/2020-03-molecules-curiosity-rover-early-life.html",
+    earthDate: "2020-03-21",
+    headline: "NASA Team operates rover from home",
+    subheading:
+      "For the first time ever, the entire Curiosity Mars rover mission team worked from home due to the pandemic.",
+    link: "https://mars.nasa.gov/news/8647/nasas-curiosity-keeps-rolling-as-team-operates-rover-from-home/ ",
   },
   {
-    earthDate: "2021-11-01",
-    headline: "First-of-its-kind process observed",
-    subheading: "Including organic moleules and unknown compounds!",
-    link: "https://www.inverse.com/science/organic-molecules-found-on-mars-for-the-first-time",
+    earthDate: "2021-02-18",
+    headline: "Curiosity is joined on Mars by Perseverance rover",
+    subheading:
+      "Curiosity, which has been on Mars for more than 3,000 days, captures stop-motion movie of Perseverance’s descent onto the planet.",
+    link: "https://mars.nasa.gov/news/8866/nasas-perseverance-rover-sends-sneak-peek-of-mars-landing/ ",
   },
 ];
 
 const perseveranceInfoArray = [
   {
-    earthDate: "2020-07-30",
-    headline:
-      "Atlas V rocket, carrying Perseverance, launched from Cape Canaveral",
-    subheading: "Bon Voyage!",
-    link: "https://www.nasa.gov/image-feature/united-launch-alliance-atlas-v-rocket-launches-with-nasas-mars-perseverance-rover",
-  },
-  {
-    earthDate: "2020-02-18",
+    earthDate: "2021-02-18",
     headline: "Perseverance lands on Mars",
-    subheading: "Success!",
+    subheading:
+      "NASA’s Perseverance rover makes a complex landing in the Jezero Crater, making it the US’s fifth successful rover to reach Martian soil.",
     link: "https://www.smithsonianmag.com/smart-news/nasas-perseverance-rover-lands-mars-180977044/",
   },
   {
-    earthDate: "2020-04-03",
-    headline: "Perseverance releases Ingenuity helicopter onto surface of Mars",
-    subheading: "Good Luck!",
-    link: "https://spaceflightnow.com/2021/04/04/mars-rover-deploys-ingenuity-helicopter-for-historic-flight/",
+    earthDate: "2021-04-03",
+    headline: "Perseverance releases “Ingenuity”",
+    subheading:
+      "The 4-pound helicopter, “Ingenuity,” which was previously attached to the belly of Perseverance, was released onto the surface of Mars",
+    link: "https://mars.nasa.gov/news/8906/nasas-mars-helicopter-survives-first-cold-martian-night-on-its-own/",
   },
   {
-    earthDate: "2020-04-19",
-    headline: "First flight test of Ingenuity",
-    subheading: "An historic occasion!",
-    link: "https://astronomynow.com/2021/04/19/ingenuity-mars-copter-makes-historic-first-flight-on-red-planet/",
+    earthDate: "2021-04-19",
+    headline: "”Ingenuity’s historic first flight",
+    subheading:
+      "The small, solar-powered helicopter is the first aircraft in history to make a powered, controlled flight on another planet.",
+    link: "https://mars.nasa.gov/news/8923/nasas-ingenuity-mars-helicopter-succeeds-in-historic-first-flight/",
   },
   {
-    earthDate: "2020-06-01",
+    earthDate: "2021-06-01",
     headline: "Perseverance’s first science campaign begins",
-    subheading: "In Jezero Crater!",
-    link: "https://roundupreads.jsc.nasa.gov/pages.ashx/1711/Perseverance%20Begins%20Its%20First%20Science%20Campaign%20on%20Mars",
+    subheading:
+      "Perseverance leaves the “Octavia E. Butler” landing site in Jezero Crater to kick off the science phase of its mission.",
+    link: "https://mars.nasa.gov/news/8963/nasas-perseverance-rover-begins-its-first-science-campaign-on-mars/",
   },
   {
-    earthDate: "2020-09-01",
-    headline: "Successful rock sampling completed",
-    subheading: "On second attempt!",
-    link: "https://mars.nasa.gov/news/9027/nasas-perseverance-rover-successfully-cores-its-first-rock/",
+    earthDate: "2021-09-06",
+    headline: "Perseverance successfully collects rock sample",
+    subheading:
+      "Perseverance drills into rock in Jezero Crater, collecting the first sample of the mission; a previous attempt on August 6, was unsuccessful.",
+    link: "https://mars.nasa.gov/news/9029/nasas-perseverance-rover-collects-first-mars-rock-sample/",
   },
   {
-    earthDate: "2020-12-05",
-    headline: "Seventeenth flight of Ingenuity",
-    subheading: "Now awaits arrival of Perseverance rover",
-    link: "http://www.sci-news.com/space/ingenuity-seventeenth-flight-10376.html#:~:text=On%20December%205%2C%202021%2C%20NASA's,arrival%20of%20the%20Perseverance%20rover.",
+    earthDate: "2020-12-15",
+    headline: "Ingenuity reaches flight milestone",
+    subheading:
+      "With its seventeenth flight, the helicopter, Ingenuity, passes the 30-minute mark on its total flight time, having traveled a total of 2.2 miles.",
+    link: "https://mars.nasa.gov/news/9099/nasas-ingenuity-mars-helicopter-reaches-a-total-of-30-minutes-aloft/",
   },
 ];
 
