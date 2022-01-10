@@ -168,7 +168,7 @@ for (let i = 0; i < teardrops.length; i++) {
 /////search for date info///////
 // async function checkDates() {
 //   const response = await fetch(
-//     `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-03-04&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
+//     `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-02-18&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
 //   );
 //   const locationData = await response.json();
 //   console.log(locationData);
@@ -556,14 +556,29 @@ const fetchRoverData = async (url) => {
 
 // (step 3) handler function, calls fetch for each date we are interested in
 const manageFetchRequests = async (earthDatesToFetch) => {
-  const requests = earthDatesToFetch.map((earthDate) => {
-    const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
-    return fetchRoverData(url).then((a) => {
-      return a; // Returns the user info.
+  if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
+    // console.log("curiosity");
+    //const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
+    const requests = earthDatesToFetch.map((earthDate) => {
+      const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
+      return fetchRoverData(url).then((a) => {
+        return a; // Returns the user info.
+      });
     });
-  });
-  return Promise.all(requests); // Waiting for all the requests to get resolved.
+    return Promise.all(requests); // Waiting for all the requests to get resolved.
+  } else {
+    console.log("perseverance");
+    //const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
+    const requests = earthDatesToFetch.map((earthDate) => {
+      const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
+      return fetchRoverData(url).then((a) => {
+        return a; // Returns the user info.
+      });
+    });
+    return Promise.all(requests); // Waiting for all the requests to get resolved.
+  }
 };
+
 //(step 5)
 const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
   console.log(roverDataArrayMultipleFetches); //check here, see what photos are in there
@@ -577,7 +592,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
     if (i % 2 === 0) {
       timelineElementsContent[
         i
-      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+      ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
       // console.log(roverDataArrayMultipleFetches);
       // console.log(circleElementsCounter);
       circleElementsCounter += 1;
@@ -588,7 +603,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       //check for these photos coming in here as well
       timelineElementsContent[
         i
-      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div></div>`;
+      ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
       squareElementsCounter += 1;
     }
   }

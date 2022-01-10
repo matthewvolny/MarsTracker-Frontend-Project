@@ -118,14 +118,14 @@ const curiosityMapInfo = [
 //timeline info arrays
 const curiosityInfoArray = [
   {
-    earthDate: "2012-08-05",
+    earthDate: "2012-08-06",
     headline: "Curiosity lands on Mars",
     subheading:
       "After a 36-week flight from Cape Canaveral, the Curiosity rover lands in Gale Crater near foot of Martian mountain.",
     link: "https://mars.nasa.gov/news/1288/nasa-lands-car-size-rover-beside-martian-mountain/?site=msl ",
   },
   {
-    earthDate: "2013-03-12",
+    earthDate: "2013-03-14",
     headline: "Curiosity finds key ingredients for life on Mars",
     subheading:
       "Rock sample from ancient stream bed shows some of the chemical elements needed by living microbes, including oxygen and carbon.",
@@ -153,7 +153,7 @@ const curiosityInfoArray = [
     link: "https://mars.nasa.gov/news/1936/nasas-curiosity-rover-begins-next-mars-chapter/ ",
   },
   {
-    earthDate: "2017-06-01",
+    earthDate: "2017-06-02",
     headline: "Curiosity explores ancient Martian lake",
     subheading:
       "Data suggests that a large, long-lasting ancient lake in Gale Crater had different environments in deep and shallow waters, similar to large lakes on Earth.",
@@ -174,7 +174,7 @@ const curiosityInfoArray = [
     link: "https://mars.nasa.gov/news/8427/curiosity-tastes-first-sample-in-clay-bearing-unit/ ",
   },
   {
-    earthDate: "2020-03-20",
+    earthDate: "2020-03-21",
     headline: "NASA Team operates rover from home",
     subheading:
       "For the first time ever, the entire Curiosity Mars rover mission team worked from home due to the pandemic.",
