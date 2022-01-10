@@ -33,6 +33,14 @@ const renderRoverMap = () => {
   canvasContainer.classList.add("show-canvas-container");
   backgroundImageContainer.classList.add("show-background-image-container");
   const waypoint = document.querySelectorAll(".waypoint");
+  const curiosityTeardropShadow = document.querySelector(
+    ".curiosity-teardrop-shadow"
+  );
+  const perseveranceTeardropShadow = document.querySelector(
+    ".perseverance-teardrop-shadow"
+  );
+  curiosityTeardropShadow.style.visibility = "hidden";
+  perseveranceTeardropShadow.style.visibility = "hidden";
   for (let i = 0; i < teardrops.length; i++) {
     teardrops[i].style.visibility = "hidden";
   }
@@ -41,12 +49,14 @@ const renderRoverMap = () => {
   }
   const roverMapInfoPopup = document.querySelector(".rover-map-info-popup");
   const timelineInfoPopup = document.querySelector(".timeline-info-popup");
+  const perseveranceSvg = document.querySelector(".perseverance-svg");
   setTimeout(() => {
     roverMapInfoPopup.setAttribute("id", "show-rover-info-popup");
+    perseveranceSvg.setAttribute("id", "show-perseverance-svg");
   }, 1500);
-  setTimeout(() => {
-    roverMapInfoPopup.removeAttribute("id", "show-rover-info-popup");
-  }, 10000);
+  // setTimeout(() => {
+  //   roverMapInfoPopup.removeAttribute("id", "show-rover-info-popup");
+  // }, 10000);
   // setTimeout(() => {
   //   timelineInfoPopup.setAttribute("id", "show-rover-info-popup");
   // }, 1000);
@@ -179,12 +189,12 @@ body.addEventListener("click", (e) => {
       ".rover-waypoint-info-container"
     );
     if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
-      waypointInfoCard.classList.add("reveal-curiosity-waypoint-info");
+      waypointInfoCard.classList.add("reveal-waypoint-info");
       renderMapCards(e.target.classList, curiosityMapInfo);
 
       // waypointInfoCard.innerHTML = `<div class = "waypoint-date">${}</div>`;
     } else {
-      waypointInfoCard.classList.add("reveal-perseverance-waypoint-info");
+      waypointInfoCard.classList.add("reveal-waypoint-info");
       renderMapCards(e.target.classList, perseveranceMapInfo);
     }
   }
@@ -861,7 +871,7 @@ function addInViewToMars() {
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
   ) {
-    backgroundImage.src = "/assets/perseverance-mars-surface-imagepsd.jpg";
+    backgroundImage.src = "assets/perseverance map recolored.jpg";
     backgroundImageContainer.classList.add("perseverance-mars-image-overlay");
     curiosityRoverPopupContainer.setAttribute(
       "id",
