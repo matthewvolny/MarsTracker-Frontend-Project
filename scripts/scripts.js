@@ -642,7 +642,10 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       if (i % 2 === 0) {
         timelineElementsContent[
           i
-        ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+        ].innerHTML = `<div class= "circle-element">
+                          <div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div>
+                          <div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div>
+                      </div>`;
         // console.log(roverDataArrayMultipleFetches);
         // console.log(circleElementsCounter);
         circleElementsCounter += 1;
@@ -654,18 +657,29 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         if (i === 5) {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          ].innerHTML = `<div class="square-element">
+                            <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
+                            <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
+                            <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
+                            <div class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</div>
+                        </div>`;
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
-          <div class="rovey-fact"></div>
-        </div>`;
+                              <div class = "rovey-timeline-image-container">
+                              <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
+                              <div class="rovey-fact"></div>
+                          </div>`;
           squareElementsCounter += 1;
         } else {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          ].innerHTML = `<div class="square-element">
+                            <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
+                            <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
+                            <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
+                            <div class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</div>
+                        </div>`;
           squareElementsCounter += 1;
         }
       }
@@ -681,7 +695,10 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       if (i % 2 === 0) {
         timelineElementsContent[
           i
-        ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
+        ].innerHTML = `<div class= "circle-element">
+                          <div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div>
+                          <div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div>
+                      </div>`;
         // console.log(roverDataArrayMultipleFetches);
         // console.log(circleElementsCounter);
         circleElementsCounter += 1;
@@ -693,18 +710,29 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         if (i === 5) {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          ].innerHTML = `<div class="square-element">
+                            <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
+                            <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
+                            <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
+                            <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</div>
+                        </div>`;
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
-          <div class="rovey-fact"></div>
-        </div>`;
+                            <div class = "rovey-timeline-image-container">
+                            <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
+                            <div class="rovey-fact"></div>
+                          </div>`;
           squareElementsCounter += 1;
         } else {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
+          ].innerHTML = `<div class="square-element">
+                          <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
+                          <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
+                          <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
+                          <div class="timeline-link">${infoArray[squareElementsCounter].link}</div>
+                        </div>`;
           squareElementsCounter += 1;
         }
       }
