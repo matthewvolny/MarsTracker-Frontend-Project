@@ -658,7 +658,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
+          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="assets/rovey.svg" alt="" class=""></div>
           <div class="rovey-fact"></div>
         </div>`;
           squareElementsCounter += 1;
@@ -697,7 +697,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
+          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="assets/rovey.svg" alt="" class=""></div>
           <div class="rovey-fact"></div>
         </div>`;
           squareElementsCounter += 1;
