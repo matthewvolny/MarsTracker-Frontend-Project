@@ -92,6 +92,8 @@ for (let i = 0; i < teardrops.length; i++) {
       e.target.classList.contains("curiosity-teardrop")
     ) {
       renderRoverMap();
+      const selectRoverButton = document.querySelector(".dropdown-container");
+      selectRoverButton.classList.add("hide-select-rover-button");
     } else if (
       retrievePerseveranceData.classList.contains(
         "perseverance-button-clicked"
@@ -99,6 +101,8 @@ for (let i = 0; i < teardrops.length; i++) {
       e.target.classList.contains("perseverance-teardrop")
     ) {
       renderRoverMap();
+      const selectRoverButton = document.querySelector(".dropdown-container");
+      selectRoverButton.classList.add("hide-select-rover-button");
     } else if (
       retrieveCuriosityData.classList.contains("curiosity-button-clicked") &&
       e.target.classList.contains("perseverance-teardrop")
@@ -135,8 +139,6 @@ for (let i = 0; i < teardrops.length; i++) {
       messageBox.textContent = message;
       perseveranceTeardropContainer.appendChild(messageBox);
     }
-    const selectRoverButton = document.querySelector(".dropdown-container");
-    selectRoverButton.classList.add("hide-select-rover-button");
   });
 }
 /////search for date info///////
@@ -189,6 +191,19 @@ const addRoverWaypoints = (
   canvasContainer.appendChild(waypoint);
 };
 
+// const toggleWaypointInfoCardId = () => {
+//   const waypointInfoCard = document.querySelector(
+//     ".rover-waypoint-info-container"
+//   );
+//   if (waypointInfoCard.hasAttribute("show-waypoint-info-popup")) {
+//     console.log("hello");
+//     waypointInfoCard.removeAttribute("show-waypoint-info-popup");
+//   } else {
+//     console.log("bye");
+//     waypointInfoCard.setAttribute("id", "show-waypoint-info-popup");
+//   }
+// };
+
 //event listeners for rover waypoints
 const body = document.querySelector("body");
 body.addEventListener("click", (e) => {
@@ -198,17 +213,36 @@ body.addEventListener("click", (e) => {
     const waypointInfoCard = document.querySelector(
       ".rover-waypoint-info-container"
     );
-    if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
-      waypointInfoCard.classList.add("reveal-waypoint-info");
-      renderMapCards(e.target.classList, curiosityMapInfo);
 
+    if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
+      // waypointInfoCard.classList.add("reveal-waypoint-info");
+      waypointInfoCard.setAttribute("id", "show-waypoint-info-popup");
+      // waypointInfoCard.setAttribute("id", "show-waypoint-info-popup");
+      renderMapCards(e.target.classList, curiosityMapInfo);
+      // toggleWaypointInfoCardId();
+      // waypointInfoCard.removeAttribute("show-waypoint-info-popup");
       // waypointInfoCard.innerHTML = `<div class = "waypoint-date">${}</div>`;
     } else {
-      waypointInfoCard.classList.add("reveal-waypoint-info");
+      //
+      waypointInfoCard.setAttribute("id", "show-waypoint-info-popup");
       renderMapCards(e.target.classList, perseveranceMapInfo);
+      // toggleWaypointInfoCardId();
+      // waypointInfoCard.removeAttribute("show-waypoint-info-popup");
     }
   }
+  const selectRoverButton = document.querySelector(".dropdown-container");
+  setTimeout(() => {
+    selectRoverButton.classList.remove("hide-select-rover-button");
+  }, 20000);
 });
+
+// const changediv() {
+//   if (document.getElementById("one")) {
+//     document.getElementById("one").id = "two";
+//   } else {
+//     document.getElementById("two").id = "one";
+//   }
+// }
 
 //scale rover waypoint x and y values for 50px/50px canvas, and call addRoverWaypoints (rover plotting function) for select dates
 
