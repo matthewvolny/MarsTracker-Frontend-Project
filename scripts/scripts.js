@@ -539,9 +539,9 @@ const drawRoverPosition = (
 
 ///
 // (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
-const fetchRoverData = async (url) => {
-  // console.log(url);
-  // console.log(`Fetching ${url}`);
+const fetchRoverData = async (roverName, earthDate) => {
+
+  const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?earth_date=${earthDate}&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`;
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
 
@@ -601,6 +601,25 @@ const fetchRoverData = async (url) => {
   // };
 };
 
+// (step 3.5) make slideshow 
+function advanceAllSlides(){
+    
+    const allTheImageDivs = document.querySelectorAll(".timeline-image-container");
+    console.log(`updating ${allTheImageDivs.length} images...`)
+    for(let imageDiv of allTheImageDivs) {
+      const roverName = imageDiv.dataset.roverName;
+      const earthDate = imageDiv.dataset.earthDate;
+      const whichItem = getArrayItemByRoverNameAndDate(roverName, earthDate);
+      const randomImageIndex = Math.floor(Math.random() * whichItem.photos.length)
+      const imgSrc = whichItem.photos[randomImageIndex].img_src;
+      imageDiv.innerHTML = `<img src="${imgSrc}"/>`
+    }
+
+    
+    setTimeout(advanceAllSlides, 2000);
+
+}
+
 // (step 3) handler function, calls fetch for each date we are interested in
 const manageFetchRequests = async (earthDatesToFetch) => {
   if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
@@ -627,7 +646,7 @@ const manageFetchRequests = async (earthDatesToFetch) => {
 };
 
 //(step 5)
-const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
+const populateTimeline = (roverName, infoArray, roverDataArrayMultipleFetches) => {
   console.log(roverDataArrayMultipleFetches); //check here, see what photos are in there
   console.log(infoArray);
 
@@ -805,7 +824,7 @@ const reHideTimelineElements = () => {
 };
 
 // (step2) event listener for "curiosity" rover dropdown button (adds class to button and retrieves positional data)
-retrieveCuriosityData.addEventListener("click", (e) => {
+retrieveCuriosityData.addEventListener("click", async (e) => {
   const curiosityMessageBox = document.querySelector(".curiosity-message-box");
   const perseveranceMessageBox = document.querySelector(
     ".perseverance-message-box"
@@ -834,10 +853,11 @@ retrieveCuriosityData.addEventListener("click", (e) => {
     populateTimeline(curiosityInfoArray, data);
   }); //call fetch data function with dates we are interested in (from our homemade array)
   reHideTimelineElements();
+  setTimeout(advanceAllSlides, 2000);
 });
 
 // (step2) event listener for "perseverance" rover dropdown button (adds class to button and retrieves positional data)
-retrievePerseveranceData.addEventListener("click", (e) => {
+retrievePerseveranceData.addEventListener("click", async (e) => {
   const curiosityMessageBox = document.querySelector(".curiosity-message-box");
   const perseveranceMessageBox = document.querySelector(
     ".perseverance-message-box"
@@ -862,6 +882,7 @@ retrievePerseveranceData.addEventListener("click", (e) => {
     populateTimeline(perseveranceInfoArray, data);
   });
   reHideTimelineElements();
+  setTimeout(advanceAllSlides, 2000);
 });
 
 //displays random mars fact in timeline
