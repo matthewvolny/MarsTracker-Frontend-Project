@@ -1035,22 +1035,22 @@ body * + * {
   }
 
   .rover-waypoint-info-container > .waypoint-date {
-    font-size: 1.1em;
+    font-size: 1.6em;
     color: tomato;
   }
 
   .rover-waypoint-info-container > .waypoint-miles {
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: blue;
   }
 
   .waypoint-headline {
-    font-size: 1.1em;
+    font-size: 1.4em;
     /* font-weight: bold; */
   }
 
   .waypoint-additional-text {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 
   /* .reveal-waypoint-info {
@@ -1468,18 +1468,18 @@ body * + * {
 
   .timeline-headline {
     font-size: 1.6em;
-    color: white,
+    color: white;
     font-weight: bold;
   }
 
   .timeline-subheading {
     font-size: 1.1em;
-    color: black;
+    color: white;
   }
 
   .timeline-link {
     font-size: 1em;
-    color: rgb(179, 146, 220);
+    color: white;
   }
 
   /* right circle timeline elements */
@@ -2973,12 +2973,12 @@ div.square-element {
 
   .timeline-subheading {
     font-size: 1.2em;
-    color: rgb(179, 146, 220);
+    styling for jan11 done
   }
 
   .timeline-link {
     font-size: 1em;
-    color: rgb(179, 146, 220);
+    styling for jan11 done
   }
 
   /* right circle timeline elements */
