@@ -135,6 +135,8 @@ for (let i = 0; i < teardrops.length; i++) {
       messageBox.textContent = message;
       perseveranceTeardropContainer.appendChild(messageBox);
     }
+    const selectRoverButton = document.querySelector(".dropdown-container");
+    selectRoverButton.classList.add("hide-select-rover-button");
   });
 }
 /////search for date info///////
