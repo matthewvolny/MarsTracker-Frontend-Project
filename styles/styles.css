@@ -11,9 +11,9 @@
   box-sizing: inherit;
 }
 
-/* * {
+* {
   border: #b6e08c 1px solid;
-} */
+}
 
 body {
   background-color: #fcef68;
@@ -35,6 +35,1451 @@ body * + * {
   display: contents;
 }
 
+/*set to min-width: 1139px */
+@media only screen and (min-width: 950px) and (max-width: 1139px) {
+  /* CSS grid for intro section */
+  .intro-section {
+    height: 57vh;
+    width: 100%;
+    max-width: 1300px;
+    min-height: 400px;
+    margin: 0 auto;
+  }
+
+  .logo-and-navigation-flexbox {
+    height: 9vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .bee-container {
+    height: 100%;
+    width: 12%;
+    margin-left: 1%;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .bee-container > img {
+    max-height: 120%;
+    display: inline-block;
+    transform: rotate(-15deg);
+    margin-top: -5px;
+  }
+
+  .navigation {
+    margin: 0;
+  }
+
+  .logo-and-navigation-flexbox li {
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.35em;
+    padding: 1.3em;
+  }
+
+  .roveys-intro-container-flexbox {
+    display: flex;
+    left: 3%;
+  }
+
+  /* Rovey's introduction text box */
+  .intro-text {
+    width: 83%;
+    font-family: "Permanent Marker", cursive;
+    font-size: 1.7rem;
+    letter-spacing: 0.1em;
+    text-align: center; /*might try removing this */
+    padding: 1.5em;
+    color: white;
+    background-color: #6cc8bb;
+    /* min-height: 500px; */
+    margin: 0;
+    z-index: 10;
+  }
+
+  /* .star {
+    grid-area: 3/ 11 / span 3 / span 3;
+    margin-top: 0;
+  }
+
+  .star img {
+    height: 100%;
+    display: block;
+    object-position: cover;
+  } */
+
+  /* rovey container element */
+  .rovey-outer-container {
+    width: 17%;
+  }
+
+  .rovey-inner-container {
+    position: relative;
+    /* margin-left: 3%; */
+    left: -150px;
+    top: 240px;
+    margin-left: 15%;
+    overflow: hidden;
+    border-radius: 50%;
+    border: #fafefd solid 6px;
+    height: 32vmin;
+    width: 32vmin;
+    background-color: white;
+    z-index: 15;
+  }
+
+  .rovey-inner-container > img {
+    /* transform: scaleX(-1); */
+    object-position: cover;
+    position: relative;
+    height: 150%;
+    margin-left: -600px;
+    top: 38px;
+  }
+
+  .planet {
+    grid-area: 8/ 10 / span 3 / span 3;
+    margin: 0;
+  }
+
+  .planet img {
+    object-position: contain;
+    height: 100%;
+  }
+
+  .moon {
+    grid-area: 10/ 8 / span 2 / span 2;
+  }
+
+  .moon img {
+    height: 100%;
+    object-position: cover;
+  }
+
+  /* .intro-text::after {
+    content: "";
+    border-bottom: 3px dotted #666;
+    border-right: 3px dotted #666;
+    display: block;
+    height: 50px;
+    width: 100px;
+    z-index: 15;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 350px;
+    top: 525px;
+    border: 25px solid;
+    border-color: #b7bdf7 #b7bdf7 transparent transparent;
+  } */
+
+  /* planet and rover map flex container */
+  .planet-map-container {
+    height: 100vh;
+    width: 100%;
+    max-width: 1300px;
+    min-height: 830px;
+    margin: 0 auto;
+    /* display: inline-block; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Select rover dropdown container */
+  .dropdown-container {
+    cursor: pointer;
+    /* display: inline-block; */
+    position: absolute;
+    z-index: 2;
+    min-width: 280px;
+    /* margin-left: -90%; */
+    margin-right: 800px;
+    /* margin-top: -80%; */
+    margin-bottom: 800px;
+    margin-left: 13.5em;
+    margin-top: 1em;
+    transition: all 300ms ease-in-out;
+  }
+
+  .hide-select-rover-button {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  /* Select rover dropdown button */
+  .select-rover-button {
+    color: #d083af;
+    background-color: white;
+    border: #d083af solid 3px;
+    padding: 0.6em 1em;
+    text-align: center;
+    font-size: 1.75em;
+    /* box-shadow: 0px 4px 3px -3px rgba(0,0,0,0.5); */
+    /* border-radius: 1.1em; */
+  }
+
+  /* rover button hover styling */
+  .select-rover-button:hover {
+    background-color: #d083af;
+    color: white;
+  }
+
+  /* div holding ul list of dropdown items */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* ul within dropdown list */
+  .dropdown-menu > ul {
+    list-style: none;
+    border-left: #d083af solid 3px;
+    border-right: #d083af solid 3px;
+    background-color: white;
+    margin: 0;
+  }
+
+  /* li elements within dropdown list */
+  .dropdown-menu > ul li {
+    margin-top: 0;
+  }
+
+  /* dropdown menu items */
+  .dropdown-menu > ul li a {
+    color: #d083af;
+    border-bottom: #d083af solid 3px;
+    background-color: white;
+    /* padding: 0.6em 1em; */
+    font-size: 1.8em;
+    /* border-radius: 1.2em; */
+    cursor: pointer;
+    padding: 0.6em 1.2em;
+    margin-top: 0;
+    display: block;
+    text-decoration: none;
+  }
+
+  /* dropdown menu coloring upon hover */
+  .dropdown-menu > ul li a:hover {
+    background-color: #d083af;
+    color: white;
+  }
+
+  /* shows dropdown list on button click */
+  .show {
+    display: block;
+    /* height: 100%; */
+    /* animation: slide-down 3s linear; */
+
+    /* display: flex;
+    flex-direction: column; */
+  }
+
+  /* @keyframes slide-down {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 100px;
+    transform: translateY(100px);
+  }
+} */
+
+  /* mars image */
+  .mars-image {
+    height: 650px;
+    width: 650px;
+    margin: 75px auto 0px auto;
+    position: relative;
+    /* right: 200px; */
+    background-color: coral;
+    /* border: #ebebeb solid 2px; */
+    border-radius: 50%;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes animate-for-curiosity {
+    0% {
+      transform: rotateY(0deg) rotateX(0deg) /*rotateZ(0deg)*/;
+    }
+    10% {
+      transform: rotateY(-4deg);
+    }
+    100% {
+      transform: rotateY(-35deg);
+    }
+  }
+
+  @keyframes animate-for-perseverance {
+    0% {
+      transform: rotateZ(19deg) rotateY(0deg) rotateX(0deg);
+    }
+    10% {
+      transform: rotateX(-4deg);
+    }
+    100% {
+      transform: rotateZ(19deg) rotateX(-35deg);
+    }
+  }
+
+  /* transform: rotateY(75deg) rotatex(71deg); */
+  .circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+  }
+
+  #curiosity-selected-circle1-globe-effect {
+    animation: animate-for-curiosity 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  .circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 51;
+    margin-top: -17px;
+    /* margin-top: -200px;  */
+    /* margin-top: -19px; */
+  }
+
+  #perseverance-selected-circle2-globe-effect {
+    animation: animate-for-perseverance 3s linear;
+    animation-fill-mode: forwards;
+  }
+  /*
+  .longitude-circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+    transform: rotateZ(-70deg) rotateX(60deg);
+    margin-top: -19px;
+  }
+  .longitude-circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 50;
+    transform: rotateZ(-70deg) rotateX(76deg);
+    margin-top: -19px;
+  }
+  .latitude-circle1 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    margin-top: -19px;
+    z-index: 20;
+  }
+  .latitude-circle2 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 20;
+    margin-top: -19px;
+    transform: rotateX(75deg);
+  }
+  .latitude-circle3 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(78deg);
+    z-index: 20;
+  }
+  .latitude-circle4 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(85deg);
+    z-index: 20;
+  }
+  .latitude-circle5 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    z-index: 20;
+    transform: rotateX(-45deg);
+  }
+  .latitude-circle6 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 20;
+    margin-top: -19px;
+    transform: rotateX(-70deg);
+  }
+  .latitude-circle7 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(-65deg);
+    z-index: 20;
+  }
+  .latitude-circle8 {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border: 2px solid red;
+    border-radius: 50%;
+    opacity: 0.5;
+    margin-top: -19px;
+    transform: rotateX(-85deg);
+    z-index: 20;
+  }
+*/
+  /* .mars-image {
+    background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #055194 80%, #062745 100%);
+    );
+  } */
+
+  /* .mars-image:before {
+    content: “”;
+    position: absolute;
+    top: 1%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 50% 0px,
+      #ffffff,
+      rgba(255, 255, 255, 0) 58%
+    );
+    filter: blur(5px);
+    z-index: 20;
+  } */
+  /* .mars-image .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0) 50%
+    );
+    transform: rotateX(90deg) translateZ(-150px);
+    z-index: -1;
+  } */
+
+  /* minimizes the planet on button click */
+  .minimize-planet {
+    animation: scale-down-bl 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes scale-down-bl {
+    0% {
+      transform: scale(1) translateX(0) translateY(0);
+      transform-origin: 0% 100%;
+    }
+    100% {
+      transform: scale(0.65) translateX(-175px) translateY(70px);
+      transform-origin: 0% 100%;
+    }
+  }
+
+  /* expands rover route map and overlay */
+  .rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    height: 50px;
+    /* border: powderblue 1px solid; */
+    margin-left: -200px;
+    margin-bottom: -50px;
+    z-index: 7;
+  }
+
+  /* container for  */
+  .curiosity-rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    height: 50px;
+    margin-left: 203px;
+    margin-bottom: -91px;
+    z-index: 1;
+  }
+
+  /* container keeping the rover map(hidden) next to the teardrop */
+  .perseverance-rover-route-container {
+    position: absolute;
+    margin: 0;
+    width: 150px;
+    margin-left: -17px;
+    margin-bottom: 258px;
+    z-index: 1;
+  }
+
+  #curiosity-selected-in-viewport-curiosity {
+    animation: CuriositySelectedShiftCuriosity 3s linear;
+    animation-fill-mode: forwards;
+    /* animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;  */
+  }
+
+  #curiosity-selected-in-viewport-perseverance {
+    animation: CuriositySelectedShiftPerseverance 3s linear;
+    animation-fill-mode: forwards;
+    /* animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards; */
+  }
+
+  #perseverance-selected-in-viewport-curiosity {
+    animation: PerseveranceSelectedShiftCuriosity 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  #perseverance-selected-in-viewport-perseverance {
+    animation: PerseveranceSelectedShiftPerseverance 3s linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes CuriositySelectedShiftCuriosity {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+    20% {
+      transform: translateX(-31.6px) translateY(1px) scale(1.01);
+    }
+    40% {
+      transform: translateX(-63.2px) translateY(2px) scale(1.02);
+    }
+    60% {
+      transform: translateX(-94.8px) translateY(1px) scale(1.03);
+    }
+    80% {
+      transform: translateX(-126.4px) translateY(0px) scale(1.04);
+    }
+    100% {
+      transform: translateX(-158px) translateY(-4px) scale(1.05);
+    }
+  }
+
+  @keyframes CuriositySelectedShiftPerseverance {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+    20% {
+      transform: translateX(-31.6px) translateY(2px) scale(0.99);
+    }
+    40% {
+      transform: translateX(-63.2px) translateY(4px) scale(0.98);
+    }
+    60% {
+      transform: translateX(-94.8px) translateY(7px) scale(0.97);
+    }
+    80% {
+      transform: translateX(-126.4px) translateY(12px) scale(0.96);
+    }
+    100% {
+      transform: translateX(-158px) translateY(17px) scale(0.95);
+    }
+  }
+
+  @keyframes PerseveranceSelectedShiftCuriosity {
+    0% {
+      transform: translateX(0px) translateY(0px);
+    }
+    20% {
+      transform: translateX(-10px) translateY(26px) scale(0.99);
+    }
+    40% {
+      transform: translateX(-22px) translateY(52px) scale(0.98);
+    }
+    60% {
+      transform: translateX(-35px) translateY(78px) scale(0.97);
+    }
+    80% {
+      transform: translateX(-48px) translateY(104px) scale(0.96);
+    }
+    100% {
+      transform: translateX(-63px) translateY(130px) scale(0.95);
+    }
+  }
+
+  @keyframes PerseveranceSelectedShiftPerseverance {
+    0% {
+      transform: translateX(0px) translateY(0px);
+    }
+    20% {
+      transform: translateX(-10px) translateY(26px) scale(1.01);
+    }
+    40% {
+      transform: translateX(-19px) translateY(52px) scale(1.02);
+    }
+    60% {
+      transform: translateX(-28px) translateY(78px) scale(1.03);
+    }
+    80% {
+      transform: translateX(-37px) translateY(104px) scale(1.04);
+    }
+    100% {
+      transform: translateX(-44px) translateY(130px) scale(1.05);
+    }
+  }
+
+  /* rover landing site button (expands rover route map when clicked) */
+  .teardrop {
+    background-color: plum;
+    height: 50px;
+    width: 50px;
+    z-index: 2147483647 !important;
+    border: papayawhip 2px solid;
+    transform: rotate(45deg);
+    border-radius: 50% 50% 0% 50%;
+    margin: 0;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  .perseverance-teardrop-shadow {
+    position: absolute;
+    z-index: -10;
+    bottom: -72px;
+    left: -17px;
+    height: 5px;
+    width: 15px;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 35px 5px 4px 1px rgba(0, 0, 0, 0.4);
+    animation: slow-bounce-shadow 6s ease infinite;
+  }
+
+  .perseverance-teardrop {
+    animation: slow-bounce 6s ease infinite;
+    z-index: 350;
+  }
+
+  .perseverance-teardrop::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    opacity: 0.95;
+    z-index: 150;
+    border-radius: 50%;
+    transform: translateX(13px) translateY(13px);
+    position: absolute;
+  }
+
+  .curiosity-teardrop::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    opacity: 0.95;
+    z-index: 150;
+    border-radius: 50%;
+    transform: translateX(13px) translateY(13px);
+    position: absolute;
+  }
+
+  .curiosity-teardrop {
+    animation: slow-bounce 6s ease infinite;
+    z-index: 350;
+  }
+
+  .curiosity-teardrop-shadow {
+    position: absolute;
+    z-index: -10;
+    bottom: -20px;
+    left: -18px;
+    height: 5px;
+    width: 15px;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 35px 5px 4px 1px rgba(0, 0, 0, 0.4);
+    animation: slow-bounce-shadow 6s ease infinite;
+  }
+
+  @keyframes slow-bounce {
+    0% {
+      transform: rotate(45deg) scale(1);
+    }
+    10% {
+      transform: rotate(45deg) scale(1.08);
+    }
+    30% {
+      transform: rotate(45deg) scale(1.08) translateX(4) translateY(4px);
+      /* background-color: red; */
+    }
+    50% {
+      transform: rotate(45deg) scale(1);
+      /* background-color: aqua; */
+    }
+    57% {
+      transform: rotate(45deg) scale(1) translateX(3px) translateY(3px);
+      /* background-color: blueviolet; */
+    }
+    64% {
+      transform: rotate(45deg) scale(1);
+      /* background-color: orange; */
+    }
+    100% {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+
+  @keyframes slow-bounce-shadow {
+    0% {
+      transform: scale(1);
+    }
+    10% {
+      transform: translateX(-7px) translateY(-1px) scale(1.22);
+    }
+    30% {
+      transform: translateX(-7px) translateY(-1px) scale(1.22);
+    }
+    50% {
+      transform: scale(1);
+    }
+    57% {
+      transform: translateX(-7px) translateY(-1px) scale(1.2);
+    }
+    64% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .curiosity-message-box {
+    display: flex;
+    position: absolute;
+    width: 175px;
+    height: 175px;
+    margin-left: 15px;
+    margin-top: -150px;
+    font-size: 1.3em;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+  }
+
+  .message-box:after {
+    position: absolute;
+    content: "";
+    z-index: -10;
+    bottom: -24px;
+    left: -15px;
+    height: 17px;
+    width: 52px;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 75px 5px 4px 1px rgba(0, 0, 0, 0.4);
+  }
+
+  .perseverance-message-box {
+    display: flex;
+    position: absolute;
+    width: 175px;
+    height: 175px;
+    margin-left: 15px;
+    margin-top: -150px;
+    font-size: 1.3em;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+  }
+
+  .hide {
+    visibility: hidden;
+  }
+
+  /* container for plotting dom elements over rover route map */
+  .canvas-container {
+    /* border: springgreen solid 1px; */
+    visibility: visible;
+    width: 75px;
+    height: 75px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 9;
+  }
+
+  .show-canvas-container {
+    /* background-color: springgreen; */
+    width: 50px;
+    height: 50px;
+    animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;
+    border-radius: 0.1em;
+    padding: 0;
+    margin: 0;
+  }
+
+  .waypoint {
+    position: absolute;
+    visibility: hidden;
+    width: 2px;
+    height: 2px;
+    margin: 0;
+    border-radius: 50%;
+    opacity: 0.8;
+    background-color: skyblue;
+    padding: 0;
+    margin: 0;
+    z-index: 55;
+    cursor: pointer;
+
+    /* transition: all 500ms linear; */
+  }
+
+  /* .waypoint:after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    margin-left: 30%;
+    margin-top: 0px;
+    border-radius: 50%;
+    z-index: 0;
+  } */
+
+  .show-waypoint {
+    visibility: visible;
+    opacity: 1;
+    z-index: 55;
+  }
+
+  .waypoint:active {
+    transform: scale(0.9);
+  }
+
+  .rover-route {
+    visibility: hidden;
+    opacity: 0;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    /* border: green solid 1px; */
+    position: absolute;
+    /* background: grey; */
+    z-index: 5;
+  }
+
+  .background-image-container {
+    visibility: hidden;
+    opacity: 0;
+    /* border: 1px solid royalblue; */
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    border: white solid 1px;
+    /* border-radius: 0.1em; */
+    position: absolute;
+    overflow: hidden;
+    /* box-shadow: -1px 1px 1px 0px rgba(0,0,0,0.2);  */
+  }
+
+  .show-background-image-container {
+    visibility: visible;
+    opacity: 1;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+
+    /* border-radius: 0.1em; */
+    animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .background-image-container > img {
+    visibility: visible;
+    display: block;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    /* border: palegoldenrod solid 1px; */
+    /* bottom: -1px; */
+  }
+
+  .curiosity-mars-image-overlay > img {
+    /* transform: rotate(5deg); */
+    width: 59px;
+    bottom: -5px;
+    left: -6px;
+  }
+
+  .perseverance-mars-image-overlay > img {
+    /* transform: rotate(5deg); */
+    width: 63px;
+    bottom: -13px;
+    left: -1px;
+  }
+
+  .show-rover-route {
+    visibility: visible;
+    opacity: 1;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    /* border: grey dotted 1px; */
+    border-radius: 0.1em;
+    animation: scale-up-bl 1.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes scale-up-bl {
+    0% {
+      transform: scale(1) translateX(0px);
+      transform-origin: 0% 69%;
+    }
+    100% {
+      transform: scale(12) translateX(5px);
+      transform-origin: 0% 69%;
+    }
+  }
+
+  .rover-route:hover {
+    cursor: pointer;
+  }
+
+  .rover-dot {
+    height: 50px;
+    width: 50px;
+    border: solid rebeccapurple 2px;
+    background-color: seagreen;
+    z-index: 20;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+  }
+
+  .rover-waypoint-info-container {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    /* height: 225px; */
+    width: 350px;
+    height: 599px;
+    font-size: 1.2em;
+    padding: 1em 1.1em;
+    margin-left: 120px;
+    margin-bottom: 178px;
+    z-index: -50;
+    /* text-align: center; */
+    background-color: paleturquoise;
+    border-radius: 1.5em 0em 0em 1.5em;
+    /* overflow: scroll; */
+  }
+
+  .rover-waypoint-info-container > .waypoint-date {
+    font-size: 1.1em;
+    color: tomato;
+  }
+
+  .rover-waypoint-info-container > .waypoint-miles {
+    font-size: 1.1em;
+    color: blue;
+  }
+
+  .waypoint-headline {
+    font-size: 1.1em;
+    /* font-weight: bold; */
+  }
+
+  .waypoint-additional-text {
+    font-size: 1em;
+  }
+
+  /* .reveal-waypoint-info {
+    visibility: visible;
+    opacity: 1;
+    z-index: 300;
+  } */
+
+  /*   */
+
+  #show-waypoint-info-popup {
+    visibility: visible;
+    opacity: 1;
+    z-index: 5;
+    animation: waypoint-info-slide-left 500ms ease-in-out,
+      waypoint-info-slide-right 500ms ease-in-out 30s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes waypoint-info-slide-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-349px);
+    }
+  }
+
+  @keyframes waypoint-info-slide-right {
+    0% {
+      transform: translateX(-250px);
+    }
+    100% {
+      transform: translateX(250px);
+    }
+  }
+
+  .rover-map-info-popup {
+    visibility: hidden;
+    position: absolute;
+    /* opacity: .5; */
+    /* border: red 2px solid; */
+    /* height: 225px; */
+    margin-left: 23px;
+    margin-bottom: 186px;
+    width: 250px;
+    height: 599px;
+    color: grey;
+    /* text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white; */
+    text-align: center;
+    background: #f5cac3;
+    font-size: 1.8em;
+    padding: 1em 1.1em;
+    z-index: -50;
+    /* text-align: center; */
+    /* background-color: rgb(255, 255, 255); */
+    /* overflow: scroll; */
+  }
+
+  #show-rover-info-popup {
+    visibility: visible;
+    z-index: 4;
+    animation: slide-left 500ms ease-in-out, slide-right 500ms ease-in-out 8s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes slide-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-250px);
+    }
+  }
+
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-250px);
+    }
+    100% {
+      transform: translateX(250px);
+    }
+  }
+
+  /* #withdraw-rover-info-popup {
+    visibility: visible;
+    z-index: 4;
+    animation: slide-right 2000ms ease-in-out;
+    animation-fill-mode: forwards;
+} */
+
+  /* .shape-outside {
+    shape-outside: polygon(
+      0px 475px,
+      0px 595px,
+      595px 595px,
+      595px 0px,
+      475px 0px
+    );
+    width: 585px;
+    height: 595px;
+    float: right;
+    text-align: justify;
+  } */
+
+  .timeline-info-popup {
+    visibility: visible;
+    opacity: 0;
+    position: absolute;
+    margin-left: -742px;
+    margin-top: -703px;
+    width: 345px;
+    border-radius: 1em;
+    /*height: 200px; */
+    background: white;
+    font-size: 1.2em;
+    padding: 1.2em 1.3em;
+    z-index: -1;
+    transition: all 500ms linear;
+  }
+
+  .star-cluster {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    margin-left: -827px;
+    margin-bottom: 600px;
+    /* border: hotpink 1px solid; */
+  }
+
+  .star-cluster img {
+    object-position: contain;
+    position: absolute;
+    width: 100%;
+  }
+
+  .timeline-container {
+    position: relative;
+  }
+
+  .planet2 {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    margin-left: 975px;
+    margin-top: -200px;
+  }
+
+  .planet2 img {
+    width: 100%;
+    object-position: contain;
+    position: absolute;
+  }
+
+  /* remove default ul list padding */
+  ul {
+    padding: 0;
+  }
+
+  /* the timeline itself (made of li elements)*/
+  .timeline {
+    list-style: none;
+    position: relative;
+    width: 6px;
+    height: 350px; /*spacing between each dot on timeline*/
+    margin: 0 auto;
+    /* padding-top: 1.5em; */
+    background: #ebebeb;
+  }
+
+  .timeline-image-container > img {
+    height: 200px;
+    width: 200px;
+  }
+
+  /* creates an open area of the timeline for 'rovey' */
+  .timeline:nth-child(7) {
+    height: 600px;
+  }
+
+  /* circle timeline element after 'rovey' */
+  ul li:nth-child(7) > .element-after-rovey {
+    position: relative; /*used to offset timeline elements */
+    /* bottom: 0; */
+    top: 440px;
+  }
+
+  .rovey-timeline-container {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 95px;
+    width: 800px;
+    height: 400px;
+    left: 225px;
+    /* border: green 1px solid; */
+    /* background: #6cc8bb; */
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .rovey-timeline-image-container {
+    position: absolute;
+    margin-left: 65px;
+    margin-top: 135px;
+    border: red 1px solid;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .rovey-timeline-image {
+    visibility: hidden;
+    opacity: 0;
+    width: 300px;
+    height: 300px;
+    /* border: #fafefd solid 6px; */
+    transition: all 1500ms ease-in-out;
+  }
+
+  .rovey-fact {
+    /* visibility: hidden;
+    opacity: 0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    margin-left: 300px;
+    margin-top: -100px;
+    /* border: khaki 2px solid; */
+    text-align: center;
+    font-size: 1.5em;
+    padding: 1.3em 1.5em;
+    background-color: #d083af;
+
+    border-radius: 2em 2em 2em 0em;
+    /* transition: all 2500ms ease-in-out; */
+  }
+
+  .rovey-fact:after {
+  }
+
+  /* the dots on the timeline */
+  .timeline::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: inherit;
+    background-color: #fe8d56;
+    z-index: 1;
+  }
+
+  /* hides every other dot on the timeline */
+  .timeline:nth-child(even)::after {
+    visibility: hidden;
+  }
+
+  /* colors alternating timeline circles */
+  .timeline:nth-child(4n + 3)::after {
+    background-color: #e96063;
+  }
+
+  /* triggered when timeline elements enter the viewport */
+  #in-viewport-circles {
+    visibility: visible;
+    opacity: 1;
+    /* color: blue; */
+    transform: scale(1.1);
+  }
+
+  /* triggered when timeline elements enter the viewport */
+  #in-viewport-squares-left {
+    visibility: visible;
+    opacity: 1;
+    /* color: blue; */
+    transform: translate(5px);
+  }
+
+  /* triggered when timeline elements enter the viewport */
+  #in-viewport-squares-right {
+    visibility: visible;
+    opacity: 1;
+    /* color: blue; */
+    transform: translate(-5px);
+  }
+
+  /* triangle pointer/dots created for timeline elements */
+  .timeline > div::before {
+    content: "";
+    position: absolute;
+    bottom: 133px; /* y positioning of arrows */
+    /* height: 0; */
+  }
+
+  /* triangle pointer styling(right side) */
+  .timeline-container ul li:nth-child(4n + 1) > div::before {
+    left: -63px;
+    border-width: 15px 30px 15px 30px;
+    border-color: transparent #fe8d56 transparent transparent;
+    border-style: solid;
+  }
+
+  /* dot styling(left side) */
+  .timeline-container ul li:nth-child(4n + 2) > div::before {
+    content: "..";
+    font-size: 50px;
+    letter-spacing: 25px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    color: #fe8d56;
+    left: 380px;
+    bottom: 410px;
+    z-index: -5;
+  }
+
+  /* triangle pointer styling(left side) */
+  .timeline-container ul li:nth-child(4n + 3) > div::before {
+    left: 292px;
+    border-width: 15px 30px 15px 30px;
+    border-color: transparent transparent transparent #e96063;
+    border-style: solid;
+  }
+
+  /* dot styling(right side) */
+  .timeline-container ul li:nth-child(4n + 4) > div::before {
+    content: "..";
+    font-size: 50px;
+    letter-spacing: 30px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    color: #e96063;
+    left: -80px;
+    bottom: 282px;
+  }
+
+  /* circle timeline elements (initially hidden) */
+  ul li:nth-child(odd) > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    visibility: hidden;
+    font-size: 2.3em;
+    opacity: 0;
+    position: relative; /*used to offset timeline elements */
+    /* bottom: 0; */
+    height: 300px;
+    width: 300px; /* would like this measurement to reflect width of other elements on pg */
+    top: 190px;
+    padding: 1.5em;
+    border-radius: 15em;
+    transition: all 1500ms ease-in-out;
+  }
+
+  /* square timeline elements (initially hidden) */
+  ul li:nth-child(even) > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    visibility: hidden;
+    visibility: hidden; /*will be set to hidden when elements show up on scrolling*/
+    opacity: 0;
+    position: relative; /* used to offset timeline elements */
+    /* bottom: 0; */
+    height: 585px;
+    width: 350px; /* would like this measurement to reflect width of other elements on pg */
+    bottom: 175px;
+    padding: 1.3em 1.5em;
+    /* border-radius: 0.5em; */
+    transition: all 1500ms ease-in-out;
+  }
+
+  .timeline-headline {
+    font-size: 1.5em;
+    color: rgb(103, 207, 146);
+  }
+
+  .timeline-subheading {
+    font-size: 1.2em;
+    color: rgb(179, 146, 220);
+  }
+
+  .timeline-link {
+    font-size: 1em;
+    color: rgb(179, 146, 220);
+  }
+
+  /* right circle timeline elements */
+  .timeline-container ul li:nth-child(4n + 1) > div {
+    left: 150px;
+    /* color: red; */
+    visibility: visible;
+    border: #fe8d56 6px solid;
+    /* top: 150px; */
+  }
+
+  /* left square timeline elements */
+  .timeline-container ul li:nth-child(4n + 2) > div {
+    color: white;
+    background: lightgrey;
+    visibility: visible;
+    left: -469px;
+  }
+
+  /* left circle timeline elements */
+  .timeline-container ul li:nth-child(4n + 3) > div {
+    color: #fe8d56;
+    visibility: visible;
+    border: #e96063 solid 6px;
+    height: 300px;
+    width: 300px;
+    left: -444px;
+    /* top: 150px; */
+  }
+
+  /* right square timeline elements */
+  .timeline-container ul li:nth-child(4n + 4) > div {
+    color: aqua;
+    background: lightgrey;
+    visibility: visible;
+    left: 125px;
+    /* top: 150px; */
+  }
+
+  #hide-extra-timeline-elements {
+    display: none;
+  }
+
+  /* spacer at bottom of timeline*/
+  .spacer {
+    height: 300px;
+  }
+}
+
+/*//////////////////////*/
+/*//////////////////////*/
+/*set to min-width: 1139px @media, only screen and (min-width: 768px) and (max-width: 1139px)*/
 @media only screen and (min-width: 1139px) {
   /* CSS grid for intro section */
   .intro-section {
@@ -217,6 +1662,7 @@ body * + * {
     border: #d083af solid 3px;
     padding: 0.6em 1.2em;
     font-size: 1.8em;
+    text-align: center;
     /* box-shadow: 0px 4px 3px -3px rgba(0,0,0,0.5); */
     /* border-radius: 1.1em; */
   }
@@ -308,7 +1754,7 @@ body * + * {
       transform: rotateY(0deg) rotateX(0deg) /*rotateZ(0deg)*/;
     }
     10% {
-      transform: rotateY(-5deg);
+      transform: rotateY(-4deg);
     }
     100% {
       transform: rotateY(-35deg);
@@ -320,7 +1766,7 @@ body * + * {
       transform: rotateZ(19deg) rotateY(0deg) rotateX(0deg);
     }
     10% {
-      transform: rotateX(-5deg);
+      transform: rotateX(-4deg);
     }
     100% {
       transform: rotateZ(19deg) rotateX(-35deg);

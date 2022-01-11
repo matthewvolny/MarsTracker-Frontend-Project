@@ -405,7 +405,6 @@ const addPerseveranceWaypointsForSelectDomElements = (
     }
   }
 };
-
 //////Curiosity-specific API calls/data storage/magnification//////////
 ///////////////////////////////////////////////////////////
 //fetches Curiosity rover waypoint (position) data
@@ -744,10 +743,20 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
 // };
 ////////////////////////////////////////////////////
 
+const refreshPage = () => {
+  window.location.reload();
+};
+
 // (step1)'select rover' dropdown button
 selectRoverButton.addEventListener("click", (e) => {
   e.preventDefault();
   dropdownMenu.classList.toggle("show");
+  if (
+    retrieveCuriosityData.classList.contains("curiosity-button-clicked") ||
+    retrieveCuriosityData.classList.contains("perseverance-button-clicked")
+  ) {
+    refreshPage();
+  }
 });
 
 //re-hiding timeline elements is required when making timeline visible on button click
