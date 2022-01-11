@@ -11,9 +11,9 @@
   box-sizing: inherit;
 }
 
-* {
+/* * {
   border: #b6e08c 1px solid;
-}
+} */
 
 body {
   background-color: #fcef68;
@@ -2687,12 +2687,13 @@ body * + * {
 
   .rovey-timeline-image-container {
     position: absolute;
-    margin-left: 65px;
-    margin-top: 135px;
+    margin-left: -45px;
+    margin-top: 230px;
     border: red 1px solid;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
+    /* background: linear-gradient(-90deg, #ffc0cb 50%, #00ffff 50%); */
   }
 
   .rovey-timeline-image {
@@ -2711,21 +2712,33 @@ body * + * {
     justify-content: center;
     align-items: center;
     position: absolute;
-    width: 300px;
-    height: 300px;
-    margin-left: 300px;
-    margin-top: -100px;
+    width: 325px;
+    height: 325px;
+    margin-left: 276px;
+    margin-top: -25px;
     /* border: khaki 2px solid; */
     text-align: center;
     font-size: 1.5em;
     padding: 1.3em 1.5em;
     background-color: #d083af;
-
+    background: linear-gradient(-90deg, #ffc0cb 50%, #00ffff 50%);
     border-radius: 2em 2em 2em 0em;
     /* transition: all 2500ms ease-in-out; */
   }
 
   .rovey-fact:after {
+    content: "";
+    border-bottom: 3px dotted #666;
+    border-right: 3px dotted #666;
+    display: block;
+    height: 0px;
+    width: 0px;
+    z-index: 15;
+    position: absolute;
+    left: -40px;
+    top: 275px;
+    border: 25px solid;
+    border-color: transparent #d083af #d083af transparent;
   }
 
   /* the dots on the timeline */
@@ -2781,13 +2794,13 @@ body * + * {
   .timeline > div::before {
     content: "";
     position: absolute;
-    bottom: 133px; /* y positioning of arrows */
+    bottom: 110px; /* y positioning of arrows */
     /* height: 0; */
   }
 
   /* triangle pointer styling(right side) */
   .timeline-container ul li:nth-child(4n + 1) > div::before {
-    left: -63px;
+    left: -64px;
     border-width: 15px 30px 15px 30px;
     border-color: transparent #fe8d56 transparent transparent;
     border-style: solid;
@@ -2800,14 +2813,13 @@ body * + * {
     letter-spacing: 25px;
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     color: #fe8d56;
-    left: 380px;
-    bottom: 410px;
-    z-index: -5;
+    left: 513px;
+    bottom: 278px;
   }
 
   /* triangle pointer styling(left side) */
   .timeline-container ul li:nth-child(4n + 3) > div::before {
-    left: 292px;
+    left: 252px;
     border-width: 15px 30px 15px 30px;
     border-color: transparent transparent transparent #e96063;
     border-style: solid;
@@ -2817,11 +2829,11 @@ body * + * {
   .timeline-container ul li:nth-child(4n + 4) > div::before {
     content: "..";
     font-size: 50px;
-    letter-spacing: 30px;
+    letter-spacing: 25px;
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     color: #e96063;
-    left: -80px;
-    bottom: 282px;
+    left: -206px;
+    bottom: 279px;
   }
 
   /* circle timeline elements (initially hidden) */
@@ -2835,12 +2847,13 @@ body * + * {
     opacity: 0;
     position: relative; /*used to offset timeline elements */
     /* bottom: 0; */
-    height: 300px;
-    width: 300px; /* would like this measurement to reflect width of other elements on pg */
-    top: 190px;
+    height: 260px;
+    width: 260px; /* would like this measurement to reflect width of other elements on pg */
+    top: 207px;
     padding: 1.5em;
     border-radius: 15em;
     transition: all 1500ms ease-in-out;
+    background: linear-gradient(-90deg, #ffc0cb 50%, #00ffff 50%);
   }
 
   /* square timeline elements (initially hidden) */
@@ -2856,7 +2869,7 @@ body * + * {
     /* bottom: 0; */
     height: 585px;
     width: 350px; /* would like this measurement to reflect width of other elements on pg */
-    bottom: 175px;
+    bottom: 305px;
     padding: 1.3em 1.5em;
     /* border-radius: 0.5em; */
     transition: all 1500ms ease-in-out;
@@ -2879,7 +2892,7 @@ body * + * {
 
   /* right circle timeline elements */
   .timeline-container ul li:nth-child(4n + 1) > div {
-    left: 150px;
+    left: 165px;
     /* color: red; */
     visibility: visible;
     border: #fe8d56 6px solid;
@@ -2889,7 +2902,8 @@ body * + * {
   /* left square timeline elements */
   .timeline-container ul li:nth-child(4n + 2) > div {
     color: white;
-    background: lightgrey;
+    /* background: lightgrey; */
+    background: linear-gradient(-90deg, #ffc0cb 50%, #00ffff 50%);
     visibility: visible;
     left: -469px;
   }
@@ -2899,9 +2913,9 @@ body * + * {
     color: #fe8d56;
     visibility: visible;
     border: #e96063 solid 6px;
-    height: 300px;
-    width: 300px;
-    left: -444px;
+    /* height: 300px;
+    width: 300px; */
+    left: -419px;
     /* top: 150px; */
   }
 
@@ -2912,6 +2926,7 @@ body * + * {
     visibility: visible;
     left: 125px;
     /* top: 150px; */
+    background: linear-gradient(-90deg, #ffc0cb 50%, #00ffff 50%);
   }
 
   #hide-extra-timeline-elements {
