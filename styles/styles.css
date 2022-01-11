@@ -2529,23 +2529,23 @@ body * + * {
     /* overflow: scroll; */
   }
 
-  .rover-waypoint-info-container > .waypoint-date {
-    font-size: 1.1em;
+   .rover-waypoint-info-container > .waypoint-date {
+    font-size: 1.6em;
     color: tomato;
   }
 
   .rover-waypoint-info-container > .waypoint-miles {
-    font-size: 1.1em;
+    font-size: 1.3em;
     color: blue;
   }
 
   .waypoint-headline {
-    font-size: 1.1em;
+    font-size: 1.5em;
     /* font-weight: bold; */
   }
 
   .waypoint-additional-text {
-    font-size: 1em;
+    font-size: 1.2em;
   }
 
   /* .reveal-waypoint-info {
