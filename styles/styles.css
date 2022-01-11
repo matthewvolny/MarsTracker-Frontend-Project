@@ -42,7 +42,7 @@ body * + * {
     height: 57vh;
     width: 100%;
     max-width: 1300px;
-    min-height: 400px;
+    min-height: 600px;
     margin: 0 auto;
   }
 
@@ -122,7 +122,7 @@ body * + * {
     /* margin-left: 3%; */
     left: -150px;
     top: 240px;
-    margin-left: 15%;
+    margin-left: 20%;
     overflow: hidden;
     border-radius: 50%;
     border: #fafefd solid 6px;
@@ -184,10 +184,12 @@ body * + * {
     max-width: 1300px;
     min-height: 830px;
     margin: 0 auto;
+    margin-top: -50px;
     /* display: inline-block; */
     display: flex;
     justify-content: center;
     align-items: center;
+    border: red 1px solid;
   }
 
   /* Select rover dropdown container */
@@ -1628,6 +1630,7 @@ body * + * {
     max-width: 1300px;
     min-height: 830px;
     margin: 0 auto;
+    margin-top: -50px;
     /* display: inline-block; */
     display: flex;
     justify-content: center;
