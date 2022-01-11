@@ -15,7 +15,6 @@ const tearDropRoverRouteContainer = document.querySelector(
 );
 const canvasContainer = document.querySelector(".canvas-container");
 const selectRoverButton = document.querySelector(".select-rover-button");
-// const roveyTimeLineImages = document.querySelectorAll(".rovey-timeline-image");
 const dropdownMenu = document.querySelector(".dropdown-menu");
 const retrieveCuriosityData = document.querySelector(
   ".retrieve-curiosity-data"
@@ -113,7 +112,7 @@ for (let i = 0; i < teardrops.length; i++) {
     }
   });
 }
-/////search for date info///////
+//useful - use for searching date info
 // async function checkDates() {
 //   const response = await fetch(
 //     `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=2021-12-15&api_key=QztFggIoDxgaxCgNz0uD5jUWcsjjINm4FCbJ9C7u`
@@ -122,7 +121,6 @@ for (let i = 0; i < teardrops.length; i++) {
 //   console.log(locationData);
 // }
 // checkDates();
-/////////map card data//////
 
 //arrays containing all sol dates, and miles traveled for either rover
 const roverRouteSolArray = [];
@@ -462,6 +460,7 @@ const drawRoverPosition = (
   ctx.stroke();
 };
 
+//incomplete area - intention was to have a rotating carousel of random images for each timeline date
 // (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
 const fetchRoverData = async (url) => {
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
@@ -504,6 +503,8 @@ const fetchRoverData = async (url) => {
     randomPhotoUrl3: roverData.photos[generateRandomPhoto()].img_src,
     randomPhotoUrl4: roverData.photos[generateRandomPhoto()].img_src,
   };
+
+  //my code - i believe this works - do not delete
   // console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
@@ -542,15 +543,11 @@ const manageFetchRequests = async (earthDatesToFetch) => {
   }
 };
 
-//(step 5)
+//(step 5) add elements containing info from hand-made info arrays and an array containing data from nasa photos api
 const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
-  console.log(roverDataArrayMultipleFetches); //check here, see what photos are in there
-  console.log(infoArray);
-
   const timelineElementsContent = document.querySelectorAll(
     ".timeline-container ul li > div > div"
   );
-
   if (retrieveCuriosityData.classList.contains("curiosity-button-clicked")) {
     let circleElementsCounter = 0;
     let squareElementsCounter = 0;
@@ -559,8 +556,6 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         timelineElementsContent[
           i
         ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
-        // console.log(roverDataArrayMultipleFetches);
-        // console.log(circleElementsCounter);
         circleElementsCounter += 1;
       } else {
         if (i === 5) {
@@ -594,8 +589,6 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         timelineElementsContent[
           i
         ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
-        // console.log(roverDataArrayMultipleFetches);
-        // console.log(circleElementsCounter);
         circleElementsCounter += 1;
       } else {
         if (i === 5) {
@@ -656,7 +649,6 @@ retrieveCuriosityData.addEventListener("click", (e) => {
   const perseveranceMessageBox = document.querySelector(
     ".perseverance-message-box"
   );
-
   if (curiosityMessageBox && perseveranceMessageBox) {
     curiosityMessageBox.classList.add("hide");
     perseveranceMessageBox.classList.add("hide");
@@ -732,17 +724,11 @@ const timelineElements = document.querySelectorAll(
 );
 function addInViewToElements() {
   for (let i = 0; i < timelineElements.length; i++) {
-    //topSide = timelineElements[i].getBoundingClientRect().top;
-    //rightSide = timelineElements[i].getBoundingClientRect().right;
     let bottomSide = timelineElements[i].getBoundingClientRect().bottom;
-    //leftSide = timelineElements[i].getBoundingClientRect().left;
-    //height = timelineElements[i].getBoundingClientRect().height;
-    //width = timelineElements[i].getBoundingClientRect().width;
     let viewportHeight = document.documentElement.clientHeight;
 
     if (bottomSide <= viewportHeight && i % 2 === 0) {
       timelineElements[i].setAttribute("id", "in-viewport-circles");
-      //timelineElements[i].classList.remove("in-viewport");
     } else if (bottomSide <= viewportHeight && i === 1) {
       timelineElements[i].setAttribute("id", "in-viewport-squares-left");
     } else if (bottomSide <= viewportHeight && i === 3) {
@@ -785,12 +771,7 @@ function addInViewToMars() {
   );
   const circle1 = document.querySelector(".circle1");
   const circle2 = document.querySelector(".circle2");
-  //topSide = timelineElements[i].getBoundingClientRect().top;
-  //rightSide = timelineElements[i].getBoundingClientRect().right;
   let bottomSide = marsDiagram.getBoundingClientRect().bottom;
-  //leftSide = timelineElements[i].getBoundingClientRect().left;
-  //height = timelineElements[i].getBoundingClientRect().height;
-  //width = timelineElements[i].getBoundingClientRect().width;
   let viewportHeight = document.documentElement.clientHeight;
   if (
     bottomSide <= viewportHeight &&
@@ -812,7 +793,6 @@ function addInViewToMars() {
       ".perseverance-teardrop"
     );
     teardrops[1].removeEventListener("click", renderRoverMap);
-    //timelineElements[i].classList.remove("in-viewport");
   } else if (
     bottomSide <= viewportHeight &&
     retrievePerseveranceData.classList.contains("perseverance-button-clicked")
@@ -829,7 +809,6 @@ function addInViewToMars() {
     );
     circle2.setAttribute("id", "perseverance-selected-circle2-globe-effect");
     const curiosityTeardrop = document.querySelector(".curiosity-teardrop");
-    // curiosityTeardrop.disabled = true;
     teardrops[0].removeEventListener("click", renderRoverMap);
   }
 }
