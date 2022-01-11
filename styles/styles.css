@@ -35,8 +35,10 @@ body * + * {
   display: contents;
 }
 
-/*set to min-width: 1139px */
-@media only screen and (min-width: 950px) and (max-width: 1139px) {
+
+
+/* (min-width: 950px) and */
+@media only screen and (max-width: 1139px) {
   /* CSS grid for intro section */
   .intro-section {
     height: 57vh;
@@ -1523,6 +1525,13 @@ body * + * {
   .spacer {
     height: 300px;
   }
+
+@media only screen and (max-width: 950px) {
+.main-container {
+  min-width: 850px;
+}
+}
+
 }
 
 /*//////////////////////*/
