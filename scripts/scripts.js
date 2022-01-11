@@ -540,58 +540,66 @@ const drawRoverPosition = (
 ///
 // (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
 const fetchRoverData = async (url) => {
+  // console.log(url);
+  // console.log(`Fetching ${url}`);
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
 
-  const generateRandomNumber = function () {
+  // console.log(roverData);
+  //console.log(roverData.photos);
+
+  // return assembleTimelineDataArrays(roverData.photos);
+
+  const generateRandomPhoto = function () {
     return Math.floor(Math.random() * roverData.photos.length);
   };
 
+  let images = [];
+  roverData.photos.forEach((photo, index) => {
+    if (index < 10) {
+      images.push(photo.img_src);
+    }
+    return;
+  });
+  // console.log(images);
+
+  const makeSlideshow = () => {
+    const pictures = document.querySelectorAll(".timeline-image-container");
+    if (pictures) {
+      //console.log(pictures);
+      pictures.forEach((picture) => {
+        const i = Math.floor(Math.random() * images.length);
+        // console.log(i);
+        picture.innerHTML = `<img src=${images[i]} />`;
+      });
+      // console.log(pictures);
+    }
+    // setTimeout(makeSlideshow, 4000);
+  };
+  makeSlideshow();
   return {
     timelineEarthDate: roverData.photos[0].earth_date,
     timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
-    randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl1: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl2: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl3: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl4: roverData.photos[generateRandomPhoto()].img_src,
   };
-};
-
-  // for future use to make slideshow
-  // const generateRandomPhoto = function () {
-  //   return Math.floor(Math.random() * roverData.photos.length);
-  // };
-  // 
-  // let images1 = [];
-  // roverData.photos.forEach((photo, index) => {
-  //   if (index > 0 && index < 20) {
-  //     images1.push(photo.img_src);
-  //   }
-  //   return;
-  // });
-  // // console.log(images);
-
-  // const makeSlideshow = (arrayOfImages, imagesContainerClass) => {
-  //   const pictures = document.querySelectorAll(imagesContainerClass);
-  //   if (pictures) {
-  //     pictures.forEach((picture) => {
-  //       const i = Math.floor(Math.random() * arrayOfImages.length);
-  //       picture.innerHTML = `<img src=${arrayOfImages[i]} />`;
-  //     });
-  //   }
-  //   // setInterval(makeSlideshow, 2000);
-  // };
-  // makeSlideshow(images1, ".timeline-image-container");
-  // return {
-  //   timelineEarthDate: roverData.photos[0].earth_date,
-  //   timelineSolDate: roverData.photos[0].sol,
-  //   randomPhotoUrl1: roverData.photos[generateRandomPhoto()].img_src,
-  // };
   // console.log(roverData.photos);
   // return assembleTimelineDataArrays(roverData.photos);
 
-  
-
+  // const generateRandomNumber = function () {
+  //   return Math.floor(Math.random() * roverData.photos.length);
+  // };
+  // return {
+  //   timelineEarthDate: roverData.photos[0].earth_date,
+  //   timelineSolDate: roverData.photos[0].sol,
+  //   randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
+  // };
+};
 
 // (step 3) handler function, calls fetch for each date we are interested in
 const manageFetchRequests = async (earthDatesToFetch) => {
@@ -634,10 +642,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       if (i % 2 === 0) {
         timelineElementsContent[
           i
-        ].innerHTML = `<div class= "circle-element">
-                          <div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div>
-                          <div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div>
-                      </div>`;
+        ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
         // console.log(roverDataArrayMultipleFetches);
         // console.log(circleElementsCounter);
         circleElementsCounter += 1;
@@ -649,29 +654,18 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         if (i === 5) {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element">
-                            <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
-                            <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
-                            <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
-                            <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</a>
-                        </div>`;
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-                              <div class = "rovey-timeline-image-container">
-                              <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
-                              <div class="rovey-fact"></div>
-                          </div>`;
+          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="assets/rovey.svg" alt="" class=""></div>
+          <div class="rovey-fact"></div>
+        </div>`;
           squareElementsCounter += 1;
         } else {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element">
-                            <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
-                            <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
-                            <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
-                            <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</a>
-                        </div>`;
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
           squareElementsCounter += 1;
         }
       }
@@ -687,10 +681,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
       if (i % 2 === 0) {
         timelineElementsContent[
           i
-        ].innerHTML = `<div class= "circle-element">
-                          <div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div>
-                          <div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div>
-                      </div>`;
+        ].innerHTML = `<div class= "circle-element"><div class="earth-date">${roverDataArrayMultipleFetches[circleElementsCounter].timelineEarthDate}</div><div class="mars-date">sol ${roverDataArrayMultipleFetches[circleElementsCounter].timelineSolDate}</div></div>`;
         // console.log(roverDataArrayMultipleFetches);
         // console.log(circleElementsCounter);
         circleElementsCounter += 1;
@@ -702,29 +693,18 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
         if (i === 5) {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element">
-                            <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
-                            <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
-                            <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
-                            <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</div>
-                        </div>`;
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
           timelineElementsContent[
             i
           ].innerHTML += ` <div class="rovey-timeline-container">
-                            <div class = "rovey-timeline-image-container">
-                            <img class ="rovey-timeline-image"  src="./assets/rovey image colored-pink.jpg" alt="" class=""></div>
-                            <div class="rovey-fact"></div>
-                          </div>`;
+          <div class = "rovey-timeline-image-container"><img class ="rovey-timeline-image"  src="assets/rovey.svg" alt="" class=""></div>
+          <div class="rovey-fact"></div>
+        </div>`;
           squareElementsCounter += 1;
         } else {
           timelineElementsContent[
             i
-          ].innerHTML = `<div class="square-element">
-                          <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
-                          <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
-                          <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
-                          <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</a>
-                        </div>`;
+          ].innerHTML = `<div class="square-element"><div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div><div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div><div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div><div class="timeline-link">${infoArray[squareElementsCounter].link}</div></div>`;
           squareElementsCounter += 1;
         }
       }
