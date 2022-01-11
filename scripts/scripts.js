@@ -53,13 +53,15 @@ const renderRoverMap = () => {
   }
   const roverMapInfoPopup = document.querySelector(".rover-map-info-popup");
   const timelineInfoPopup = document.querySelector(".timeline-info-popup");
-  const perseveranceSvg = document.querySelector(".perseverance-svg");
+  const blobContainer = document.querySelector(".blob-container");
   setTimeout(() => {
     roverMapInfoPopup.setAttribute("id", "show-rover-info-popup");
-    perseveranceSvg.setAttribute("id", "show-perseverance-svg");
+    // blobContainer.setAttribute("id", "show-blob-container");
   }, 1500);
   // setTimeout(() => {
   //   roverMapInfoPopup.removeAttribute("id", "show-rover-info-popup");
+  //   roverMapInfoPopup.id("withdraw-rover-info-popup");
+  //   // roverMapInfoPopup.setAttribute("id", "withdraw-rover-info-popup");
   // }, 10000);
   // setTimeout(() => {
   //   timelineInfoPopup.setAttribute("id", "show-rover-info-popup");

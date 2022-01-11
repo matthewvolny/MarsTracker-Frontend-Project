@@ -17,7 +17,7 @@
 
 body {
   background-color: #fcef68;
-  margin: 2em;
+  margin: 2.5em;
 }
 
 body * + * {
@@ -35,7 +35,7 @@ body * + * {
   display: contents;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1139px) {
   /* CSS grid for intro section */
   .intro-section {
     height: 60vh;
@@ -68,7 +68,7 @@ body * + * {
   }
 
   .navigation {
-    /* padding: 0; */
+    margin: 0;
   }
 
   .logo-and-navigation-flexbox li {
@@ -82,11 +82,12 @@ body * + * {
 
   .roveys-intro-container-flexbox {
     display: flex;
+    left: 3%;
   }
 
   /* Rovey's introduction text box */
   .intro-text {
-    width: 75%;
+    width: 83%;
     font-family: "Permanent Marker", cursive;
     font-size: 1.9rem;
     letter-spacing: 0.1em;
@@ -96,9 +97,10 @@ body * + * {
     background-color: #6cc8bb;
     /* min-height: 500px; */
     margin: 0;
+    z-index: 10;
   }
 
-  .star {
+  /* .star {
     grid-area: 3/ 11 / span 3 / span 3;
     margin-top: 0;
   }
@@ -107,17 +109,17 @@ body * + * {
     height: 100%;
     display: block;
     object-position: cover;
-  }
+  } */
 
   /* rovey container element */
   .rovey-outer-container {
-    width: 25%;
+    width: 17%;
   }
 
   .rovey-inner-container {
     position: relative;
     /* margin-left: 3%; */
-    left: -90px;
+    left: -150px;
     top: 240px;
     margin-left: 15%;
     overflow: hidden;
@@ -126,6 +128,7 @@ body * + * {
     height: 35vmin;
     width: 35vmin;
     background-color: white;
+    z-index: 15;
   }
 
   .rovey-inner-container > img {
@@ -191,12 +194,13 @@ body * + * {
     cursor: pointer;
     /* display: inline-block; */
     position: absolute;
-    z-index: 100;
+    z-index: 2;
+    min-width: 285px;
     /* margin-left: -90%; */
     margin-right: 800px;
     /* margin-top: -80%; */
     margin-bottom: 800px;
-    margin-left: 1em;
+    margin-left: 1.7em;
     margin-top: 1em;
   }
 
@@ -227,7 +231,8 @@ body * + * {
   /* ul within dropdown list */
   .dropdown-menu > ul {
     list-style: none;
-    border: #d083af solid 3px;
+    border-left: #d083af solid 3px;
+    border-right: #d083af solid 3px;
     background-color: white;
     margin: 0;
   }
@@ -240,7 +245,7 @@ body * + * {
   /* dropdown menu items */
   .dropdown-menu > ul li a {
     color: #d083af;
-    border: #d083af solid 3px;
+    border-bottom: #d083af solid 3px;
     background-color: white;
     /* padding: 0.6em 1em; */
     font-size: 1.8em;
@@ -500,7 +505,7 @@ body * + * {
     /* border: powderblue 1px solid; */
     margin-left: -200px;
     margin-bottom: -50px;
-    z-index: 1;
+    z-index: 5;
   }
 
   /* container for  */
@@ -643,6 +648,7 @@ body * + * {
     border-radius: 50% 50% 0% 50%;
     margin: 0;
     position: absolute;
+    cursor: pointer;
   }
 
   .perseverance-teardrop-shadow {
@@ -839,6 +845,7 @@ body * + * {
     padding: 0;
     margin: 0;
     z-index: 55;
+    cursor: pointer;
     /* transition: all 500ms linear; */
   }
 
@@ -910,7 +917,7 @@ body * + * {
     padding: 0;
     margin: 0;
     position: absolute;
-    /* border: yellow solid 1px; */
+    /* border: palegoldenrod solid 1px; */
     /* bottom: -1px; */
   }
 
@@ -943,11 +950,11 @@ body * + * {
 
   @keyframes scale-up-bl {
     0% {
-      transform: scale(1);
+      transform: scale(1) translateX(0px);
       transform-origin: 0% 69%;
     }
     100% {
-      transform: scale(12);
+      transform: scale(12) translateX(5px);
       transform-origin: 0% 69%;
     }
   }
@@ -1011,23 +1018,85 @@ body * + * {
 
   .rover-map-info-popup {
     visibility: hidden;
-    opacity: 0;
     position: absolute;
+    /* opacity: .5; */
     /* border: red 2px solid; */
     /* height: 225px; */
-    margin-left: -800px;
-    margin-bottom: 510px;
-    width: 350px;
-    height: 395px;
-    font-size: 1.7em;
+    margin-left: 23px;
+    margin-bottom: 186px;
+    width: 250px;
+    height: 599px;
+    color: grey;
+    /* text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white; */
+    text-align: center;
+    background: #f5cac3;
+    font-size: 1.8em;
     padding: 1em 1.1em;
+    z-index: -50;
     /* text-align: center; */
     /* background-color: rgb(255, 255, 255); */
-    border-radius: 0em 0em 2em 0em;
     /* overflow: scroll; */
-    transition: all 500ms linear;
+  
   }
 
+#show-rover-info-popup {
+    visibility: visible;
+    z-index: 4;
+    animation: slide-left 500ms ease-in-out, slide-right 500ms ease-in-out 8s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes slide-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-250px);
+  }
+}
+
+/* #withdraw-rover-info-popup {
+    visibility: visible;
+    z-index: 4;
+    animation: slide-right 2000ms ease-in-out;
+    animation-fill-mode: forwards;
+} */
+
+
+  @keyframes slide-right {
+  0% {
+    transform: translateX(-250px);
+  }
+  100% {
+    transform: translateX(250px);
+  }
+}
+
+  /* .blob-container {
+    position: absolute;
+    visibility: hidden;
+    width: 300px;
+    height: 300px;
+    right: 800px;
+    bottom: 260px;
+    z-index: 5;
+    /* margin-left: 3%; */
+    /* left: -30px; */
+    /* top: 240px; */
+    /* margin-left: -100px; */
+  }
+
+  .blob {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: 1000px;
+  }
+
+  #show-blob-container {
+    visibility: visible;
+    opacity: 1; */
+  }
   /* .shape-outside {
     shape-outside: polygon(
       0px 475px,
@@ -1042,26 +1111,7 @@ body * + * {
     text-align: justify;
   } */
 
-  .perseverance-svg {
-    visibility: hidden;
-    position: absolute;
-    z-index: 10;
-    margin-top: -255px;
-    fill: #d083af;
-    margin-left: -400px;
-  }
-
-  #show-perseverance-svg {
-    visibility: visible;
-    opacity: 1;
-    z-index: 145;
-  }
-
-  #show-rover-info-popup {
-    visibility: visible;
-    opacity: 1;
-    z-index: 150;
-  }
+  
 
   .timeline-info-popup {
     visibility: visible;
@@ -1278,11 +1328,12 @@ body * + * {
   .timeline-container ul li:nth-child(4n + 2) > div::before {
     content: "..";
     font-size: 50px;
-    letter-spacing: 30px;
+    letter-spacing: 25px;
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     color: #fe8d56;
-    left: 330px;
-    bottom: 282px;
+    left: 380px;
+    bottom: 410px;
+    z-index: -5;
   }
 
   /* triangle pointer styling(left side) */
@@ -1371,7 +1422,7 @@ body * + * {
     color: white;
     background: lightgrey;
     visibility: visible;
-    left: -464px;
+    left: -469px;
   }
 
   /* left circle timeline elements */
@@ -1390,7 +1441,7 @@ body * + * {
     color: aqua;
     background: lightgrey;
     visibility: visible;
-    left: 120px;
+    left: 125px;
     /* top: 150px; */
   }
 
