@@ -505,7 +505,7 @@ body * + * {
     /* border: powderblue 1px solid; */
     margin-left: -200px;
     margin-bottom: -50px;
-    z-index: 1;
+    z-index: 5;
   }
 
   /* container for  */
@@ -1025,9 +1025,12 @@ body * + * {
     margin-left: 23px;
     margin-bottom: 186px;
     width: 250px;
-    height: 600px;
-    background: #f0d4d8;
-    font-size: 1.7em;
+    height: 599px;
+    color: grey;
+    /* text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white; */
+    text-align: center;
+    background: #f5cac3;
+    font-size: 1.8em;
     padding: 1em 1.1em;
     z-index: -50;
     /* text-align: center; */
@@ -1038,8 +1041,8 @@ body * + * {
 
 #show-rover-info-popup {
     visibility: visible;
-    z-index: 5;
-    animation: slide-left 500ms linear;
+    z-index: 4;
+    animation: slide-left 500ms ease-in-out, slide-right 500ms ease-in-out 8s;
     animation-fill-mode: forwards;
   }
 
@@ -1049,6 +1052,23 @@ body * + * {
   }
   100% {
     transform: translateX(-250px);
+  }
+}
+
+/* #withdraw-rover-info-popup {
+    visibility: visible;
+    z-index: 4;
+    animation: slide-right 2000ms ease-in-out;
+    animation-fill-mode: forwards;
+} */
+
+
+  @keyframes slide-right {
+  0% {
+    transform: translateX(-250px);
+  }
+  100% {
+    transform: translateX(250px);
   }
 }
 
