@@ -128,20 +128,21 @@ body * + * {
     margin-left: 20%;
     overflow: hidden;
     border-radius: 50%;
-    border: #fafefd solid 6px;
+  border: rgb(148, 233, 115) 8px solid;
     height: 32vmin;
     width: 32vmin;
     background-color: white;
     z-index: 15;
   }
 
-  .rovey-inner-container > img {
-    /* transform: scaleX(-1); */
+ .rovey-inner-container > img {
+    transform: scaleX(-1);
     object-position: cover;
     position: relative;
-    height: 150%;
-    margin-left: -600px;
-    top: 38px;
+    height: 175%;
+    margin-left: -125px;
+    top: 43px;
+    min-width: 200px ;
   }
 
   .planet {
@@ -1194,11 +1195,12 @@ body * + * {
     position: absolute;
     height: 350px;
     width: 350px;
-    margin-left: 975px;
-    margin-top: -200px;
+    margin-left: 800px;
+    margin-top: -545px;
   }
 
   .planet2 img {
+    visibility: hidden;
     width: 100%;
     object-position: contain;
     position: absolute;
@@ -1254,7 +1256,10 @@ body * + * {
     position: absolute;
     margin-left: -75px;
     margin-top: 210px;
-    border: red 1px solid;
+    border: rgb(148, 233, 115) 5px solid;
+    background-color: white;
+    overflow: hidden;
+    z-index: 500;
     width: 185px;
     height: 185px;
     border-radius: 50%;
@@ -1262,12 +1267,12 @@ body * + * {
   }
 
   .rovey-timeline-image {
-    visibility: hidden;
-    opacity: 0;
-    width: 300px;
-    height: 300px;
+    width: 290%;
+    margin-left: -180px;
+    margin-top: 30px;
+    z-index: 500;
     /* border: #fafefd solid 6px; */
-    transition: all 1500ms ease-in-out;
+    /* transition: all 1500ms ease-in-out; */
   }
 
   .rovey-fact {
@@ -1627,20 +1632,20 @@ body * + * {
     margin-left: 15%;
     overflow: hidden;
     border-radius: 50%;
-    border: #fafefd solid 6px;
+   border: rgb(148, 233, 115) 8px solid;
     height: 35vmin;
     width: 35vmin;
     background-color: white;
     z-index: 15;
   }
 
-  .rovey-inner-container > img {
-    /* transform: scaleX(-1); */
+.rovey-inner-container > img {
+    transform: scaleX(-1);
     object-position: cover;
     position: relative;
-    height: 150%;
-    margin-left: -600px;
-    top: 38px;
+    height: 180%;
+    margin-left: -160px;
+    top: 43px;
   }
 
   .planet {
@@ -2685,8 +2690,8 @@ body * + * {
     position: absolute;
     height: 350px;
     width: 350px;
-    margin-left: 975px;
-    margin-top: -200px;
+    margin-left: 800px;
+    margin-top: -550px;
   }
 
   .planet2 img {
@@ -2739,26 +2744,30 @@ body * + * {
     /* background: #6cc8bb; */
     justify-content: space-around;
     align-items: center;
+    z-index: 500;
   }
 
   .rovey-timeline-image-container {
     position: absolute;
     margin-left: -45px;
     margin-top: 230px;
-    border: red 1px solid;
+     border: rgb(148, 233, 115) 5px solid;
+     background-color: white;
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    overflow: hidden;
+    z-index: 500;
     /* background: linear-gradient(-90deg, #ffc0cb 50%, #00ffff 50%); */
   }
 
   .rovey-timeline-image {
-    visibility: hidden;
-    opacity: 0;
-    width: 300px;
-    height: 300px;
+    width: 295%;
+    margin-left: -198px;
+    margin-top: 30px;
+    z-index: 500;
     /* border: #fafefd solid 6px; */
-    transition: all 1500ms ease-in-out;
+    /* transition: all 1500ms ease-in-out; */
   }
 
   .rovey-fact {
