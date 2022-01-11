@@ -184,7 +184,7 @@ body * + * {
     max-width: 1300px;
     min-height: 830px;
     margin: 0 auto;
-    margin-top: -50px;
+    margin-top: -55px;
     /* display: inline-block; */
     display: flex;
     justify-content: center;
@@ -198,7 +198,7 @@ body * + * {
     /* display: inline-block; */
     position: absolute;
     z-index: 2;
-    min-width: 280px;
+    min-width: 285px;
     /* margin-left: -90%; */
     margin-right: 800px;
     /* margin-top: -80%; */
@@ -218,7 +218,7 @@ body * + * {
     color: #d083af;
     background-color: white;
     border: #d083af solid 3px;
-    padding: 0.6em 1em;
+    padding: 0.6em 1.2em;
     text-align: center;
     font-size: 1.75em;
     /* box-shadow: 0px 4px 3px -3px rgba(0,0,0,0.5); */
