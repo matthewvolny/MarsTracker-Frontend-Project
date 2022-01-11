@@ -20,10 +20,10 @@ const perseveranceMapInfo = [
   {
     date: "....",
     sol: 104,
-    headline: "",
-    additionalText: "Perseverance begins its first science campaign.",
-    imageUrl:
+    headline: "Perseverance begins its first science campaign.",
+    additionalText:
       "In a mission that could last months, the rover will intensively study the rocks and soil from key geological regions within the Jezero area",
+    imageUrl: "",
   },
   {
     date: "2021-07-07",
@@ -65,7 +65,7 @@ const curiosityMapInfo = [
     date: "2013-08-27",
     sol: 376,
     headline: "Curiosity heads cross country",
-    additonalText:
+    additionalText:
       "After months of sampling bedrock at 'Glenelg' (a palindrome, named for a small scottish village), curiosity begins what will be a nearly month long 'sprint' to Mount Sharp",
     imageUrl: "assets/5533_PIA17355_RTRmap_Sol-376-full2.jpeg",
   },
@@ -82,7 +82,7 @@ const curiosityMapInfo = [
     date: "2015-12-17",
     sol: 1196,
     headline: "Curiosity begins it's climb",
-    additonalText:
+    additionalText:
       "The rover heads to an area of Mount Sharp with rocks containing tridymite, a mineral that is hardly ever found on Earth.",
     imageUrl: "assets/curisoirty climbing.jpeg",
   },
