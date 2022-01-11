@@ -540,66 +540,57 @@ const drawRoverPosition = (
 ///
 // (step 4) fetching the data for each date of interest, returning an array of objects with dates, photos, etc
 const fetchRoverData = async (url) => {
-  // console.log(url);
-  // console.log(`Fetching ${url}`);
   const response = await fetch(url); //fetch requests to get data from api for each date we are interested in
   const roverData = await response.json();
 
-  // console.log(roverData);
-  //console.log(roverData.photos);
-
-  // return assembleTimelineDataArrays(roverData.photos);
-
-  const generateRandomPhoto = function () {
+  const generateRandomNumber = function () {
     return Math.floor(Math.random() * roverData.photos.length);
   };
 
-  let images = [];
-  roverData.photos.forEach((photo, index) => {
-    if (index < 10) {
-      images.push(photo.img_src);
-    }
-    return;
-  });
-  // console.log(images);
-
-  const makeSlideshow = () => {
-    const pictures = document.querySelectorAll(".timeline-image-container");
-    if (pictures) {
-      //console.log(pictures);
-      pictures.forEach((picture) => {
-        const i = Math.floor(Math.random() * images.length);
-        // console.log(i);
-        picture.innerHTML = `<img src=${images[i]} />`;
-      });
-      // console.log(pictures);
-    }
-    // setTimeout(makeSlideshow, 4000);
-  };
-  makeSlideshow();
   return {
     timelineEarthDate: roverData.photos[0].earth_date,
     timelineSolDate: roverData.photos[0].sol,
-    randomPhotoUrl1: roverData.photos[generateRandomPhoto()].img_src,
-    randomPhotoUrl2: roverData.photos[generateRandomPhoto()].img_src,
-    randomPhotoUrl3: roverData.photos[generateRandomPhoto()].img_src,
-    randomPhotoUrl4: roverData.photos[generateRandomPhoto()].img_src,
+    randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
+    randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
   };
-  // console.log(roverData.photos);
-  // return assembleTimelineDataArrays(roverData.photos);
+};
 
-  // const generateRandomNumber = function () {
+  // for future use to make slideshow
+  // const generateRandomPhoto = function () {
   //   return Math.floor(Math.random() * roverData.photos.length);
   // };
+  // 
+  // let images1 = [];
+  // roverData.photos.forEach((photo, index) => {
+  //   if (index > 0 && index < 20) {
+  //     images1.push(photo.img_src);
+  //   }
+  //   return;
+  // });
+  // // console.log(images);
+
+  // const makeSlideshow = (arrayOfImages, imagesContainerClass) => {
+  //   const pictures = document.querySelectorAll(imagesContainerClass);
+  //   if (pictures) {
+  //     pictures.forEach((picture) => {
+  //       const i = Math.floor(Math.random() * arrayOfImages.length);
+  //       picture.innerHTML = `<img src=${arrayOfImages[i]} />`;
+  //     });
+  //   }
+  //   // setInterval(makeSlideshow, 2000);
+  // };
+  // makeSlideshow(images1, ".timeline-image-container");
   // return {
   //   timelineEarthDate: roverData.photos[0].earth_date,
   //   timelineSolDate: roverData.photos[0].sol,
-  //   randomPhotoUrl1: roverData.photos[generateRandomNumber()].img_src,
-  //   randomPhotoUrl2: roverData.photos[generateRandomNumber()].img_src,
-  //   randomPhotoUrl3: roverData.photos[generateRandomNumber()].img_src,
-  //   randomPhotoUrl4: roverData.photos[generateRandomNumber()].img_src,
+  //   randomPhotoUrl1: roverData.photos[generateRandomPhoto()].img_src,
   // };
-};
+  // console.log(roverData.photos);
+  // return assembleTimelineDataArrays(roverData.photos);
+
+  
 
 
 // (step 3) handler function, calls fetch for each date we are interested in
@@ -662,7 +653,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
                             <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
                             <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
                             <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
-                            <div class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</div>
+                            <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</a>
                         </div>`;
           timelineElementsContent[
             i
@@ -679,7 +670,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
                             <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
                             <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
                             <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
-                            <div class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</div>
+                            <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</a>
                         </div>`;
           squareElementsCounter += 1;
         }
@@ -732,7 +723,7 @@ const populateTimeline = (infoArray, roverDataArrayMultipleFetches) => {
                           <div class="timeline-headline">${infoArray[squareElementsCounter].headline}</div>
                           <div class="timeline-subheading">${infoArray[squareElementsCounter].subheading}</div>
                           <div class = "timeline-image-container"><img src="${roverDataArrayMultipleFetches[squareElementsCounter].randomPhotoUrl1}"></div>
-                          <div class="timeline-link">${infoArray[squareElementsCounter].link}</div>
+                          <a class="timeline-link" href="${infoArray[squareElementsCounter].link}">More Information</a>
                         </div>`;
           squareElementsCounter += 1;
         }
